@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Executive Cover Letter</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-dark: #0F172A;     /* Dark Slate */
+      --primary-accent: #2563EB;   /* Royal Blue */
+      --accent-light: #EFF6FF;     /* Soft Blue Tint */
+      --text-dark: #1E293B;        /* Slate 800 */
+      --text-muted: #64748B;       /* Slate 500 */
+      --border-color: #E2E8F0;    /* Light Gray */
+      --card-bg: #F8FAFC;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    @page { 
+      size: A4; 
+      margin: 0; 
+    }
+
+    body { 
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; 
+      background: #CBD5E1; 
+      color: var(--text-dark); 
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #FFFFFF;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Top Decorative Accent Header */
+    .top-header-bg {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      padding: 40px 50px 32px 50px;
+      color: #FFFFFF;
+      position: relative;
+    }
+
+    .top-header-bg::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #2563EB 0%, #38BDF8 100%);
+    }
+
+    .sender-name {
+      font-size: 28px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .sender-job {
+      font-size: 11px;
+      font-weight: 700;
+      color: #38BDF8;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    /* Main Content Area */
+    .main-body {
+      padding: 40px 50px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Metadata Row (Recipient & Date) */
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      gap: 20px;
+    }
+
+    .recip-box {
+      background: var(--card-bg);
+      border-left: 4px solid var(--primary-accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .r-name { 
+      font-weight: 700; 
+      font-size: 15px; 
+      color: var(--primary-dark); 
+    }
+    
+    .r-title { 
+      font-size: 13px; 
+      color: var(--text-muted); 
+      margin-top: 2px; 
+      font-weight: 500;
+    }
+    
+    .r-comp { 
+      font-weight: 700; 
+      font-size: 13.5px; 
+      color: var(--primary-accent); 
+      margin-top: 4px; 
+    }
+    
+    .r-addr { 
+      font-size: 12.5px; 
+      color: var(--text-muted); 
+      margin-top: 2px; 
+      line-height: 1.4;
+    }
+
+    .date-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: var(--card-bg);
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    /* Subject Line Card */
+    .subject-line {
+      background: var(--accent-light) !important;
+      border: 1px solid #BFDBFE !important;
+      padding: 14px 20px !important;
+      border-radius: 8px !important;
+      margin: 10px 0 24px 0 !important;
+      font-size: 14.5px !important;
+      font-weight: 700 !important;
+      color: var(--primary-dark) !important;
+      line-height: 1.5 !important;
+    }
+
+    .subject-line span {
+      color: var(--primary-accent) !important;
+      font-weight: 800 !important;
+    }
+
+    /* Salutation & Paragraphs */
+    .salutation {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .paragraphs {
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: var(--text-dark);
+      text-align: justify;
+    }
+
+    .paragraphs p { 
+      margin-bottom: 16px; 
+    }
+
+    /* Signature Section */
+    .sign-section {
+      margin-top: 32px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .closing {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .sig-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    /* Footer Contact Bar */
+    .footer-velvet {
+      background: var(--card-bg);
+      padding: 20px 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      border-top: 1px solid var(--border-color);
+      margin-top: auto;
+    }
+
+    .footer-velvet div { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    
+    .footer-velvet span { 
+      color: var(--primary-dark) !important; 
+      font-weight: 600; 
+      text-decoration: none !important; 
+    }
+
+    @media print {
+      body { background: #FFFFFF; }
+      .page { box-shadow: none; width: 100%; height: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    
+    <!-- Top Header -->
+    <header class="top-header-bg">
+      <div class="sender-name">{{SENDER_NAME}}</div>
+      <div class="sender-job" style="{{JOB_TITLE_DISPLAY}}">{{SENDER_JOB_TITLE}}</div>
+    </header>
+
+    <main class="main-body">
+      <!-- Meta Information -->
+      <div class="meta-row">
+        <div class="recip-box" style="{{RECIPIENT_BLOCK_DISPLAY}}">
+          <div class="r-name">{{RECIPIENT_NAME}}</div>
+          <div class="r-title">{{RECIPIENT_TITLE}}</div>
+          <div class="r-comp">{{COMPANY_NAME}}</div>
+          <div class="r-addr">{{COMPANY_ADDRESS}}</div>
+        </div>
+        <div class="date-badge">{{LETTER_DATE}}</div>
+      </div>
+
+      <!-- Subject Line -->
+      {{SUBJECT_LINE_BLOCK}}
+
+      <!-- Salutation -->
+      <div class="salutation">{{SALUTATION}}</div>
+
+      <!-- Main Body Paragraphs -->
+      <div class="paragraphs">
+        {{BODY_CONTENT}}
+      </div>
+
+      <!-- Signature Section -->
+      <div class="sign-section">
+        <div class="closing">{{SIGN_OFF}}</div>
+        {{SIGNATURE_IMAGE_BLOCK}}
+        <div class="sig-name" style="{{SIGNATURE_NAME_DISPLAY}}">{{SIGNATURE_NAME}}</div>
+      </div>
+    </main>
+
+    <!-- Bottom Contact Bar -->
+    <footer class="footer-velvet">
+      <div style="{{PHONE_DISPLAY}}">📱 <span>{{SENDER_PHONE}}</span></div>
+      <div style="{{EMAIL_DISPLAY}}">✉️ <span>{{SENDER_EMAIL}}</span></div>
+      <div style="{{ADDRESS_DISPLAY}}">📍 <span>{{SENDER_ADDRESS}}</span></div>
+      <div style="{{WEBSITE_DISPLAY}}">🌐 <span>{{SENDER_WEBSITE}}</span></div>
+      <div style="{{LINKEDIN_DISPLAY}}">💼 <span>{{SENDER_LINKEDIN}}</span></div>
+    </footer>
+  </div>
+</body>
+</html>
