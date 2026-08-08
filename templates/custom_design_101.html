@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aurora Prism Signal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --p: #FF6B5E;
+    --ink: #0E1726;
+    --ink-soft: #26354A;
+    --muted: #66758A;
+    --line: #DDE5EE;
+    --paper: #F7F9FC;
+    --mint: #27C4B7;
+    --sun: #FFCA5C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    background: #C9D1DD;
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: 0 14px 38px rgba(14, 23, 38, .18);
+  }
+
+  /* --- Aurora header --- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 48px 26px;
+    color: #FFF;
+    background: linear-gradient(125deg, #0D1727 0%, #162A46 56%, #224867 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    right: -125px;
+    top: -230px;
+    border: 52px solid rgba(39, 196, 183, .22);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    right: 55px;
+    bottom: -155px;
+    border: 38px solid rgba(255, 107, 94, .26);
+    border-radius: 50%;
+  }
+
+  .hero-top {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .photo-shell {
+    width: 92px;
+    height: 92px;
+    padding: 4px;
+    overflow: hidden;
+    border: 2px solid var(--mint);
+    border-radius: 24px 24px 24px 4px;
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 10px 10px 0 rgba(255, 107, 94, .85);
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 17px 17px 17px 2px;
+    object-fit: cover;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 6px;
+    color: var(--mint);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+  }
+
+  .name {
+    max-width: 480px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 37px;
+    font-weight: 700;
+    letter-spacing: -1.7px;
+    line-height: 1.03;
+    text-transform: uppercase;
+  }
+
+  .job-title {
+    display: inline-flex;
+    max-width: 100%;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-left: 3px solid var(--p);
+    background: rgba(255, 255, 255, .09);
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hero-index {
+    align-self: start;
+    color: rgba(255, 255, 255, .58);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+
+  .contact-deck {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 30px;
+    border: 1px solid rgba(255, 255, 255, .17);
+    background: rgba(255, 255, 255, .17);
+  }
+
+  .contact-card {
+    display: flex;
+    min-width: 0;
+    min-height: 47px;
+    padding: 8px 10px;
+    gap: 8px;
+    background: rgba(10, 22, 38, .76);
+  }
+
+  .contact-mark {
+    flex: 0 0 auto;
+    margin-top: 1px;
+    color: var(--sun);
+    font-size: 12px;
+  }
+
+  .contact-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-label {
+    color: rgba(255, 255, 255, .55);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    color: #FFF !important;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    text-decoration: none !important;
+  }
+
+  /* --- Main editorial grid --- */
+  .main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px 48px 0;
+  }
+
+  .column {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .section-block {
+    position: relative;
+    min-width: 0;
+    padding: 17px 18px 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 5px 13px rgba(31, 51, 76, .045);
+  }
+
+  .section-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 4px;
+    background: var(--p);
+  }
+
+  .section-block.section-mint::before { background: var(--mint); }
+  .section-block.section-sun::before { background: var(--sun); }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 13px;
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .section-title::before {
+    content: '+';
+    display: grid;
+    width: 15px;
+    height: 15px;
+    place-items: center;
+    border-radius: 4px;
+    background: var(--ink);
+    color: #FFF;
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .summary-text {
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    line-height: 1.68;
+  }
+
+  .entry {
+    position: relative;
+    margin-bottom: 16px;
+    padding-left: 13px;
+    border-left: 2px solid #E6ECF3;
+  }
+
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: -5px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #FFF;
+    border-radius: 50%;
+    background: var(--p);
+    box-shadow: 0 0 0 1px var(--p);
+  }
+
+  .entry-title {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.28;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3px 10px;
+    margin: 4px 0 7px;
+    color: var(--p);
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .entry-desc {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.52;
+  }
+
+  .entry-desc ul { margin: 4px 0 0 14px; }
+  .entry-desc li + li { margin-top: 2px; }
+
+  /* Skills are intentionally visual, while the information remains text-first. */
+  .skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .skill-item { display: flex; flex-direction: column; gap: 5px; }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .skill-name { color: var(--ink-soft); font-weight: 700; }
+  .skill-level { flex: 0 0 auto; color: var(--p); font-size: 10px; font-weight: 700; }
+
+  .skill-track {
+    width: 100%;
+    height: 5px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #E8EEF4;
+  }
+
+  .skill-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--p), #FF9A67);
+  }
+
+  .languages-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+  .languages-container .entry {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #E6ECF3;
+    border-left: 1px solid #E6ECF3;
+    border-radius: 7px;
+    background: #F8FAFC;
+  }
+
+  .languages-container .entry::before { display: none; }
+  .languages-container .entry-title { font-size: 11px; }
+  .languages-container .entry-sub-row { margin: 3px 0 0; font-size: 9px; }
+
+  .interests-section .skills-container,
+  .hobbies-section .skills-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 7px;
+  }
+
+  .interests-section .skill-item,
+  .hobbies-section .skill-item {
+    flex: 1 1 135px;
+    padding: 8px 9px;
+    border: 1px solid #E6ECF3;
+    border-radius: 6px;
+    background: #F8FAFC;
+  }
+
+  .interests-section .skill-track,
+  .hobbies-section .skill-track { height: 3px; }
+
+  .social-section .entry-sub-row { display: block; overflow-wrap: anywhere; }
+  .social-section .entry-desc { display: none; }
+
+  /* --- Closing strip --- */
+  .closing-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, .9fr);
+    gap: 20px;
+    margin-top: 22px;
+    padding: 24px 48px 45px;
+    background: linear-gradient(90deg, #E9EEF4 0%, #F7F9FC 72%);
+  }
+
+  .closing-grid .section-block {
+    border-color: #D5DEE9;
+    box-shadow: none;
+  }
+
+  .cover-section .summary-text {
+    padding-left: 13px;
+    border-left: 3px solid var(--mint);
+    font-size: 12px;
+  }
+
+  .references-section .entry { margin-bottom: 12px; }
+  .references-section .entry-sub-row { display: block; }
+  .ref-item { display: flex; gap: 6px; align-items: center; }
+  .ref-icon { color: var(--p); }
+
+  /* Auto-hide empty values and sections. */
+  .name:empty, .job-title:empty, .summary-text:empty,
+  .skills-container:empty, .languages-container:empty,
+  .photo[src=""], .photo:not([src]) { display: none !important; }
+
+  .photo-shell:has(.photo[src=""]),
+  .photo-shell:has(.photo:not([src])) { display: none !important; }
+
+  .contact-deck:not(:has(.contact-card:not([style*="display: none"]))) { display: none !important; }
+
+  .section-block:has(.section-content:empty),
+  .section-block:has(.skills-container:empty),
+  .section-block:has(.languages-container:empty),
+  .section-block:has(.summary-text:empty) { display: none !important; }
+
+  .skills-container .chip { display: none !important; }
+
+  @media print {
+    body { background: #FFF; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="hero-top">
+      <div class="photo-shell" style="{{PHOTO_DISPLAY}}"><img alt="" class="photo" src="{{PHOTO}}"/></div>
+      <div>
+        <div class="hero-eyebrow">Professional Profile</div>
+        <div class="name">{{FULL_NAME}}</div>
+        <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      </div>
+      <div class="hero-index">/ CV</div>
+    </div>
+
+    <div class="contact-deck">
+      <div class="contact-card" style="{{PHONE_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Phone</span><span class="contact-value">{{PHONE}}</span></span></div>
+      <div class="contact-card" style="{{EMAIL_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Email</span><span class="contact-value">{{EMAIL}}</span></span></div>
+      <div class="contact-card" style="{{ADDRESS_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Address</span><span class="contact-value">{{ADDRESS}}</span></span></div>
+      <div class="contact-card" style="{{WEBSITE_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Website</span><span class="contact-value">{{WEBSITE}}</span></span></div>
+      <div class="contact-card" style="{{DOB_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Date of Birth</span><span class="contact-value">{{DOB}}</span></span></div>
+      <div class="contact-card" style="{{NATIONALITY_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Nationality</span><span class="contact-value">{{NATIONALITY}}</span></span></div>
+      <div class="contact-card" style="{{MARITAL_STATUS_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Marital Status</span><span class="contact-value">{{MARITAL_STATUS}}</span></span></div>
+      <div class="contact-card" style="{{RELIGION_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Religion</span><span class="contact-value">{{RELIGION}}</span></span></div>
+      <div class="contact-card" style="{{FATHER_NAME_DISPLAY}}"><span class="contact-mark">●</span><span class="contact-copy"><span class="contact-label">Father's Name</span><span class="contact-value">{{FATHER_NAME}}</span></span></div>
+    </div>
+  </header>
+
+  <main class="main-grid">
+    <div class="column">
+      <section class="section-block section-mint profile-section">
+        <div class="section-title">{{HEADING_PROFILE|Career Objective}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </section>
+
+      <section class="section-block experience-section">
+        <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </section>
+
+      <section class="section-block section-sun education-section">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </section>
+
+      <section class="section-block certificates-section">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </section>
+
+      <section class="section-block section-mint activities-section">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </section>
+    </div>
+
+    <div class="column">
+      <section class="section-block section-sun skills-section">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </section>
+
+      <section class="section-block projects-section">
+        <div class="section-title">{{HEADING_PROJECTS|Selected Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </section>
+
+      <section class="section-block section-mint languages-section">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </section>
+
+      <section class="section-block interests-section">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="skills-container">{{INTERESTS}}</div>
+      </section>
+
+      <section class="section-block section-sun hobbies-section">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="skills-container">{{HOBBIES}}</div>
+      </section>
+
+      <section class="section-block social-section">
+        <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="closing-grid">
+    <section class="section-block section-mint cover-section">
+      <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+      <div class="summary-text">{{COVER_LETTER}}</div>
+    </section>
+
+    <section class="section-block references-section">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="section-content">{{REFERENCES}}</div>
+    </section>
+  </footer>
+</div>
+</body>
+</html>
