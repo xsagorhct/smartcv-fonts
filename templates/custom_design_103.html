@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elegant Serif Classic</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;600;800&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --bg-color: #FBFBFB;
+      --text-main: #333333;
+      --accent: #B28F44; /* Elegant Gold */
+      --line: #E5E5E5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Proza Libre', sans-serif;
+      background: #CCC;
+      color: var(--text-main);
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1122px;
+      margin: 0 auto;
+      background: var(--bg-color);
+      padding: 50px 70px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 30px;
+    }
+
+    .photo-wrapper {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      padding: 3px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .photo-box {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .name {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .job-title {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .contact-list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px 18px;
+      margin-top: 2px;
+      text-align: left;
+    }
+
+    .contact-item {
+      min-width: 0;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-main) !important;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.35;
+    }
+
+    .contact-icon {
+      flex: 0 0 auto;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .contact-content {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-label {
+      color: var(--accent);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .65px;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      color: var(--text-main) !important;
+      text-decoration: none !important;
+      overflow-wrap: anywhere;
+    }
+    
+    /* Summary */
+    .summary-text {
+      font-family: 'Lora', serif;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: center;
+      color: var(--text-main);
+      padding: 0 30px;
+    }
+    
+    /* Content Layout */
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(190px, 1fr);
+      align-items: start;
+      gap: 36px;
+    }
+    
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+    
+    /* Sections */
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    
+    .entry {
+      margin-bottom: 22px;
+    }
+
+    .entry-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .entry-sub-row {
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--accent);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .entry-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .entry-desc ul {
+      margin-left: 18px;
+      margin-top: 5px;
+    }
+    
+    /* Skills */
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .skill-header {
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .skill-name {
+      font-weight: 600;
+    }
+
+    .skill-level {
+      color: var(--accent);
+    }
+
+    .skill-track {
+      width: 100%;
+      height: 3px;
+      background: var(--line);
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--accent);
+    }
+    
+    /* Languages */
+    .languages-container .entry {
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .languages-container .entry-title {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .languages-container .entry-sub-row {
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .cover-section .entry {
+      display: block;
+      border: none;
+      padding: 0;
+    }
+
+    /* Keep the narrower column readable without making the page unnecessarily tall. */
+    .col--side {
+      gap: 22px;
+    }
+
+    .col--side .section-title {
+      margin-bottom: 12px;
+    }
+
+    .col--side .entry {
+      margin-bottom: 18px;
+    }
+
+    .col--side .entry-desc {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* AUTO HIDING */
+    .skills-container .chip { display: none !important; }
+    .name:empty { display: none !important; }
+    .job-title:empty { display: none !important; }
+    .photo[src=""], .photo:not([src]) { display: none !important; }
+    .photo-wrapper:has(.photo[src=""]), .photo-wrapper:has(.photo:not([src])), .photo-wrapper:empty { display: none !important; }
+    .summary-text:empty { display: none !important; }
+    .skills-container:empty { display: none !important; }
+    .languages-container:empty { display: none !important; }
+    .contact-list:empty, .contact-block:has(.contact-list:empty) { display: none !important; }
+    .contact-list:not(:has(.contact-item:not([style*="display: none"]))) { display: none !important; }
+    .contact-block:has(.contact-list:not(:has(.contact-item:not([style*="display: none"])))) { display: none !important; }
+    
+    .section-title:has(+ :empty),
+    .section-title:has(+ .skills-container:empty),
+    .section-title:has(+ .languages-container:empty) { display: none !important; }
+    
+    .section-block:not(.contact-block):not(:has(.entry)):not(:has(.skill-item)):not(:has(.summary-text:not(:empty))):not(:has(p:not(:empty))) {
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+<header class="header">
+<div class="photo-wrapper">
+<div class="photo-box">
+<img alt="" class="photo" src="{{PHOTO}}"/>
+</div>
+</div>
+<div class="name">{{FULL_NAME}}</div>
+<div class="job-title">{{JOB_TITLE}}</div>
+<div class="section-block contact-block">
+<div class="contact-list">
+  <div class="contact-item" style="{{PHONE_DISPLAY}}"><span class="contact-icon">📞</span><span class="contact-content"><span class="contact-label">Phone</span><span class="contact-value">{{PHONE}}</span></span></div>
+  <div class="contact-item" style="{{EMAIL_DISPLAY}}"><span class="contact-icon">✉️</span><span class="contact-content"><span class="contact-label">Email</span><span class="contact-value">{{EMAIL}}</span></span></div>
+  <div class="contact-item" style="{{ADDRESS_DISPLAY}}"><span class="contact-icon">📍</span><span class="contact-content"><span class="contact-label">Address</span><span class="contact-value">{{ADDRESS}}</span></span></div>
+  <div class="contact-item" style="{{WEBSITE_DISPLAY}}"><span class="contact-icon">🌐</span><span class="contact-content"><span class="contact-label">Website</span><span class="contact-value">{{WEBSITE}}</span></span></div>
+  <div class="contact-item" style="{{DOB_DISPLAY}}"><span class="contact-icon">📅</span><span class="contact-content"><span class="contact-label">Date of Birth</span><span class="contact-value">{{DOB}}</span></span></div>
+  <div class="contact-item" style="{{NATIONALITY_DISPLAY}}"><span class="contact-icon">🌍</span><span class="contact-content"><span class="contact-label">Nationality</span><span class="contact-value">{{NATIONALITY}}</span></span></div>
+  <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}"><span class="contact-icon">💍</span><span class="contact-content"><span class="contact-label">Marital Status</span><span class="contact-value">{{MARITAL_STATUS}}</span></span></div>
+  <div class="contact-item" style="{{RELIGION_DISPLAY}}"><span class="contact-icon">🕊️</span><span class="contact-content"><span class="contact-label">Religion</span><span class="contact-value">{{RELIGION}}</span></span></div>
+  <div class="contact-item" style="{{FATHER_NAME_DISPLAY}}"><span class="contact-icon">👨‍👦</span><span class="contact-content"><span class="contact-label">Father's Name</span><span class="contact-value">{{FATHER_NAME}}</span></span></div>
+</div>
+</div>
+</header>
+<div class="section-block summary-section">
+<div class="section-title">{{HEADING_PROFILE|Career Objective}}</div>
+<div class="summary-text">{{SUMMARY}}</div>
+</div>
+<div class="content-grid">
+<div class="col col--main">
+<div class="section-block experience-section">
+<div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+<div>{{EXPERIENCE}}</div>
+</div>
+<div class="section-block education-section">
+<div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+<div>{{EDUCATION}}</div>
+</div>
+<div class="section-block cover-section">
+<div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+<div class="summary-text">{{COVER_LETTER}}</div>
+</div>
+</div>
+<div class="col col--side">
+<div class="section-block skills-section">
+<div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+<div class="skills-container">{{SKILLS}}</div>
+</div>
+<div class="section-block projects-section">
+<div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+<div>{{PROJECTS}}</div>
+</div>
+<div class="section-block certificates-section">
+<div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+<div>{{CERTIFICATES}}</div>
+</div>
+<div class="section-block languages-section">
+<div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+<div class="languages-container">{{LANGUAGES}}</div>
+</div>
+<div class="section-block activities-section">
+  <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+  <div>{{ACTIVITIES}}</div>
+</div>
+<div class="section-block interests-section">
+  <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+  <div class="skills-container">{{INTERESTS}}</div>
+</div>
+<div class="section-block hobbies-section">
+  <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+  <div class="skills-container">{{HOBBIES}}</div>
+</div>
+<div class="section-block social-section">
+  <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+  <div class="skills-container">{{SOCIAL}}</div>
+</div>
+<div class="section-block references-section">
+<div class="section-title">{{HEADING_REFERENCES|References}}</div>
+<div>{{REFERENCES}}</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
