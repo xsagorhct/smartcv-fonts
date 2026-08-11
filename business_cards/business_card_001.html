@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium Business Card</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-height: 100vh;
+        background:
+            radial-gradient(circle at top left, #263248 0%, transparent 35%),
+            radial-gradient(circle at bottom right, #151b28 0%, transparent 40%),
+            #090c12;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        color: #fff;
+    }
+
+    .wrapper {
+        width: min(1100px, 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .title h1 {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+    }
+
+    .title p {
+        color: #8f98a8;
+        font-size: 14px;
+    }
+
+    .cards {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        flex-wrap: wrap;
+    }
+
+    /* =========================
+       BUSINESS CARD
+    ========================== */
+
+    .business-card {
+        position: relative;
+        width: 520px;
+        max-width: 100%;
+        aspect-ratio: 1.75 / 1;
+        overflow: hidden;
+        border-radius: 22px;
+        box-shadow:
+            0 25px 60px rgba(0,0,0,.45),
+            inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    /* =========================
+       FRONT
+    ========================== */
+
+    .front {
+        background:
+            radial-gradient(
+                circle at 88% 15%,
+                rgba(70, 130, 255, .35),
+                transparent 30%
+            ),
+            linear-gradient(
+                135deg,
+                #111827,
+                #0b1220 55%,
+                #080c14
+            );
+    }
+
+    .front::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        right: -100px;
+        bottom: -120px;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 50%;
+    }
+
+    .front::after {
+        content: "";
+        position: absolute;
+        width: 330px;
+        height: 330px;
+        right: -140px;
+        bottom: -170px;
+        border: 1px solid rgba(255,255,255,.06);
+        border-radius: 50%;
+    }
+
+    .top-bar {
+        position: absolute;
+        top: 30px;
+        left: 34px;
+        right: 34px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #65a8ff, #7c4dff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 800;
+        box-shadow: 0 8px 25px rgba(91, 130, 255, .3);
+    }
+
+    .brand-name {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .brand-sub {
+        font-size: 9px;
+        color: #8993a4;
+        margin-top: 3px;
+        letter-spacing: 1.5px;
+    }
+
+    .card-number {
+        font-size: 10px;
+        color: #707b8d;
+        letter-spacing: 2px;
+    }
+
+    .front-content {
+        position: absolute;
+        left: 34px;
+        bottom: 35px;
+    }
+
+    .front-content .small {
+        color: #6e7b91;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 9px;
+    }
+
+    .front-content h2 {
+        font-size: clamp(26px, 4vw, 40px);
+        line-height: 1;
+        letter-spacing: -1.5px;
+        font-weight: 700;
+    }
+
+    .front-content .role {
+        margin-top: 10px;
+        color: #73aaff;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .accent-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(
+            to bottom,
+            #69a8ff,
+            #8a5cff
+        );
+    }
+
+    /* =========================
+       BACK
+    ========================== */
+
+    .back {
+        background: #f4f6f9;
+        color: #111827;
+    }
+
+    .back .accent-shape {
+        position: absolute;
+        width: 270px;
+        height: 270px;
+        right: -130px;
+        top: -130px;
+        border-radius: 50%;
+        background: linear-gradient(
+            135deg,
+            #6caaff,
+            #7d54ff
+        );
+    }
+
+    .back .accent-shape2 {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        left: -90px;
+        bottom: -100px;
+        border-radius: 50%;
+        border: 25px solid rgba(101, 143, 255, .08);
+    }
+
+    .back-content {
+        position: absolute;
+        inset: 0;
+        padding: 34px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 2;
+    }
+
+    .identity {
+        max-width: 55%;
+    }
+
+    .identity h2 {
+        font-size: 27px;
+        letter-spacing: -1px;
+        margin-bottom: 5px;
+    }
+
+    .identity .job {
+        color: #6d7fa0;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 27px;
+    }
+
+    .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        color: #475467;
+    }
+
+    .icon {
+        width: 27px;
+        height: 27px;
+        border-radius: 8px;
+        background: #e8edf5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        color: #557fd0;
+        flex-shrink: 0;
+    }
+
+    .qr-area {
+        width: 105px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .qr {
+        width: 90px;
+        height: 90px;
+        background:
+            linear-gradient(90deg, #111 10px, transparent 10px) 0 0 / 20px 20px,
+            linear-gradient(#111 10px, transparent 10px) 0 0 / 20px 20px,
+            #fff;
+        border: 7px solid #fff;
+        box-shadow: 0 5px 20px rgba(0,0,0,.12);
+    }
+
+    .scan {
+        font-size: 8px;
+        color: #8993a4;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    /* =========================
+       LABEL
+    ========================== */
+
+    .label {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 5px 12px;
+        background: #202938;
+        border-radius: 20px;
+        font-size: 9px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #aab4c4;
+        z-index: 20;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 700px) {
+        body {
+            padding: 25px 15px;
+        }
+
+        .cards {
+            gap: 45px;
+        }
+
+        .business-card {
+            border-radius: 16px;
+        }
+
+        .top-bar,
+        .front-content,
+        .back-content {
+            transform-origin: center;
+        }
+
+        .top-bar {
+            top: 20px;
+            left: 22px;
+            right: 22px;
+        }
+
+        .front-content {
+            left: 22px;
+            bottom: 22px;
+        }
+
+        .back-content {
+            padding: 22px;
+        }
+
+        .brand-logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+        }
+
+        .identity h2 {
+            font-size: 21px;
+        }
+
+        .contact-item {
+            font-size: 9px;
+        }
+
+        .icon {
+            width: 23px;
+            height: 23px;
+        }
+
+        .qr {
+            width: 65px;
+            height: 65px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="title">
+        <h1>Premium Business Card</h1>
+        <p>Modern professional business card template</p>
+    </div>
+
+    <div class="cards">
+
+        <!-- FRONT -->
+        <div class="business-card front">
+
+            <span class="label">Front</span>
+
+            <div class="accent-line"></div>
+
+            <div class="top-bar">
+
+                <div class="brand">
+
+                    <div class="brand-logo">
+                        S
+                    </div>
+
+                    <div>
+                        <div class="brand-name">
+                            STUDIO NEXUS
+                        </div>
+
+                        <div class="brand-sub">
+                            CREATIVE AGENCY
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-number">
+                    001 / 026
+                </div>
+
+            </div>
+
+            <div class="front-content">
+
+                <div class="small">
+                    Creative Professional
+                </div>
+
+                <h2>
+                    Md Sagor
+                </h2>
+
+                <div class="role">
+                    UI / UX Designer
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK -->
+        <div class="business-card back">
+
+            <span class="label">Back</span>
+
+            <div class="accent-shape"></div>
+            <div class="accent-shape2"></div>
+
+            <div class="back-content">
+
+                <div class="identity">
+
+                    <h2>
+                        Md Sagor
+                    </h2>
+
+                    <div class="job">
+                        UI / UX Designer
+                    </div>
+
+                    <div class="contact-list">
+
+                        <div class="contact-item">
+                            <div class="icon">☎</div>
+                            <span>+374 00 000 000</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="icon">✉</div>
+                            <span>hello@studionexus.com</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="icon">⌖</div>
+                            <span>Yerevan, Armenia</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="icon">◉</div>
+                            <span>www.studionexus.com</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qr-area">
+
+                    <div class="qr"></div>
+
+                    <div class="scan">
+                        Scan Me
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
