@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aurora Coral Wave Curved</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --p: #E07A5F;
+      --coral-dark: #C85A42;
+      --coral-light: #F4A698;
+      --rose-soft: #FCEAE6;
+      --cream: #FFF8F3;
+      --slate: #1E293B;
+      --slate-mid: #475569;
+      --slate-light: #64748B;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #E2E8F0;
+      color: var(--slate-mid);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1122px;
+      margin: 0 auto;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+    }
+
+    /* Wave header band */
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 168px;
+      background: linear-gradient(135deg, var(--p) 0%, var(--coral-light) 55%, #F9C5B8 100%);
+      border-radius: 0 0 52% 48% / 0 0 88% 88%;
+      z-index: 1;
+    }
+
+    /* Decorative blobs */
+    .blob-tr {
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .blob-bl {
+      position: absolute;
+      bottom: -70px;
+      left: 42%;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(224, 122, 95, 0.12);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Left sidebar (~32%) ── */
+    .sidebar {
+      width: 255px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, var(--p) 0%, #D4664F 48%, #C85A42 100%);
+      border-radius: 0 48px 48px 0;
+      padding: 28px 22px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      z-index: 5;
+      min-height: 1122px;
+      min-width: 0;
+    }
+
+    .profile-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .photo-wrap {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      padding: 5px;
+      background: var(--white);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      margin-top: -12px;
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 21px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+      overflow-wrap: anywhere;
+    }
+
+    .job-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.88);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .section-title {
+      display: inline-block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar .summary-text {
+      font-size: 11px;
+      line-height: 1.58;
+      color: rgba(255, 255, 255, 0.92);
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .contact-item {
+      font-size: 10.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.95);
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .contact-item strong {
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .sidebar .entry {
+      margin-bottom: 10px;
+    }
+
+    .sidebar .entry-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .entry-sub-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px;
+      margin-top: 3px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .sidebar .entry-badge,
+    .sidebar .entry-date {
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .entry-desc {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.82);
+      margin-top: 3px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .sidebar .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .sidebar .skill-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .skill-level {
+      font-size: 9.5px;
+      color: rgba(255, 255, 255, 0.72);
+      flex-shrink: 0;
+    }
+
+    .sidebar .skill-track {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .sidebar .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FFFFFF, rgba(255, 255, 255, 0.72));
+      border-radius: 999px;
+    }
+
+    .sidebar .languages-container .entry {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 8px 10px;
+    }
+
+    /* ── Main column (~68%) ── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 38px 36px 40px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .main .section-title {
+      display: inline-block;
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--p);
+      border-radius: 999px;
+      padding: 7px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 14px rgba(224, 122, 95, 0.28);
+    }
+
+    .main .summary-text {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--slate-mid);
+      background: var(--white);
+      border-radius: 20px;
+      padding: 16px 18px;
+      border: 1px solid rgba(224, 122, 95, 0.14);
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(224, 122, 95, 0.1);
+      box-shadow: 0 2px 10px rgba(30, 41, 59, 0.04);
+    }
+
+    .main .entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .main .entry-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--slate);
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry-sub-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 5px;
+    }
+
+    .main .entry-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--p);
+      background: var(--rose-soft);
+      border-radius: 999px;
+      padding: 3px 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry-date {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--slate-light);
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry-desc {
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: var(--slate-mid);
+      margin-top: 7px;
+      overflow-wrap: anywhere;
+    }
+
+    .main .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .main .skills-container .skill-item {
+      display: none !important;
+    }
+
+    .main .chip {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--slate);
+      background: var(--white);
+      border: 1px solid rgba(224, 122, 95, 0.22);
+      border-radius: 999px;
+      padding: 6px 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .main .ref-entry .entry-desc {
+      margin-top: 6px;
+    }
+
+    .main .ref-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+
+    .main .ref-icon {
+      flex-shrink: 0;
+    }
+
+    .main .ref-text {
+      overflow-wrap: anywhere;
+    }
+
+    /* Hide duplicate skill chips in sidebar */
+    .sidebar .skills-container .chip {
+      display: none !important;
+    }
+
+    /* Empty-state rules */
+    .name:empty,
+    .job-title:empty {
+      display: none !important;
+    }
+
+    .photo[src=""],
+    .photo:not([src]) {
+      display: none !important;
+    }
+
+    .photo-wrap:has(.photo[src=""]),
+    .photo-wrap:has(.photo:not([src])) {
+      display: none !important;
+    }
+
+    .summary-text:empty,
+    .skills-container:empty,
+    .languages-container:empty,
+    .contact-list:empty {
+      display: none !important;
+    }
+
+    .contact-block:not(:has(.contact-item[style*="display: block"])):not(:has(.contact-item:not([style*="none"]))) {
+      display: none !important;
+    }
+
+    .sidebar .section-title:empty,
+    .main .section-title:empty {
+      display: none !important;
+    }
+
+    .section-title:has(+ .summary-text:empty),
+    .section-title:has(+ .skills-container:empty),
+    .section-title:has(+ .languages-container:empty),
+    .section-title:has(+ div:empty) {
+      display: none !important;
+    }
+
+    .side-section:not(:has(.entry)):not(:has(.skill-item)):not(:has(.summary-text:not(:empty))):not(:has(.contact-item)),
+    .main-section:not(:has(.entry)):not(:has(.chip)):not(:has(.summary-text:not(:empty))) {
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="blob-tr"></div>
+  <div class="blob-bl"></div>
+
+  <aside class="sidebar left-section">
+    <div class="profile-head">
+      <div class="photo-wrap" style="{{PHOTO_DISPLAY}}">
+        <img alt="" class="photo" src="{{PHOTO}}"/>
+      </div>
+      <div class="name">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+    </div>
+
+    <div class="side-section contact-block">
+      <div class="contact-list">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}">📞 <span>{{PHONE}}</span></div>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}">✉️ <span>{{EMAIL}}</span></div>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}">📍 <span>{{ADDRESS}}</span></div>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}">🌐 <span>{{WEBSITE}}</span></div>
+        <div class="contact-item" style="{{LINKEDIN_DISPLAY}}">💼 <span>{{LINKEDIN}}</span></div>
+        <div class="contact-item" style="{{GITHUB_DISPLAY}}">💻 <span>{{GITHUB}}</span></div>
+        <div class="contact-item" style="{{DOB_DISPLAY}}">📅 <strong>DOB:</strong> <span>{{DOB}}</span></div>
+        <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">🌍 <strong>Nationality:</strong> <span>{{NATIONALITY}}</span></div>
+        <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}">💍 <strong>Status:</strong> <span>{{MARITAL_STATUS}}</span></div>
+        <div class="contact-item" style="{{RELIGION_DISPLAY}}">🕊️ <strong>Religion:</strong> <span>{{RELIGION}}</span></div>
+        <div class="contact-item" style="{{FATHER_NAME_DISPLAY}}">👨‍👦 <strong>Father:</strong> <span>{{FATHER_NAME}}</span></div>
+      </div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_PROFILE|Career Objective}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+      <div class="skills-container">{{HOBBIES}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <div>{{EDUCATION}}</div>
+    </div>
+  </aside>
+
+  <main class="main right-section">
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+      <div>{{EXPERIENCE}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <div>{{PROJECTS}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div>{{CERTIFICATES}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="skills-container">{{ACTIVITIES}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+      <div class="skills-container">{{INTERESTS}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+      <div>{{SOCIAL}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div>{{REFERENCES}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+      <div class="summary-text">{{COVER_LETTER}}</div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
