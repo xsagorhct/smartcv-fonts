@@ -1,1 +1,347 @@
-xxx
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Card</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: transparent !important;
+    font-family: 'Inter', sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .card-page {
+    width: 85.6mm;
+    min-height: 53.98mm;
+    margin: 8mm auto;
+    border-radius: 4mm;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    /* Shadow for depth */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  }
+
+  /* ===================== FRONT CARD ===================== */
+  .card-front {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #fff;
+    padding: 7mm 6mm;
+    min-height: 53.98mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-front::before {
+    content: '';
+    position: absolute;
+    top: -20mm;
+    right: -10mm;
+    width: 50mm;
+    height: 50mm;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .card-front::after {
+    content: '';
+    position: absolute;
+    bottom: -15mm;
+    left: -12mm;
+    width: 40mm;
+    height: 40mm;
+    background: rgba(124,90,255,0.12);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .front-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6mm;
+  }
+
+  .front-brand {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+  }
+
+  .logo-box {
+    width: 9mm;
+    height: 9mm;
+    border-radius: 2mm;
+    background: linear-gradient(135deg, #7c5aff, #a78bfa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .logo-letter {
+    color: #fff;
+    font-weight: 700;
+    font-size: 4mm;
+    line-height: 1;
+  }
+
+  .brand-info { display: flex; flex-direction: column; }
+  .brand-company {
+    color: #fff;
+    font-size: 2.8mm;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .brand-tagline {
+    color: rgba(255,255,255,0.5);
+    font-size: 2mm;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .card-number {
+    color: rgba(255,255,255,0.3);
+    font-size: 2mm;
+    letter-spacing: 0.1em;
+  }
+
+  .front-main {
+    position: absolute;
+    bottom: 7mm;
+    left: 6mm;
+  }
+  .front-role {
+    color: rgba(255,255,255,0.55);
+    font-size: 2mm;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .front-name {
+    color: #fff;
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-size: 5.5mm;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5mm;
+  }
+  .front-title {
+    color: #a78bfa;
+    font-size: 2.3mm;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ===================== BACK CARD ===================== */
+  .card-back {
+    background: #ffffff;
+    color: #1a1a2e;
+    padding: 6mm;
+    min-height: 53.98mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .back-accent-blob {
+    position: absolute;
+    top: -8mm;
+    right: -8mm;
+    width: 32mm;
+    height: 32mm;
+    background: linear-gradient(135deg, #7c5aff22, #a78bfa33);
+    border-radius: 50%;
+  }
+
+  .back-top {
+    margin-bottom: 4mm;
+  }
+  .back-name {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-size: 4.2mm;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.2;
+  }
+  .back-role {
+    font-size: 2.2mm;
+    color: #7c5aff;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 1mm;
+  }
+
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+    flex: 1;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+  }
+  .contact-icon {
+    width: 5mm;
+    height: 5mm;
+    background: #f3f0ff;
+    border-radius: 1.2mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 2.5mm;
+  }
+  .contact-text {
+    font-size: 2.2mm;
+    color: #374151;
+    font-weight: 400;
+    word-break: break-all;
+  }
+
+  .back-layout {
+    display: flex;
+    gap: 4mm;
+    align-items: flex-start;
+  }
+  .back-contacts-col { flex: 1; }
+  .back-qr-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1mm;
+    flex-shrink: 0;
+  }
+  .qr-box {
+    width: 14mm;
+    height: 14mm;
+    background: #f9fafb;
+    border: 0.5mm solid #e5e7eb;
+    border-radius: 1.5mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .qr-box img { width: 100%; height: 100%; object-fit: contain; }
+  .qr-label {
+    font-size: 1.6mm;
+    color: #9ca3af;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ===================== LABEL DIVIDER ===================== */
+  .side-label {
+    text-align: center;
+    font-size: 2mm;
+    color: rgba(0,0,0,0.25);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 1mm 0 2mm;
+  }
+
+  /* ===================== PRINT ===================== */
+  @media print {
+    html, body { background: transparent !important; }
+    .card-page { box-shadow: none; margin: 0; }
+    .side-label { display: none !important; }
+    .page-break { page-break-before: always; }
+    @page { margin: 0; background: transparent; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FRONT SIDE -->
+<p class="side-label">FRONT</p>
+<div class="card-page">
+  <div class="card-front">
+    <div class="front-top">
+      <div class="front-brand">
+        <div class="logo-box">
+          {{LOGO_IMG}}
+          <span class="logo-letter" id="logo-letter-front">S</span>
+        </div>
+        <div class="brand-info">
+          <span class="brand-company" id="company-front">{{COMPANY}}</span>
+          <span class="brand-tagline" id="industry-front">{{INDUSTRY}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="front-main">
+      <div class="front-role" id="role-label-front">CREATIVE PROFESSIONAL</div>
+      <div class="front-name" id="name-front">{{NAME}}</div>
+      <div class="front-title" id="title-front">{{JOB_TITLE}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- BACK SIDE -->
+<p class="side-label">BACK</p>
+<div class="card-page">
+  <div class="card-back">
+    <div class="back-accent-blob"></div>
+    <div class="back-top">
+      <div class="back-name" id="name-back">{{NAME}}</div>
+      <div class="back-role" id="title-back">{{JOB_TITLE}}</div>
+    </div>
+
+    <div class="back-layout">
+      <div class="back-contacts-col contacts">
+        {{CONTACT_PHONE}}
+        {{CONTACT_EMAIL}}
+        {{CONTACT_ADDRESS}}
+        {{CONTACT_WEBSITE}}
+      </div>
+      <div class="back-qr-col" {{QR_DISPLAY}}>
+        <div class="qr-box">{{QR_CODE_IMG}}</div>
+        <span class="qr-label">SCAN ME</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Auto-hide logo img / show letter
+  var logoImg = document.querySelector('.logo-box img');
+  var logoLetter = document.querySelectorAll('.logo-letter');
+  if (logoImg && logoImg.src) {
+    logoLetter.forEach(function(el){ el.style.display='none'; });
+  } else {
+    var company = document.getElementById('company-front');
+    var letter = company ? (company.textContent.trim()[0] || 'S').toUpperCase() : 'S';
+    logoLetter.forEach(function(el){ el.textContent = letter; });
+    if(logoImg) logoImg.style.display='none';
+  }
+
+  // Auto-hide company if empty
+  ['company-front','industry-front'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && !el.textContent.trim()) el.style.display='none';
+  });
+})();
+</script>
+</body>
+</html>
