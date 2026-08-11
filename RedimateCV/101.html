@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS-Friendly Clean Minimal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #FFF;
+      color: var(--text);
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1122px;
+      margin: 0 auto;
+      background: #FFF;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      border-bottom: 1px solid #000;
+      padding-bottom: 15px;
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .job-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .contact-item {
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #000 !important;
+    }
+
+    .contact-item span, .contact-item a {
+      color: #000 !important;
+      text-decoration: none !important;
+    }
+    
+    /* Sections */
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      margin-bottom: 12px;
+      padding-bottom: 3px;
+    }
+
+    .summary-text {
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+    
+    .entry {
+      margin-bottom: 15px;
+    }
+
+    .entry-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .entry-sub-row {
+      font-size: 14px;
+      font-style: italic;
+      display: flex;
+      justify-content: space-between;
+      margin: 2px 0 6px;
+    }
+
+    .entry-desc {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .entry-desc ul {
+      margin-left: 20px;
+      margin-top: 5px;
+    }
+    
+    /* Skills */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 14px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .skill-header {
+      display: flex;
+    }
+
+    .skill-name {
+      font-weight: 500;
+    }
+
+    .skill-level::before {
+      content: " - ";
+    }
+
+    .skill-track {
+      display: none !important;
+    }
+    
+    /* Languages */
+    .languages-container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .languages-container .entry {
+      margin: 0;
+    }
+
+    .languages-container .entry-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .languages-container .entry-sub-row {
+      font-size: 14px;
+      display: inline;
+    }
+    .languages-container .entry-sub-row::before {
+      content: " (";
+    }
+    .languages-container .entry-sub-row::after {
+      content: ")";
+    }
+
+    .cover-section .entry {
+      display: block;
+      border: none;
+      padding: 0;
+    }
+
+    /* AUTO HIDING */
+    .skills-container .chip { display: none !important; }
+    .name:empty { display: none !important; }
+    .job-title:empty { display: none !important; }
+    .summary-text:empty { display: none !important; }
+    .skills-container:empty { display: none !important; }
+    .languages-container:empty { display: none !important; }
+    .contact-list:empty, .contact-block:has(.contact-list:empty) { display: none !important; }
+    
+    .section-title:has(+ :empty),
+    .section-title:has(+ .skills-container:empty),
+    .section-title:has(+ .languages-container:empty) { display: none !important; }
+    
+    .section-block:not(:has(.entry)):not(:has(.skill-item)):not(:has(.summary-text:not(:empty))):not(:has(p:not(:empty))) {
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="name">{{FULL_NAME}}</div>
+      <div class="job-title">{{JOB_TITLE}}</div>
+      <div class="section-block contact-block">
+        <div class="contact-list">{{CONTACT_ITEMS}}</div>
+      </div>
+    </header>
+    
+    <div class="section-block summary-section">
+      <div class="section-title">Professional Summary</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </div>
+    
+    <div class="section-block experience-section">
+      <div class="section-title">Experience</div>
+      <div>{{EXPERIENCE}}</div>
+    </div>
+    
+    <div class="section-block education-section">
+      <div class="section-title">Education</div>
+      <div>{{EDUCATION}}</div>
+    </div>
+    
+    <div class="section-block projects-section">
+      <div class="section-title">Projects</div>
+      <div>{{PROJECTS}}</div>
+    </div>
+    
+    <div class="section-block skills-section">
+      <div class="section-title">Skills</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </div>
+    
+    <div class="section-block certificates-section">
+      <div class="section-title">Certifications</div>
+      <div>{{CERTIFICATES}}</div>
+    </div>
+    
+    <div class="section-block languages-section">
+      <div class="section-title">Languages</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </div>
+    
+    <div class="section-block references-section">
+      <div class="section-title">References</div>
+      <div>{{REFERENCES}}</div>
+    </div>
+
+    <div class="section-block cover-section">
+      <div class="section-title">Cover Letter</div>
+      <div>{{COVER_LETTER}}</div>
+    </div>
+  </div>
+</body>
+</html>
