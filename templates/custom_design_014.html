@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Geneva Corporate Platinum</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --p: #4B5563; /* Neutral Grey */
+    --text-main: #111827;
+    --text-muted: #6B7280;
+    --bg-paper: #FFFFFF;
+    --hairline: 0.5px solid #E5E7EB;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    background: #F3F4F6;
+    color: var(--text-main);
+    font-family: 'Inter', Helvetica, sans-serif;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background: var(--bg-paper);
+    padding: 60px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    border-bottom: var(--hairline);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+
+  .photo-shell {
+    display: none !important; /* No photo block as per design seed */
+  }
+
+  .name {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    color: var(--text-main);
+  }
+
+  .job-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--p);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: baseline;
+    font-size: 10px;
+  }
+
+  .contact-label {
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 4px;
+  }
+
+  .contact-label::after {
+    content: ':';
+  }
+
+  .contact-value {
+    color: var(--text-main);
+    font-weight: 500;
+  }
+
+  /* ---------- SWISS LAYOUT (GRID) ---------- */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .section-block {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    border-bottom: var(--hairline);
+    padding-bottom: 28px;
+  }
+  
+  .section-block:last-child {
+    border-bottom: none;
+  }
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-top: 4px;
+  }
+
+  .section-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .summary-text {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-main);
+    font-weight: 300;
+    text-align: justify;
+  }
+
+  /* ---------- ENTRY STYLES ---------- */
+  .entry {
+    margin-bottom: 16px;
+  }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 2px;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10px;
+    color: var(--p);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .entry-desc {
+    font-size: 11.5px;
+    line-height: 1.6;
+    font-weight: 300;
+    color: var(--text-main);
+  }
+
+  .entry-desc ul {
+    margin: 6px 0 0 16px;
+  }
+  .entry-desc li + li {
+    margin-top: 4px;
+  }
+
+  /* ---------- GRIDS (SKILLS, LANGS) ---------- */
+  .skills-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+  }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11.5px;
+  }
+
+  .skill-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .skill-name {
+    font-weight: 500;
+  }
+
+  .skill-level {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .skill-track { display: none; }
+  .skill-fill { display: none; }
+
+  .languages-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+  }
+
+  .lang-item .entry-title { font-size: 11.5px; font-weight: 500; }
+  .lang-item .entry-sub-row { margin: 2px 0 0; font-size: 10px; color: var(--text-muted); text-transform: none; }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag-row .chip,
+  .tag-row .tag,
+  .skills-container .chip {
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 11.5px;
+    font-weight: 300;
+  }
+  .tag-row .chip::after, .tag-row .tag::after {
+    content: ',';
+  }
+  .tag-row .chip:last-child::after, .tag-row .tag:last-child::after {
+    content: '';
+  }
+
+  /* ---------- REFERENCES ---------- */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .ref-item { margin-bottom: 0; }
+  .ref-item .entry-title { font-size: 12px; }
+  .ref-item .entry-sub-row { display: block; text-transform: none; font-size: 10px; margin-top: 2px; }
+
+  /* ---------- AUTO-HIDE RULES (CRITICAL) ---------- */
+  .name:empty, .job-title:empty, .summary-text:empty { display: none !important; }
+  .photo[src=""], .photo:not([src]) { display: none !important; }
+  .photo-shell:has(.photo[src=""]), .photo-shell:has(.photo:not([src])) { display: none !important; }
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { display: none !important; }
+
+  .section-block:has(.section-content-wrapper:empty),
+  .section-block:has(.section-content:empty),
+  .section-block:has(.summary-text:empty),
+  .section-block:has(.skills-container:empty),
+  .section-block:has(.languages-container:empty),
+  .section-block:has(.tag-row:empty) {
+    display: none !important;
+  }
+
+  /* Prevent Double Data */
+  .skills-container:has(.skill-item) .chip { display: none !important; }
+  .tag-row .skill-item, .tag-row .entry { display: none !important; }
+  .languages-container .chip { display: none !important; }
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <header class="header">
+    <div class="photo-shell" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+    
+    <div class="contact-bar">
+      <div class="contact-item" style="{{PHONE_DISPLAY}}">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">{{PHONE}}</span>
+      </div>
+      <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">{{EMAIL}}</span>
+      </div>
+      <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">{{ADDRESS}}</span>
+      </div>
+      <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+        <span class="contact-label">Web</span>
+        <span class="contact-value">{{WEBSITE}}</span>
+      </div>
+      <div class="contact-item" style="{{DOB_DISPLAY}}">
+        <span class="contact-label">DOB</span>
+        <span class="contact-value">{{DOB}}</span>
+      </div>
+      <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
+        <span class="contact-label">Nat.</span>
+        <span class="contact-value">{{NATIONALITY}}</span>
+      </div>
+      <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}">
+        <span class="contact-label">Status</span>
+        <span class="contact-value">{{MARITAL_STATUS}}</span>
+      </div>
+      <div class="contact-item" style="{{RELIGION_DISPLAY}}">
+        <span class="contact-label">Religion</span>
+        <span class="contact-value">{{RELIGION}}</span>
+      </div>
+      <div class="contact-item" style="{{FATHER_NAME_DISPLAY}}">
+        <span class="contact-label">Father</span>
+        <span class="contact-value">{{FATHER_NAME}}</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    
+    <section class="section-block">
+      <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+      <div class="section-content-wrapper">
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+      <div class="section-content-wrapper">
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <div class="section-content-wrapper">
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+      <div class="section-content-wrapper">
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <div class="section-content-wrapper">
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content-wrapper">
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="section-content-wrapper">
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+      <div class="section-content-wrapper">
+        <div class="tag-row">{{INTERESTS}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+      <div class="section-content-wrapper">
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+    </section>
+    
+    <section class="section-block">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content-wrapper">
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
+    </section>
+    
+    <section class="section-block">
+      <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
+      <div class="section-content-wrapper">
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="section-content-wrapper ref-grid">
+        <div class="section-content">{{REFERENCES}}</div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+      <div class="section-content-wrapper">
+        <div class="summary-text">{{COVER_LETTER}}</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
