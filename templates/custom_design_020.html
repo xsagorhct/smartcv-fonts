@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Singapore Cyber Teal Titanium</title>
+<title>Melly Lavender Minimalist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Jura:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
 <!--
 ======================================================================
-TEMPLATE: SINGAPORE CYBER TEAL TITANIUM
+TEMPLATE: MELLY LAVENDER MINIMALIST
 Features:
-- Dark titanium sidebar with cyber teal laser accents.
-- Modern fintech aesthetic.
+- Feminine, calm, and professional with soft lavender dots.
+- Light grey text and elegant Playfair Display headings.
 - NO h1/h2 tags used (div only) for perfect Android WebView rendering.
-- Extremely bold, high-contrast section titles.
-- Complex grid layout with resilient auto-hiding logic.
+- Minimal yet distinct hierarchy.
+- 500+ lines for robust spacing, typography, and auto-hiding logic.
 ======================================================================
 -->
 
@@ -25,35 +25,30 @@ Features:
      1. CSS VARIABLES (DESIGN TOKENS)
   -------------------------------------------------------- */
   :root {
-    /* Fintech Cyber Palette */
-    --titanium-dark: #1E232A;
-    --titanium-base: #2B313B;
-    --titanium-light: #3A414D;
+    /* Lavender Calm Palette */
+    --lavender-soft: #E6E6FA;
+    --lavender-mid: #C8B6E2;
+    --lavender-dark: #9B72AA;
     
-    --cyber-teal: #00E5FF;
-    --cyber-teal-dim: rgba(0, 229, 255, 0.15);
-    --laser-glow: 0 0 10px rgba(0, 229, 255, 0.6);
+    --charcoal-soft: #4A4A4A;
+    --grey-text: #7A7A7A;
+    --grey-light: #BDBDBD;
     
-    /* Text */
-    --text-bright: #F8FAFC;
-    --text-main: #CBD5E1;
-    --text-dim: #94A3B8;
-    --text-dark: #1E293B; /* For light main column */
-    --text-dark-muted: #475569;
-    
-    /* Page Base */
-    --page-bg: #F8FAFC;
+    --paper-white: #FFFFFF;
+    --page-bg: #FCFBFC;
     
     /* Typography */
-    --font-heading: 'Exo', sans-serif;
-    --font-body: 'Jura', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Nunito', sans-serif;
     
     /* Spacing */
     --sp-1: 8px;
     --sp-2: 16px;
     --sp-3: 24px;
     --sp-4: 32px;
+    --sp-5: 40px;
     --sp-6: 48px;
+    --sp-8: 64px;
   }
 
   /* --------------------------------------------------------
@@ -71,12 +66,13 @@ Features:
   }
   
   body {
-    background: #000;
-    color: var(--text-dark);
+    background: #E8E8E8;
+    color: var(--grey-text);
     font-family: var(--font-body);
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
-    line-height: 1.6;
+    line-height: 1.7;
+    letter-spacing: 0.3px;
   }
 
   /* --------------------------------------------------------
@@ -89,63 +85,42 @@ Features:
     margin: 0 auto;
     background-color: var(--page-bg);
     display: flex;
-    overflow: hidden;
-  }
-
-  /* Titanium Sidebar */
-  .sidebar {
-    width: 280px;
-    background: linear-gradient(180deg, var(--titanium-dark), var(--titanium-base));
-    color: var(--text-main);
-    display: flex;
     flex-direction: column;
-    position: relative;
-    border-right: 2px solid var(--cyber-teal);
-    box-shadow: 5px 0 20px rgba(0,0,0,0.1);
-    z-index: 10;
-  }
-  
-  /* Cyber laser line */
-  .sidebar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -2px;
-    bottom: 0;
-    width: 2px;
-    background: var(--cyber-teal);
-    box-shadow: var(--laser-glow);
-  }
-
-  /* Main Area */
-  .main-area {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    padding: var(--sp-6) var(--sp-4);
-    background: url('data:image/svg+xml;utf8,<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="1" fill="%23CBD5E1"/></svg>');
+    padding: var(--sp-8) var(--sp-6);
+    box-shadow: 0 4px 25px rgba(0,0,0,0.03);
   }
 
   /* --------------------------------------------------------
-     4. SIDEBAR CONTENT (HEADER & META)
+     4. HEADER (ELEGANT CENTERED)
   -------------------------------------------------------- */
-  .profile-zone {
-    padding: var(--sp-6) var(--sp-4) var(--sp-4);
+  .header-elegant {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border-bottom: 1px solid var(--titanium-light);
+    margin-bottom: var(--sp-6);
+    padding-bottom: var(--sp-5);
+    position: relative;
+  }
+  
+  /* Soft Lavender Divider */
+  .header-elegant::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 120px;
+    height: 1px;
+    background: var(--lavender-mid);
   }
 
   .photo-frame {
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    border: 3px solid var(--cyber-teal);
-    box-shadow: var(--laser-glow);
-    padding: 6px;
-    background: var(--titanium-dark);
+    background: var(--paper-white);
+    padding: 8px;
+    border: 1px solid var(--lavender-soft);
+    box-shadow: 0 10px 30px rgba(200, 182, 226, 0.15);
     margin-bottom: var(--sp-4);
   }
   
@@ -154,168 +129,149 @@ Features:
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    filter: contrast(1.1) saturate(0.8);
+    filter: sepia(0.05) opacity(0.95);
   }
 
-  /* Using DIV for Name (Avoiding h1/h2 restrictions) */
+  /* Safe DIV for Name */
   .name {
     font-family: var(--font-heading);
-    font-size: 34px;
-    font-weight: 800;
-    color: var(--text-bright);
-    text-transform: uppercase;
+    font-size: 52px;
+    font-weight: 500;
+    color: var(--charcoal-soft);
     line-height: 1.1;
-    margin-bottom: var(--sp-1);
     letter-spacing: 1px;
+    margin-bottom: var(--sp-1);
+    font-style: normal;
   }
 
   .job-title {
-    font-family: var(--font-heading);
-    font-size: 14px;
+    font-family: var(--font-body);
+    font-size: 15px;
     font-weight: 600;
-    color: var(--cyber-teal);
+    color: var(--lavender-dark);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    margin-bottom: var(--sp-4);
   }
 
   /* Contact Matrix */
   .contact-matrix {
-    padding: var(--sp-4);
     display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-    border-bottom: 1px solid var(--titanium-light);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-3) var(--sp-4);
+    font-size: 13px;
+    color: var(--grey-text);
   }
-  
+
   .contact-item {
     display: flex;
-    flex-direction: column;
+    align-items: center;
   }
   
-  .contact-label {
-    font-family: var(--font-heading);
-    font-size: 10px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  .contact-value {
-    font-size: 12px;
-    color: var(--text-bright);
-    font-weight: 500;
-    word-break: break-all;
+  .contact-item:not(:last-child)::after {
+    content: '·';
+    margin-left: var(--sp-4);
+    color: var(--lavender-mid);
+    font-size: 20px;
+    line-height: 0;
   }
 
-  /* Sidebar Sections */
-  .sidebar-section {
-    padding: var(--sp-4);
-    border-bottom: 1px solid var(--titanium-light);
+  .contact-label {
+    display: none; /* Hidden for minimal aesthetic */
   }
-  .sidebar-section:last-child { border-bottom: none; }
+
+  .contact-value {
+    font-weight: 400;
+  }
 
   /* --------------------------------------------------------
-     5. HIGH VISIBILITY SECTION TITLES (USING DIV)
+     5. ASYMMETRIC GRID
   -------------------------------------------------------- */
-  /* Sidebar Titles */
-  .side-title {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: var(--sp-8);
+    flex-grow: 1;
+  }
+
+  .col-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+
+  .col-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    padding-left: var(--sp-4);
+    border-left: 1px solid var(--lavender-soft);
+  }
+
+  /* --------------------------------------------------------
+     6. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
     font-family: var(--font-heading);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--cyber-teal);
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--charcoal-soft);
+    letter-spacing: 1px;
     margin-bottom: var(--sp-3);
     display: flex;
     align-items: center;
-    gap: 8px;
-  }
-  .side-title::before {
-    content: '';
-    display: block;
-    width: 6px;
-    height: 6px;
-    background: var(--cyber-teal);
-    box-shadow: var(--laser-glow);
-  }
-
-  /* Main Area Titles */
-  .main-title {
-    font-family: var(--font-heading);
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--titanium-dark);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: var(--sp-4);
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding-bottom: 8px;
+    font-style: italic;
   }
   
-  .main-title::after {
+  /* Soft lavender dot before title */
+  .section-title::before {
     content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 4px;
-    background: var(--cyber-teal);
-    box-shadow: var(--laser-glow);
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lavender-mid);
+    margin-right: 12px;
   }
 
   /* --------------------------------------------------------
-     6. MAIN CONTENT DATA (EXPERIENCE, EDUCATION)
+     7. PRIMARY CONTENT (EXPERIENCE, EDUCATION)
   -------------------------------------------------------- */
-  .main-section {
-    margin-bottom: var(--sp-6);
-  }
-  .main-section:last-child { margin-bottom: 0; }
-
   .summary-text {
-    font-size: 14px;
+    font-size: 14.5px;
     line-height: 1.8;
-    color: var(--text-dark-muted);
+    color: var(--grey-text);
     text-align: justify;
-    background: #FFF;
     padding: var(--sp-3);
-    border-left: 4px solid var(--cyber-teal);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    background: var(--paper-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
   }
 
-  .data-list {
+  .data-feed {
     display: flex;
     flex-direction: column;
     gap: var(--sp-4);
   }
 
-  .entry-block {
-    background: #FFF;
-    padding: var(--sp-3);
-    border: 1px solid #E2E8F0;
-    border-radius: 4px;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-  }
-  
-  .entry-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--titanium-light);
-    transition: 0.3s;
+  .feed-block {
+    display: flex;
+    flex-direction: column;
   }
 
   .entry-title {
-    font-family: var(--font-heading);
-    font-size: 16px;
+    font-family: var(--font-body);
+    font-size: 17px;
     font-weight: 700;
-    color: var(--titanium-dark);
-    text-transform: uppercase;
+    color: var(--charcoal-soft);
+    margin-bottom: 2px;
   }
 
   .entry-sub-row {
@@ -324,16 +280,14 @@ Features:
     justify-content: space-between;
     font-size: 13px;
     font-weight: 600;
-    color: var(--cyber-teal);
-    margin: 4px 0 8px;
-    padding-bottom: 4px;
-    border-bottom: 1px dashed #E2E8F0;
+    color: var(--lavender-dark);
+    margin-bottom: var(--sp-2);
   }
 
   .entry-desc {
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--text-dark-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--grey-text);
   }
 
   .entry-desc ul {
@@ -343,31 +297,31 @@ Features:
 
   .entry-desc li {
     position: relative;
-    padding-left: 16px;
-    margin-bottom: 4px;
+    padding-left: 20px;
+    margin-bottom: 6px;
   }
 
   .entry-desc li::before {
-    content: '>';
+    content: '∘';
     position: absolute;
-    left: 0;
-    color: var(--cyber-teal);
-    font-family: var(--font-heading);
-    font-weight: 700;
+    left: 4px;
+    font-size: 18px;
+    line-height: 0.9;
+    color: var(--lavender-mid);
   }
 
-  /* References tweaks */
-  .ref-list .entry-block::before { display: none; }
-  .ref-list .entry-sub-row { border: none; padding: 0; flex-direction: column; color: var(--text-dark-muted); font-weight: 500; text-transform: none; }
+  /* References overrides */
+  .ref-list .entry-sub-row { flex-direction: column; color: var(--grey-light); }
 
   /* --------------------------------------------------------
-     7. SIDEBAR MODULES (SKILLS, LANGS)
+     8. SIDEBAR WIDGETS
   -------------------------------------------------------- */
-  /* Laser Skill Bars */
-  .skill-array {
+  
+  /* Minimal Skills */
+  .skill-cluster {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-2);
+    gap: var(--sp-3);
   }
   
   .skill-item {
@@ -379,33 +333,23 @@ Features:
   .skill-header {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
-    color: var(--text-bright);
-    text-transform: uppercase;
+    color: var(--charcoal-soft);
   }
   
   .skill-level {
-    font-size: 10px;
-    color: var(--cyber-teal);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--lavender-dark);
   }
   
-  .skill-track {
-    width: 100%;
-    height: 4px;
-    background: var(--titanium-light);
-    border-radius: 2px;
-  }
-  
-  .skill-fill {
-    height: 100%;
-    background: var(--cyber-teal);
-    box-shadow: var(--laser-glow);
-    border-radius: 2px;
-  }
+  /* No bars, just pure text layout for Melly Minimalist */
+  .skill-track, .skill-fill { display: none !important; }
 
   /* Languages */
-  .lang-array {
+  .lang-cluster {
     display: flex;
     flex-direction: column;
     gap: var(--sp-2);
@@ -415,56 +359,50 @@ Features:
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--titanium-light);
+    border-bottom: 1px dotted var(--grey-light);
     padding-bottom: 6px;
   }
-  .lang-item:last-child { border-bottom: none; padding-bottom: 0; }
   
   .lang-item .entry-title {
-    font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    color: var(--text-bright);
-    text-transform: none;
   }
   
   .lang-item .entry-sub-row {
+    font-size: 13px;
+    color: var(--grey-light);
     margin: 0;
-    padding: 0;
-    border: none;
-    font-size: 11px;
-    color: var(--text-dim);
   }
 
-  /* Titanium Tags */
-  .tag-array {
+  /* Tags (Interests, Hobbies) - Soft Pills */
+  .tag-cluster {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
   }
   
-  .tag-array .chip,
-  .tag-array .tag,
-  .skill-array .chip {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-bright);
-    background: var(--titanium-light);
-    border: 1px solid var(--cyber-teal);
-    padding: 4px 10px;
-    border-radius: 4px;
-    text-transform: uppercase;
+  .tag-cluster .chip,
+  .tag-cluster .tag,
+  .skill-cluster .chip {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--charcoal-soft);
+    background: var(--paper-white);
+    border: 1px solid var(--lavender-soft);
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: 0.2s;
   }
 
   /* --------------------------------------------------------
-     8. PREVENT DOUBLE DATA (CRITICAL)
+     9. PREVENT DOUBLE DATA (CRITICAL)
   -------------------------------------------------------- */
-  .skill-array:has(.skill-item) .chip { display: none !important; }
-  .tag-array .skill-item, .tag-array .entry { display: none !important; }
-  .lang-array .chip { display: none !important; }
+  .skill-cluster:has(.skill-item) .chip { display: none !important; }
+  .tag-cluster .skill-item, .tag-cluster .entry { display: none !important; }
+  .lang-cluster .chip { display: none !important; }
 
   /* --------------------------------------------------------
-     9. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
   -------------------------------------------------------- */
   .name:empty, 
   .job-title:empty, 
@@ -487,15 +425,11 @@ Features:
   }
   
   /* Hide specific sections */
-  .sidebar-section:has(> .skill-array:empty),
-  .sidebar-section:has(> .lang-array:empty),
-  .sidebar-section:has(> .tag-array:empty),
-  .sidebar-section:has(> .data-list:empty) {
-    display: none !important;
-  }
-  
-  .main-section:has(> .data-list:empty),
-  .main-section:has(> .summary-text:empty) {
+  .section-group:has(> .data-feed:empty),
+  .section-group:has(> .summary-text:empty),
+  .section-group:has(> .skill-cluster:empty),
+  .section-group:has(> .lang-cluster:empty),
+  .section-group:has(> .tag-cluster:empty) {
     display: none !important;
   }
 
@@ -504,131 +438,133 @@ Features:
 <body>
 <div class="page">
   
-  <!-- ================= TITANIUM SIDEBAR ================= -->
-  <aside class="sidebar">
+  <!-- ================= ELEGANT HEADER ================= -->
+  <header class="header-elegant">
     
-    <div class="profile-zone">
-      <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
-        <img alt="Portrait" class="photo" src="{{PHOTO}}"/>
-      </div>
-      <!-- USING DIV INSTEAD OF H1 -->
-      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
-      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+    <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
+      <img alt="Portrait" class="photo" src="{{PHOTO}}"/>
     </div>
+    
+    <!-- DIV tag for name -->
+    <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
     
     <div class="contact-matrix">
       <div class="contact-item" style="{{PHONE_DISPLAY}}">
-        <span class="contact-label">Tel</span>
         <span class="contact-value">{{PHONE}}</span>
       </div>
       <div class="contact-item" style="{{EMAIL_DISPLAY}}">
-        <span class="contact-label">Mail</span>
         <span class="contact-value">{{EMAIL}}</span>
       </div>
       <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
-        <span class="contact-label">Base</span>
         <span class="contact-value">{{ADDRESS}}</span>
       </div>
       <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
-        <span class="contact-label">Node</span>
         <span class="contact-value">{{WEBSITE}}</span>
       </div>
       <div class="contact-item" style="{{DOB_DISPLAY}}">
-        <span class="contact-label">DOB</span>
         <span class="contact-value">{{DOB}}</span>
       </div>
       <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
-        <span class="contact-label">Nat</span>
         <span class="contact-value">{{NATIONALITY}}</span>
       </div>
     </div>
-
-    <!-- Expertise -->
-    <div class="sidebar-section">
-      <div class="side-title">{{HEADING_SKILLS|Expertise}}</div>
-      <div class="skill-array">{{SKILLS}}</div>
-    </div>
-
-    <!-- Languages -->
-    <div class="sidebar-section">
-      <div class="side-title">{{HEADING_LANGUAGES|Languages}}</div>
-      <div class="lang-array">{{LANGUAGES}}</div>
-    </div>
     
-    <!-- Interests -->
-    <div class="sidebar-section">
-      <div class="side-title">{{HEADING_INTERESTS|Interests}}</div>
-      <div class="tag-array">{{INTERESTS}}</div>
-    </div>
+  </header>
+
+  <!-- ================= ASYMMETRIC GRID ================= -->
+  <div class="grid-layout">
     
-    <!-- Hobbies -->
-    <div class="sidebar-section">
-      <div class="side-title">{{HEADING_HOBBIES|Hobbies}}</div>
-      <div class="tag-array">{{HOBBIES}}</div>
-    </div>
+    <!-- PRIMARY COLUMN -->
+    <main class="col-main">
+      
+      <!-- Profile -->
+      <section class="section-group">
+        <!-- DIV tag for title -->
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </section>
 
-  </aside>
+      <!-- Experience -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+        <div class="data-feed">{{EXPERIENCE}}</div>
+      </section>
 
-  <!-- ================= MAIN CONTENT AREA ================= -->
-  <main class="main-area">
-    
-    <!-- Profile -->
-    <section class="main-section">
-      <!-- USING DIV INSTEAD OF H2 -->
-      <div class="main-title">{{HEADING_PROFILE|System Overview}}</div>
-      <div class="summary-text">{{SUMMARY}}</div>
-    </section>
+      <!-- Education -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="data-feed">{{EDUCATION}}</div>
+      </section>
 
-    <!-- Experience -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_EXPERIENCE|Experience Logs}}</div>
-      <div class="data-list">{{EXPERIENCE}}</div>
-    </section>
+      <!-- Projects -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="data-feed">{{PROJECTS}}</div>
+      </section>
+      
+      <!-- Activities -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="data-feed">{{ACTIVITIES}}</div>
+      </section>
 
-    <!-- Education -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_EDUCATION|Education Base}}</div>
-      <div class="data-list">{{EDUCATION}}</div>
-    </section>
+      <!-- Cover Letter -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+        <div class="summary-text">{{COVER_LETTER}}</div>
+      </section>
 
-    <!-- Projects -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_PROJECTS|Deployed Projects}}</div>
-      <div class="data-list">{{PROJECTS}}</div>
-    </section>
+    </main>
 
-    <!-- Certifications -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_CERTIFICATES|Certifications}}</div>
-      <div class="data-list">{{CERTIFICATES}}</div>
-    </section>
+    <!-- SIDEBAR COLUMN -->
+    <aside class="col-side">
+      
+      <!-- Skills -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skill-cluster">{{SKILLS}}</div>
+      </section>
 
-    <!-- Activities -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_ACTIVITIES|Activities}}</div>
-      <div class="data-list">{{ACTIVITIES}}</div>
-    </section>
-    
-    <!-- Social -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_SOCIAL|Social Networks}}</div>
-      <div class="data-list">{{SOCIAL}}</div>
-    </section>
+      <!-- Languages -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="lang-cluster">{{LANGUAGES}}</div>
+      </section>
 
-    <!-- References -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_REFERENCES|Verifications}}</div>
-      <div class="data-list ref-list">{{REFERENCES}}</div>
-    </section>
+      <!-- Certifications -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="data-feed">{{CERTIFICATES}}</div>
+      </section>
 
-    <!-- Cover Letter -->
-    <section class="main-section">
-      <div class="main-title">{{HEADING_COVER_LETTER|Init Script}}</div>
-      <div class="summary-text">{{COVER_LETTER}}</div>
-    </section>
-    
-  </main>
+      <!-- Interests -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="tag-cluster">{{INTERESTS}}</div>
+      </section>
 
+      <!-- Hobbies -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-cluster">{{HOBBIES}}</div>
+      </section>
+
+      <!-- Social -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+        <div class="data-feed">{{SOCIAL}}</div>
+      </section>
+
+      <!-- References -->
+      <section class="section-group">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="data-feed ref-list">{{REFERENCES}}</div>
+      </section>
+
+    </aside>
+
+  </div>
 </div>
 </body>
 </html>
