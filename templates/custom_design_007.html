@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium Executive CV Template</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --p: #D97706; /* Gold Accent */
+    --navy: #0F172A;
+    --navy-light: #1E293B;
+    --navy-hover: #334155;
+    --white: #FFFFFF;
+    --bg-main: #FFFFFF;
+    --text-main: #334155;
+    --text-muted: #64748B;
+    --heading-main: #0F172A;
+    --border-light: #E2E8F0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #CBD5E1;
+    color: var(--text-main);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+    line-height: 1.5;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background: var(--bg-main);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow-wrap: anywhere;
+  }
+
+  /* SIDEBAR (Column A) */
+  .sidebar {
+    width: 275px;
+    flex-shrink: 0;
+    background: var(--navy);
+    color: var(--white);
+    padding: 35px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-height: 1122px;
+  }
+
+  .profile-block {
+    text-align: center;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 22px;
+  }
+
+  .photo-wrap {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    padding: 5px;
+    background: var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .job-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--p);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 8px;
+  }
+
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .side-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--p);
+    border-bottom: 2px solid var(--p);
+    padding-bottom: 6px;
+    letter-spacing: 1.5px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 10.5px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .contact-item strong {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+
+  .contact-item span,
+  .contact-item a {
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    pointer-events: none;
+    font-weight: 500;
+  }
+
+  /* SIDEBAR SKILLS & LANGUAGES */
+  .sidebar .skills-container,
+  .sidebar .languages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sidebar .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .sidebar .skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  
+  .sidebar .skill-name {
+    font-size: 10.5px;
+  }
+
+  .sidebar .skill-level {
+    font-size: 9.5px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .sidebar .skill-track {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .sidebar .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--p), #FBBF24);
+    border-radius: 4px;
+  }
+
+  .sidebar .chip {
+    display: none !important; /* Hide chips in sidebar if track is preferred */
+  }
+
+  /* SIDEBAR ENTRIES (Certificates/Secondary shown in sidebar format) */
+  .sidebar .entry {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+  }
+  
+  .sidebar .entry-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  
+  .sidebar .entry-sub-row {
+    font-size: 9.5px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 3px;
+  }
+  
+  .sidebar .entry-desc {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 4px;
+  }
+
+  /* MAIN COLUMN (Column B) */
+  .main-col {
+    flex: 1;
+    padding: 40px 45px 40px 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .main-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--heading-main);
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border-light);
+    letter-spacing: 1px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 45px;
+    height: 2px;
+    background: var(--p);
+  }
+
+  .summary-text, .profile-text, .about-text {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--text-main);
+    text-align: justify;
+  }
+
+  /* RENDERED ENTRIES IN MAIN COL */
+  .entry {
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .entry:last-child {
+    margin-bottom: 0;
+  }
+
+  .entry-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--heading-main);
+    line-height: 1.3;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--navy-hover);
+    margin-top: 3px;
+    margin-bottom: 5px;
+  }
+
+  .entry-date {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: #F1F5F9;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .entry-desc {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--text-main);
+  }
+  
+  .entry-desc ul {
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+
+  .entry-desc li {
+    margin-bottom: 3px;
+  }
+
+  .entry-badge {
+    display: inline-block;
+    font-size: 9px;
+    background: var(--border-light);
+    color: var(--text-main);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* MAIN COL SKILLS (if placed here) */
+  .main-col .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .main-col .skill-item {
+    display: none !important; /* Hide track style in main col, prefer chips */
+  }
+
+  .main-col .chip {
+    display: inline-block !important;
+    padding: 6px 12px;
+    background: var(--navy-light);
+    color: var(--white);
+    border-radius: 6px;
+    font-size: 10.5px;
+    font-weight: 500;
+  }
+
+  /* REFS & OTHERS */
+  .ref-entry {
+    margin-bottom: 14px;
+    background: #F8FAFC;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border-left: 3px solid var(--p);
+  }
+  
+  .ref-item {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--heading-main);
+    margin-bottom: 2px;
+  }
+
+  .ref-text {
+    font-size: 11px;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+
+  /* =========================================================================
+     EMPTY STATE RULES (CRITICAL FOR SMART CV BUILDER)
+     ========================================================================= */
+
+  /* Direct hides for fields with display variables or purely empty tags */
+  .photo-wrap[style*="display: none"], 
+  .name:empty, 
+  .job-title:empty,
+  .summary-text:empty {
+    display: none !important;
+  }
+
+  /* Hide container if the inside content is strictly empty */
+  .skills-container:empty,
+  .languages-container:empty,
+  .section-content:empty {
+    display: none !important;
+  }
+
+  /* Hide wrappers using :has() when the content block is strictly empty */
+  .main-section:has(.section-content:empty) {
+    display: none !important;
+  }
+  
+  .sidebar-section:has(.section-content:empty) {
+    display: none !important;
+  }
+  
+  /* Fallback: if the section has absolutely nothing inside it */
+  .sidebar-section:empty, 
+  .main-section:empty {
+    display: none !important;
+  }
+  
+  /* Hide contact block if all contacts inside are display:none */
+  .sidebar-section:not(:has(.contact-item[style*="display: block"], .contact-item:not([style*="display: none"]))) {
+    /* If there's no visible contact item, hide the entire section */
+    display: none !important;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar">
+    <div class="profile-block">
+      <div class="photo-wrap" style="display: {{PHOTO_DISPLAY}};">
+        <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+      </div>
+      <div class="name">{{FULL_NAME}}</div>
+      <div class="job-title" style="display: {{JOB_TITLE_DISPLAY}};">{{JOB_TITLE}}</div>
+    </div>
+
+    <!-- Contact Block (Hides if all child contact-items are display:none) -->
+    <div class="sidebar-section">
+      <div class="side-title">Contact</div>
+      <div class="section-content contact-list">
+        <div class="contact-item" style="display: {{PHONE_DISPLAY}};">
+          <strong>Phone</strong>
+          <span>{{PHONE}}</span>
+        </div>
+        <div class="contact-item" style="display: {{EMAIL_DISPLAY}};">
+          <strong>Email</strong>
+          <span>{{EMAIL}}</span>
+        </div>
+        <div class="contact-item" style="display: {{ADDRESS_DISPLAY}};">
+          <strong>Location</strong>
+          <span>{{ADDRESS}}</span>
+        </div>
+        <div class="contact-item" style="display: {{WEBSITE_DISPLAY}};">
+          <strong>Website</strong>
+          <span>{{WEBSITE}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Block (Hides if all child contact-items are display:none) -->
+    <div class="sidebar-section">
+      <div class="side-title">Details</div>
+      <div class="section-content contact-list">
+        <div class="contact-item" style="display: {{DOB_DISPLAY}};">
+          <strong>Date of Birth</strong>
+          <span>{{DOB}}</span>
+        </div>
+        <div class="contact-item" style="display: {{NATIONALITY_DISPLAY}};">
+          <strong>Nationality</strong>
+          <span>{{NATIONALITY}}</span>
+        </div>
+        <div class="contact-item" style="display: {{MARITAL_STATUS_DISPLAY}};">
+          <strong>Marital Status</strong>
+          <span>{{MARITAL_STATUS}}</span>
+        </div>
+        <div class="contact-item" style="display: {{RELIGION_DISPLAY}};">
+          <strong>Religion</strong>
+          <span>{{RELIGION}}</span>
+        </div>
+        <div class="contact-item" style="display: {{FATHER_NAME_DISPLAY}};">
+          <strong>Father's Name</strong>
+          <span>{{FATHER_NAME}}</span>
+        </div>
+        <div class="contact-item" style="display: {{LINKEDIN_DISPLAY}};">
+          <strong>LinkedIn</strong>
+          <span>{{LINKEDIN}}</span>
+        </div>
+        <div class="contact-item" style="display: {{GITHUB_DISPLAY}};">
+          <strong>GitHub</strong>
+          <span>{{GITHUB}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="side-title">{{HEADING_SKILLS|Expertise}}</div>
+      <div class="section-content skills-container">{{SKILLS}}</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="side-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="section-content languages-container">{{LANGUAGES}}</div>
+    </div>
+    
+    <div class="sidebar-section">
+      <div class="side-title">{{HEADING_HOBBIES|Hobbies}}</div>
+      <div class="section-content skills-container">{{HOBBIES}}</div>
+    </div>
+  </div>
+
+  <!-- MAIN COLUMN -->
+  <div class="main-col">
+    
+    <div class="main-section">
+      <div class="section-title">{{HEADING_PROFILE|Professional Summary}}</div>
+      <div class="section-content summary-text">{{SUMMARY}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+      <div class="section-content">{{EXPERIENCE}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <div class="section-content">{{EDUCATION}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <div class="section-content">{{PROJECTS}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content">{{CERTIFICATES}}</div>
+    </div>
+
+    <!-- OPTIONAL SECTIONS -->
+    <div class="main-section">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="section-content">{{REFERENCES}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+      <div class="section-content entry-desc">{{COVER_LETTER}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content">{{ACTIVITIES}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+      <div class="section-content">{{INTERESTS}}</div>
+    </div>
+
+    <div class="main-section">
+      <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+      <div class="section-content">{{SOCIAL}}</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
