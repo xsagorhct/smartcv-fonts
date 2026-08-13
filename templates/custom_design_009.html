@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --p: #2563EB; /* Royal Blue Accent */
+    --bg-color: #FFFFFF;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+    --section-bg: #F8FAFC;
+}
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 10pt;
+    background: #E2E8F0;
+    color: var(--text-main);
+}
+
+.page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* ================= HEADER ================= */
+.header {
+    padding: 40px 50px 30px 50px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.photo-container {
+    flex-shrink: 0;
+}
+.photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.header-info {
+    flex-grow: 1;
+}
+
+.name {
+    font-size: 26pt;
+    font-weight: 700;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.job-title {
+    font-size: 12pt;
+    font-weight: 500;
+    color: var(--p);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Contact Items */
+.contact-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 9.5pt;
+}
+
+.contact-label {
+    color: var(--p);
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.contact-value {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    text-decoration: none !important;
+    word-break: break-all;
+}
+
+/* ================= CONTENT SPLIT ================= */
+.content-wrapper {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* LEFT COLUMN */
+.col-left {
+    width: 35%;
+    padding: 35px 30px 35px 40px;
+    border-right: 1px solid var(--border-color);
+    background: var(--section-bg);
+}
+
+/* RIGHT COLUMN */
+.col-right {
+    width: 65%;
+    padding: 35px 40px 35px 35px;
+}
+
+/* ================= SECTIONS ================= */
+.section {
+    margin-bottom: 26px;
+}
+.section:has(.section-content:empty),
+.section:has(.skills-container:empty),
+.section:has(.languages-container:empty) {
+    display: none !important;
+}
+
+.section-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.section-title::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: var(--p);
+    border-radius: 2px;
+}
+
+.summary-text, .about-text, .profile-text {
+    font-size: 10pt;
+    color: var(--text-muted);
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* ================= GENERATED CLASSES ================= */
+.entry {
+    margin-bottom: 18px;
+    position: relative;
+}
+.entry:last-child {
+    margin-bottom: 0;
+}
+.entry-title {
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 3px;
+}
+.entry-sub-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10pt;
+    margin-bottom: 6px;
+}
+.entry-badge {
+    color: var(--p);
+    font-weight: 600;
+}
+.entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 9pt;
+    background: rgba(37, 99, 235, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.entry-desc {
+    font-size: 10pt;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+.entry-desc ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* Skills & Languages */
+.skills-container, .languages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.skill-item {
+    font-size: 10pt;
+}
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+.skill-name {
+    font-weight: 600;
+}
+.skill-level {
+    color: var(--text-muted);
+    font-size: 9pt;
+}
+.skill-track {
+    width: 100%;
+    height: 5px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.skill-fill {
+    height: 100%;
+    background: var(--p);
+    border-radius: 3px;
+}
+.chip {
+    display: inline-block;
+    padding: 5px 10px;
+    background: var(--border-color);
+    color: var(--text-main);
+    border-radius: 6px;
+    margin: 3px;
+    font-weight: 500;
+    font-size: 9pt;
+}
+.skills-container:has(.skill-item) .chip { 
+    display: none !important; 
+}
+
+/* References */
+.ref-entry {
+    margin-bottom: 12px;
+}
+.ref-item {
+    font-size: 9.5pt;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+/* Empty State Hiding */
+.name:empty, .job-title:empty, .summary-text:empty,
+.skills-container:empty, .languages-container:empty,
+.photo[src=""], .photo:not([src]) { display: none !important; }
+
+.photo-container:has(.photo[src=""]),
+.photo-container:has(.photo:not([src])) { display: none !important; }
+
+.contact-list:not(:has(.contact-item:not([style*="display: none"]))) { display: none !important; }
+
+@media print {
+    body { background: #FFFFFF; }
+    .page { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+    
+    <!-- HEADER -->
+    <div class="header">
+        <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+            <img class="photo" src="{{PHOTO}}" alt="Profile">
+        </div>
+        
+        <div class="header-info">
+            <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+            <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+            
+            <div class="contact-list">
+                <div class="contact-item" style="{{PHONE_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Phone</span>
+                        <span class="contact-value">{{PHONE}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">{{EMAIL}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Address</span>
+                        <span class="contact-value">{{ADDRESS}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Website</span>
+                        <span class="contact-value">{{WEBSITE}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{DOB_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Date of Birth</span>
+                        <span class="contact-value">{{DOB}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Nationality</span>
+                        <span class="contact-value">{{NATIONALITY}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Marital Status</span>
+                        <span class="contact-value">{{MARITAL_STATUS}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{RELIGION_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Religion</span>
+                        <span class="contact-value">{{RELIGION}}</span>
+                    </div>
+                </div>
+                <div class="contact-item" style="{{FATHER_NAME_DISPLAY}}">
+                    <div>
+                        <span class="contact-label">Father's Name</span>
+                        <span class="contact-value">{{FATHER_NAME}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper">
+        
+        <!-- LEFT COLUMN -->
+        <div class="col-left">
+            <div class="section">
+                <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+                <div class="skills-container">{{SKILLS}}</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+                <div class="languages-container">{{LANGUAGES}}</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+                <div class="skills-container">{{INTERESTS}}</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+                <div class="skills-container">{{HOBBIES}}</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+                <div class="section-content">{{SOCIAL}}</div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-right">
+            <!-- PROFILE -->
+            <div class="section">
+                <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+                <div class="summary-text">{{SUMMARY}}</div>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="section">
+                <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+                <div class="section-content">{{EXPERIENCE}}</div>
+            </div>
+
+            <!-- EDUCATION -->
+            <div class="section">
+                <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+                <div class="section-content">{{EDUCATION}}</div>
+            </div>
+
+            <!-- PROJECTS -->
+            <div class="section">
+                <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+                <div class="section-content">{{PROJECTS}}</div>
+            </div>
+
+            <!-- CERTIFICATES -->
+            <div class="section">
+                <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+                <div class="section-content">{{CERTIFICATES}}</div>
+            </div>
+            
+            <!-- ACTIVITIES -->
+            <div class="section">
+                <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+                <div class="section-content">{{ACTIVITIES}}</div>
+            </div>
+
+            <!-- COVER LETTER -->
+            <div class="section">
+                <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+                <div class="summary-text">{{COVER_LETTER}}</div>
+            </div>
+
+            <!-- REFERENCES -->
+            <div class="section">
+                <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+                <div class="section-content">{{REFERENCES}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
