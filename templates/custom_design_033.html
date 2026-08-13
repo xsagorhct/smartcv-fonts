@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Botanic Garden Green Leaf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: BOTANIC GARDEN GREEN LEAF
+Features:
+- Organic and calming sage green aesthetic.
+- Leaf motif accents and elegant serif typography.
+- Lora (Headings) and Nunito (Body) for a natural, soft feel.
+- NO h1/h2 tags used (div only) for perfect Android WebView rendering.
+======================================================================
+-->
+
+<style>
+  /* --------------------------------------------------------
+     1. CSS VARIABLES (DESIGN TOKENS)
+  -------------------------------------------------------- */
+  :root {
+    /* Botanic Palette */
+    --bot-sage: #B4C4AE;
+    --bot-sage-dark: #819875;
+    --bot-moss: #5C6E52;
+    --bot-sand: #F7F5F0;
+    --bot-blush: #EAE0D5;
+    
+    --bg-page: var(--bot-sand);
+    
+    --text-dark: #3E4B36;
+    --text-mid: #687361;
+    --text-light: #9DA698;
+    
+    /* Typography */
+    --font-heading: 'Lora', serif;
+    --font-body: 'Nunito', sans-serif;
+    
+    /* Layout */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-5: 48px;
+    --sp-6: 64px;
+  }
+
+  /* --------------------------------------------------------
+     2. GLOBAL RESET & BASE
+  -------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body {
+    background: #E5E5E5;
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.7;
+  }
+
+  /* --------------------------------------------------------
+     3. MASTER PAGE STRUCTURE
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-6) var(--sp-5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  
+  /* Decorative leaf background */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: var(--bot-sage);
+    border-radius: 0 50% 0 50%; /* Leaf shape */
+    opacity: 0.2;
+    transform: rotate(15deg);
+    z-index: 0;
+  }
+  
+  .page::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    background: var(--bot-blush);
+    border-radius: 50% 0 50% 0; /* Leaf shape inverted */
+    opacity: 0.3;
+    transform: rotate(45deg);
+    z-index: 0;
+  }
+
+  /* --------------------------------------------------------
+     4. HEADER (NATURAL & ELEGANT)
+  -------------------------------------------------------- */
+  .header-bot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--sp-5);
+    position: relative;
+    z-index: 10;
+  }
+
+  .photo-frame {
+    width: 130px;
+    height: 130px;
+    margin-bottom: var(--sp-4);
+    background: var(--bg-page);
+    border: 3px solid var(--bot-sage-dark);
+    padding: 6px;
+    /* Soft leaf shape for the photo frame itself */
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg); 
+  }
+  
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50% 50% 50% 0;
+    /* Counter-rotate image to keep it upright */
+    transform: rotate(45deg) scale(1.2);
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Safe DIV tag for Name */
+  .name {
+    font-family: var(--font-heading);
+    font-size: 50px;
+    font-weight: 500;
+    color: var(--bot-moss);
+    line-height: 1;
+    margin-bottom: var(--sp-1);
+    letter-spacing: 1px;
+  }
+
+  .job-title {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--bot-sage-dark);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: var(--sp-3);
+  }
+
+  /* Contact Line */
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-4);
+    font-size: 13px;
+    color: var(--text-mid);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-item:not(:last-child)::after {
+    content: '✤';
+    margin-left: var(--sp-4);
+    color: var(--bot-sage);
+    font-size: 10px;
+  }
+
+  /* --------------------------------------------------------
+     5. SUMMARY (SOFT & WIDE)
+  -------------------------------------------------------- */
+  .summary-text {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-dark);
+    text-align: center;
+    padding: 0 var(--sp-5);
+    margin-bottom: var(--sp-5);
+    position: relative;
+    z-index: 10;
+  }
+
+  /* --------------------------------------------------------
+     6. GRID LAYOUT
+  -------------------------------------------------------- */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-6);
+    flex-grow: 1;
+    position: relative;
+    z-index: 10;
+  }
+
+  .col-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+  }
+
+  .col-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+  }
+
+  /* --------------------------------------------------------
+     7. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-zone {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--bot-moss);
+    margin-bottom: var(--sp-4);
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Little leaf icon before titles */
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: var(--bot-sage-dark);
+    border-radius: 50% 0 50% 0;
+    margin-right: 12px;
+  }
+  
+  .section-title::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: var(--bot-sage);
+    margin-left: var(--sp-3);
+    opacity: 0.5;
+  }
+
+  /* --------------------------------------------------------
+     8. PRIMARY CONTENT (FEEDS)
+  -------------------------------------------------------- */
+  .feed-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .feed-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bot-sage-dark);
+    margin-bottom: var(--sp-2);
+  }
+
+  .entry-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .entry-desc li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+  }
+
+  .entry-desc li::before {
+    content: '◦';
+    position: absolute;
+    left: 0;
+    color: var(--bot-moss);
+    font-weight: 700;
+  }
+
+  /* References overrides */
+  .ref-list .feed-card { background: var(--bot-blush); padding: 16px; border-radius: 8px; }
+
+  /* --------------------------------------------------------
+     9. WIDGETS (SKILLS, LANGS, TAGS)
+  -------------------------------------------------------- */
+  /* Sidebar Skills */
+  .skill-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .skill-header {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skill-level {
+    font-size: 12px;
+    color: var(--bot-sage-dark);
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 4px;
+    background: #E8ECE6;
+    border-radius: 2px;
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: var(--bot-sage-dark);
+    border-radius: 2px;
+  }
+
+  /* Languages */
+  .lang-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px dotted var(--bot-sage);
+    padding-bottom: 6px;
+  }
+  
+  .lang-item .entry-title {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  .lang-item .entry-sub-row {
+    font-size: 13px;
+    color: var(--bot-sage-dark);
+    margin: 0;
+  }
+
+  /* Tags */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tag-cloud .chip,
+  .tag-cloud .tag,
+  .skill-stack .chip {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--bot-moss);
+    background: var(--bot-blush);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--bot-sage);
+  }
+  
+  .tag-cloud .chip:nth-child(even) { background: var(--bot-sage); color: #FFFFFF; }
+
+  /* --------------------------------------------------------
+     10. PREVENT DOUBLE DATA (CRITICAL)
+  -------------------------------------------------------- */
+  .skill-stack:has(.skill-item) .chip { display: none !important; }
+  .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
+  .lang-stack .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     11. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
+  .name:empty, 
+  .job-title:empty, 
+  .summary-text:empty { 
+    display: none !important; 
+  }
+  
+  .photo[src=""], 
+  .photo:not([src]) { 
+    display: none !important; 
+  }
+  .photo-frame:has(.photo[src=""]), 
+  .photo-frame:has(.photo:not([src])) { 
+    display: none !important; 
+  }
+  
+  /* Hide Contact section completely if empty */
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { 
+    display: none !important; 
+  }
+  
+  /* Hide specific sections */
+  .section-zone:has(> .feed-stack:empty),
+  .section-zone:has(> .summary-text:empty),
+  .section-zone:has(> .skill-stack:empty),
+  .section-zone:has(> .lang-stack:empty),
+  .section-zone:has(> .tag-cloud:empty) {
+    display: none !important; 
+  }
+  
+  /* Hide Sidebar if entirely empty */
+  .col-side:not(:has(.section-zone:not([style*="display: none"]))) {
+    display: none !important;
+  }
+  .layout-grid:has(.col-side[style*="display: none"]) {
+    grid-template-columns: 1fr;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ================= HEADER ================= -->
+  <header class="header-bot">
+    
+    <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
+      <img alt="Portrait" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-content">
+      <!-- DIV tag for name -->
+      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      
+      <div class="contact-bar">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}">
+          <span class="contact-value">{{PHONE}}</span>
+        </div>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+          <span class="contact-value">{{EMAIL}}</span>
+        </div>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+          <span class="contact-value">{{ADDRESS}}</span>
+        </div>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+          <span class="contact-value">{{WEBSITE}}</span>
+        </div>
+        <div class="contact-item" style="{{DOB_DISPLAY}}">
+          <span class="contact-value">{{DOB}}</span>
+        </div>
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- Summary -->
+  <div class="summary-text" style="{{SUMMARY_DISPLAY}}">
+    "{{SUMMARY}}"
+  </div>
+
+  <!-- ================= GRID LAYOUT ================= -->
+  <div class="layout-grid">
+    
+    <!-- LEFT SIDE COLUMN -->
+    <aside class="col-side">
+      
+      <!-- Experience -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+        <div class="feed-stack">
+          {{EXPERIENCE}}
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="feed-stack">
+          {{PROJECTS}}
+        </div>
+      </section>
+      
+      <!-- Skills -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SKILLS|Skills}}</div>
+        <div class="skill-stack">{{SKILLS}}</div>
+      </section>
+
+      <!-- Languages -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="lang-stack">{{LANGUAGES}}</div>
+      </section>
+
+    </aside>
+
+    <!-- RIGHT MAIN COLUMN -->
+    <main class="col-main">
+
+      <!-- Education -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="feed-stack">
+          {{EDUCATION}}
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="feed-stack">
+          {{CERTIFICATES}}
+        </div>
+      </section>
+
+      <!-- Activities -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="feed-stack">
+          {{ACTIVITIES}}
+        </div>
+      </section>
+
+      <!-- Interests -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="tag-cloud">{{INTERESTS}}</div>
+      </section>
+      
+      <!-- Hobbies -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-cloud">{{HOBBIES}}</div>
+      </section>
+      
+      <!-- Social -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SOCIAL|Social Presence}}</div>
+        <div class="feed-stack">{{SOCIAL}}</div>
+      </section>
+
+      <!-- References -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="feed-stack ref-list">
+          {{REFERENCES}}
+        </div>
+      </section>
+      
+      <!-- Cover Letter -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+        <div class="summary-text" style="font-style:normal; font-family:var(--font-body); text-align:left; padding:0; margin:0;">{{COVER_LETTER}}</div>
+      </section>
+
+    </main>
+
+  </div>
+</div>
+</body>
+</html>
