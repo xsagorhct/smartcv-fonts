@@ -183,6 +183,10 @@
     font-size: 10.5px;
     font-weight: 500;
   }
+  
+  /* FIXED: Hides duplicate chips if tag or lang-item elements exist */
+  .tag-row:has(.tag) .chip { display: none !important; }
+  .languages-container:has(.lang-item) .chip { display: none !important; }
 
   /* ---- Footer ---- */
   .closing-grid {
@@ -288,6 +292,11 @@
       <section class="section-block interests-section">
         <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
         <div class="tag-row">{{INTERESTS}}</div>
+      </section>
+
+      <section class="section-block social-section">
+        <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
       </section>
 
     </div>
