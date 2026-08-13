@@ -184,8 +184,10 @@
     font-weight: 500;
   }
   
-  /* FIXED: Hides duplicate chips if tag or lang-item elements exist */
-  .tag-row:has(.tag) .chip { display: none !important; }
+  /* FIXED: Ensure Interests & Hobbies only display as chips, hiding progress bars */
+  .tag-row .skill-item,
+  .tag-row .entry { display: none !important; }
+  
   .languages-container:has(.lang-item) .chip { display: none !important; }
 
   /* ---- Footer ---- */
@@ -216,6 +218,7 @@
   .section-block:has(.section-content:empty),
   .section-block:has(.skills-container:empty),
   .section-block:has(.languages-container:empty),
+  .section-block:has(.tag-row:empty),
   .section-block:has(.summary-text:empty) { display: none !important; }
 
   @media print {
@@ -230,7 +233,7 @@
   <header class="hero">
     <div class="photo-shell" style="{{PHOTO_DISPLAY}}"><img alt="" class="photo" src="{{PHOTO}}"/></div>
     <div>
-      <div class="name">{{FULL_NAME}}</div>
+      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
       <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
     </div>
   </header>
@@ -269,6 +272,11 @@
         <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
         <div class="section-content">{{CERTIFICATES}}</div>
       </section>
+      
+      <section class="section-block activities-section">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </section>
 
     </div>
 
@@ -292,6 +300,11 @@
       <section class="section-block interests-section">
         <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
         <div class="tag-row">{{INTERESTS}}</div>
+      </section>
+      
+      <section class="section-block hobbies-section">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
       </section>
 
       <section class="section-block social-section">
