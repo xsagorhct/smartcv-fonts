@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Catherine Azure Sky Bento Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: CATHERINE AZURE SKY BENTO CARDS
+Features:
+- Modern Bento-box tile layout.
+- Sky Blue and Azure rounded cards on a soft background.
+- Modular, compact, and balanced.
+- NO h1/h2 tags used (div only) for perfect Android WebView rendering.
+======================================================================
+-->
+
+<style>
+  /* --------------------------------------------------------
+     1. CSS VARIABLES (DESIGN TOKENS)
+  -------------------------------------------------------- */
+  :root {
+    /* Azure Sky Bento Palette */
+    --bento-bg: #F0F4F8; /* Soft blue-grey page bg */
+    
+    --card-white: #FFFFFF;
+    --card-azure: #E0F2FE;
+    --card-sky: #BAE6FD;
+    
+    --text-dark: #0F172A;
+    --text-mid: #475569;
+    --text-light: #94A3B8;
+    
+    --accent-blue: #0284C7;
+    
+    /* Typography */
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Bento Layout Tokens */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+  }
+
+  /* --------------------------------------------------------
+     2. GLOBAL RESET & BASE
+  -------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body {
+    background: #E2E8F0;
+    color: var(--text-mid);
+    font-family: var(--font-sans);
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.5;
+  }
+
+  /* --------------------------------------------------------
+     3. MASTER PAGE STRUCTURE (BENTO GRID)
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background-color: var(--bento-bg);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: auto;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+  }
+
+  /* --------------------------------------------------------
+     4. BENTO CARDS (GENERAL)
+  -------------------------------------------------------- */
+  .bento-card {
+    background: var(--card-white);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-3);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(2, 132, 199, 0.04);
+  }
+
+  .bento-blue {
+    background: var(--card-azure);
+  }
+
+  /* Specific Span Classes for Grid */
+  .span-12 { grid-column: span 12; }
+  .span-8 { grid-column: span 8; }
+  .span-4 { grid-column: span 4; }
+  .span-6 { grid-column: span 6; }
+  .span-7 { grid-column: span 7; }
+  .span-5 { grid-column: span 5; }
+
+  /* --------------------------------------------------------
+     5. HEADER CARD (IDENTITY)
+  -------------------------------------------------------- */
+  .header-card {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+  }
+
+  .photo-frame {
+    width: 130px;
+    height: 130px;
+    border-radius: var(--radius-md);
+    background: var(--card-sky);
+    padding: 6px;
+    flex-shrink: 0;
+  }
+  
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--radius-md) - 6px);
+  }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  /* Safe DIV tag for Name */
+  .name {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: var(--sp-1);
+  }
+
+  .job-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--sp-3);
+  }
+
+  .contact-matrix {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--sp-3);
+    row-gap: 8px;
+    font-size: 13px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    background: var(--card-white);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  }
+  
+  .contact-icon {
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-right: 6px;
+  }
+
+  .contact-value {
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+
+  /* --------------------------------------------------------
+     6. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: var(--sp-3);
+    display: flex;
+    align-items: center;
+  }
+
+  .section-title::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background: var(--card-azure);
+    margin-left: 12px;
+    border-radius: 2px;
+  }
+
+  /* --------------------------------------------------------
+     7. PRIMARY CONTENT (FEEDS)
+  -------------------------------------------------------- */
+  .summary-text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    text-align: justify;
+  }
+
+  .bento-feed {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .feed-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--sp-3);
+    border-bottom: 2px dotted var(--card-sky);
+  }
+  .feed-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .entry-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+  }
+
+  .entry-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 6px;
+  }
+
+  .entry-desc li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 4px;
+  }
+
+  .entry-desc li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+  }
+
+  /* References formatting */
+  .ref-list .entry-sub-row { flex-direction: column; color: var(--text-mid); font-weight: 500; }
+
+  /* --------------------------------------------------------
+     8. WIDGETS (SKILLS, LANGS, TAGS)
+  -------------------------------------------------------- */
+  /* Rounded Skills */
+  .skill-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  .skill-level {
+    font-size: 11px;
+    color: var(--accent-blue);
+    font-weight: 700;
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 6px;
+    background: var(--card-azure);
+    border-radius: var(--radius-sm);
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: var(--accent-blue);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Languages */
+  .lang-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-azure);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+  }
+  
+  .lang-item .entry-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  
+  .lang-item .entry-sub-row {
+    font-size: 12px;
+    color: var(--accent-blue);
+    margin: 0;
+  }
+
+  /* Tags */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tag-cloud .chip,
+  .tag-cloud .tag,
+  .skill-stack .chip {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    background: var(--card-white);
+    border: 1px solid var(--card-sky);
+    padding: 6px 12px;
+    border-radius: var(--radius-lg);
+  }
+  .bento-blue .tag-cloud .chip,
+  .bento-blue .tag-cloud .tag {
+    border-color: var(--accent-blue);
+  }
+
+  /* --------------------------------------------------------
+     9. PREVENT DOUBLE DATA (CRITICAL)
+  -------------------------------------------------------- */
+  .skill-stack:has(.skill-item) .chip { display: none !important; }
+  .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
+  .lang-stack .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
+  .name:empty, 
+  .job-title:empty, 
+  .summary-text:empty { 
+    display: none !important; 
+  }
+  
+  .photo[src=""], 
+  .photo:not([src]) { 
+    display: none !important; 
+  }
+  .photo-frame:has(.photo[src=""]), 
+  .photo-frame:has(.photo:not([src])) { 
+    display: none !important; 
+  }
+  
+  /* Hide Contact section completely if empty */
+  .contact-matrix:not(:has(.contact-item:not([style*="display: none"]))) { 
+    display: none !important; 
+  }
+  
+  /* Hide specific bento cards */
+  .bento-card:has(> .bento-feed:empty),
+  .bento-card:has(> .summary-text:empty),
+  .bento-card:has(> .skill-stack:empty),
+  .bento-card:has(> .lang-stack:empty),
+  .bento-card:has(> .tag-cloud:empty) {
+    display: none !important;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- HEADER CARD -->
+  <div class="bento-card bento-blue header-card span-12">
+    
+    <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
+      <img alt="Portrait" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-text">
+      <!-- DIV tag for name -->
+      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      
+      <div class="contact-matrix">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}">
+          <span class="contact-icon">T:</span>
+          <span class="contact-value">{{PHONE}}</span>
+        </div>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+          <span class="contact-icon">E:</span>
+          <span class="contact-value">{{EMAIL}}</span>
+        </div>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+          <span class="contact-icon">L:</span>
+          <span class="contact-value">{{ADDRESS}}</span>
+        </div>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+          <span class="contact-icon">W:</span>
+          <span class="contact-value">{{WEBSITE}}</span>
+        </div>
+        <div class="contact-item" style="{{DOB_DISPLAY}}">
+          <span class="contact-icon">D:</span>
+          <span class="contact-value">{{DOB}}</span>
+        </div>
+        <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
+          <span class="contact-icon">N:</span>
+          <span class="contact-value">{{NATIONALITY}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE CARD -->
+  <div class="bento-card span-12">
+    <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+    <div class="summary-text">{{SUMMARY}}</div>
+  </div>
+
+  <!-- EXPERIENCE CARD -->
+  <div class="bento-card span-8">
+    <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+    <div class="bento-feed">{{EXPERIENCE}}</div>
+  </div>
+
+  <!-- SKILLS CARD -->
+  <div class="bento-card span-4">
+    <div class="section-title">{{HEADING_SKILLS|Skills}}</div>
+    <div class="skill-stack">{{SKILLS}}</div>
+  </div>
+
+  <!-- EDUCATION CARD -->
+  <div class="bento-card span-6">
+    <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+    <div class="bento-feed">{{EDUCATION}}</div>
+  </div>
+
+  <!-- PROJECTS CARD -->
+  <div class="bento-card span-6">
+    <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+    <div class="bento-feed">{{PROJECTS}}</div>
+  </div>
+  
+  <!-- LANGUAGES CARD -->
+  <div class="bento-card bento-blue span-5">
+    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+    <div class="lang-stack">{{LANGUAGES}}</div>
+  </div>
+
+  <!-- CERTIFICATIONS CARD -->
+  <div class="bento-card span-7">
+    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+    <div class="bento-feed">{{CERTIFICATES}}</div>
+  </div>
+
+  <!-- INTERESTS & HOBBIES -->
+  <div class="bento-card span-6">
+    <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+    <div class="tag-cloud">{{INTERESTS}}</div>
+    <div style="height: 16px;"></div>
+    <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+    <div class="tag-cloud">{{HOBBIES}}</div>
+  </div>
+
+  <!-- ACTIVITIES & SOCIAL -->
+  <div class="bento-card span-6">
+    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+    <div class="bento-feed">{{ACTIVITIES}}</div>
+    <div style="height: 16px;"></div>
+    <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
+    <div class="bento-feed">{{SOCIAL}}</div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="bento-card span-12">
+    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+    <div class="bento-feed ref-list">{{REFERENCES}}</div>
+  </div>
+
+  <!-- COVER LETTER -->
+  <div class="bento-card bento-blue span-12">
+    <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+    <div class="summary-text">{{COVER_LETTER}}</div>
+  </div>
+
+</div>
+</body>
+</html>
