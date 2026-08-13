@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Classic Navy Left Sidebar Executive</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --p: #D97706;
+      --navy: #0F172A;
+      --navy-light: #1E293B;
+      --gold: #D97706;
+      --white: #FFFFFF;
+      --text-dark: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --border-soft: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #CBD5E1;
+      color: var(--text-body);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1122px;
+      margin: 0 auto;
+      background: var(--white);
+      display: flex;
+      flex-direction: row;
+      position: relative;
+    }
+
+    /* Gold accent stripe between columns */
+    .page::after {
+      content: "";
+      position: absolute;
+      left: 255px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold) 0%, #F59E0B 50%, var(--gold) 100%);
+      z-index: 6;
+    }
+
+    /* ── LEFT SIDEBAR (~32%) ── */
+    .sidebar {
+      width: 255px;
+      flex-shrink: 0;
+      background: var(--navy);
+      color: var(--white);
+      padding: 28px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 1122px;
+      min-width: 0;
+    }
+
+    .profile-block {
+      text-align: center;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .photo-wrap {
+      width: 118px;
+      height: 118px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      padding: 4px;
+      background: var(--white);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .job-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contact-item {
+      font-size: 10px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.92);
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .contact-item strong {
+      color: #94A3B8;
+      font-weight: 600;
+    }
+
+    .sidebar .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .sidebar .skills-container .chip {
+      display: none !important;
+    }
+
+    .sidebar .skill-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar .skill-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .sidebar .skill-name {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--white);
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .skill-level {
+      font-size: 9px;
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    .sidebar .skill-track {
+      height: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .sidebar .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), #FBBF24);
+      border-radius: 999px;
+    }
+
+    .sidebar .entry {
+      margin-bottom: 8px;
+    }
+
+    .sidebar .entry-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .entry-sub-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 3px;
+      margin-top: 2px;
+      font-size: 9.5px;
+      color: #94A3B8;
+    }
+
+    .sidebar .entry-desc {
+      font-size: 9.5px;
+      color: #CBD5E1;
+      margin-top: 2px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar .languages-container .entry {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 7px 9px;
+    }
+
+    /* ── MAIN COLUMN (~68%) ── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 32px 34px 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .main .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 10px;
+      padding-left: 10px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .summary-text {
+      font-size: 11.5px;
+      line-height: 1.58;
+      color: var(--text-body);
+      overflow-wrap: anywhere;
+      white-space: pre-line;
+    }
+
+    .main .entry {
+      margin-bottom: 9px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .main .entry:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .main .entry-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry-sub-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .main .entry-badge {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--navy);
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry-date {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold);
+      overflow-wrap: anywhere;
+    }
+
+    .main .entry-desc {
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--text-body);
+      margin-top: 5px;
+      overflow-wrap: anywhere;
+    }
+
+    .main .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .main .skills-container .skill-item {
+      display: none !important;
+    }
+
+    .main .chip {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--navy);
+      background: #F8FAFC;
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      padding: 5px 11px;
+      overflow-wrap: anywhere;
+    }
+
+    .main .ref-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 3px;
+      font-size: 10.5px;
+    }
+
+    .main .ref-text {
+      overflow-wrap: anywhere;
+    }
+
+    .optional-zone {
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-soft);
+    }
+
+    /* Empty-state */
+    .name:empty,
+    .job-title:empty {
+      display: none !important;
+    }
+
+    .photo[src=""],
+    .photo:not([src]) {
+      display: none !important;
+    }
+
+    .photo-wrap:has(.photo[src=""]),
+    .photo-wrap:has(.photo:not([src])) {
+      display: none !important;
+    }
+
+    .summary-text:empty,
+    .skills-container:empty,
+    .languages-container:empty,
+    .contact-list:empty {
+      display: none !important;
+    }
+
+    .section-title:has(+ .summary-text:empty),
+    .section-title:has(+ .skills-container:empty),
+    .section-title:has(+ .languages-container:empty),
+    .section-title:has(+ div:empty) {
+      display: none !important;
+    }
+
+    .side-section:not(:has(.entry)):not(:has(.skill-item)):not(:has(.contact-item)),
+    .main-section:not(:has(.entry)):not(:has(.chip)):not(:has(.summary-text:not(:empty))) {
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="sidebar left-section">
+
+    <div class="profile-block">
+      <div class="photo-wrap" style="{{PHOTO_DISPLAY}}">
+        <img alt="" class="photo" src="{{PHOTO}}"/>
+      </div>
+      <div class="name">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="contact-list">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}">📞 {{PHONE}}</div>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}">✉️ {{EMAIL}}</div>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}">📍 {{ADDRESS}}</div>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}">🌐 {{WEBSITE}}</div>
+        <div class="contact-item" style="{{LINKEDIN_DISPLAY}}">💼 {{LINKEDIN}}</div>
+        <div class="contact-item" style="{{GITHUB_DISPLAY}}">💻 {{GITHUB}}</div>
+        <div class="contact-item" style="{{DOB_DISPLAY}}"><strong>DOB:</strong> {{DOB}}</div>
+        <div class="contact-item" style="{{NATIONALITY_DISPLAY}}"><strong>Nationality:</strong> {{NATIONALITY}}</div>
+        <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}"><strong>Status:</strong> {{MARITAL_STATUS}}</div>
+        <div class="contact-item" style="{{RELIGION_DISPLAY}}"><strong>Religion:</strong> {{RELIGION}}</div>
+        <div class="contact-item" style="{{FATHER_NAME_DISPLAY}}"><strong>Father:</strong> {{FATHER_NAME}}</div>
+      </div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <div>{{EDUCATION}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </div>
+
+    <div class="side-section section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div>{{CERTIFICATES}}</div>
+    </div>
+
+    <div class="optional-zone">
+      <div class="side-section section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="skills-container">{{HOBBIES}}</div>
+      </div>
+      <div class="side-section section-block">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="skills-container">{{INTERESTS}}</div>
+      </div>
+      <div class="side-section section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div>{{ACTIVITIES}}</div>
+      </div>
+      <div class="side-section section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+        <div>{{SOCIAL}}</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="main right-section">
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_PROFILE|Career Objective}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+      <div>{{EXPERIENCE}}</div>
+    </div>
+
+    <div class="main-section section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <div>{{PROJECTS}}</div>
+    </div>
+
+    <div class="optional-zone">
+      <div class="main-section section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div>{{REFERENCES}}</div>
+      </div>
+      <div class="main-section section-block">
+        <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+        <div class="summary-text">{{COVER_LETTER}}</div>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+</body>
+</html>
