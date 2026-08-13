@@ -104,7 +104,7 @@
 
   .contact-item {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 6px;
     font-size: 11px;
     background: rgba(255, 255, 255, 0.1);
@@ -118,6 +118,10 @@
     text-transform: uppercase;
     font-size: 9px;
     letter-spacing: 0.5px;
+  }
+
+  .contact-label::after {
+    content: ':';
   }
 
   .contact-value {
@@ -415,6 +419,11 @@
       </section>
 
       <section class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="section-content">{{REFERENCES}}</div>
+      </section>
+
+      <section class="section-block">
         <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
         <div class="tag-row">{{INTERESTS}}</div>
       </section>
@@ -459,10 +468,6 @@
         <div class="section-content">{{CERTIFICATES}}</div>
       </section>
 
-      <section class="section-block">
-        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
-        <div class="section-content">{{REFERENCES}}</div>
-      </section>
 
       <section class="section-block">
         <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
