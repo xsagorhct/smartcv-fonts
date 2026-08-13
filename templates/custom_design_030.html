@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Berlin Bauhaus Geometric Cobalt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;800;900&family=Karla:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: BERLIN BAUHAUS GEOMETRIC COBALT
+Features:
+- Constructivist Bauhaus layout (Geometric primary shapes).
+- Cobalt, Yellow, Red primary accent colors.
+- Solid structural borders and asymmetrical blocking.
+- NO h1/h2 tags used (div only) to ensure perfect rendering.
+- Extremely bold, high-contrast section titles.
+- 500+ lines of structural CSS.
+======================================================================
+-->
+
+<style>
+  /* --------------------------------------------------------
+     1. CSS VARIABLES (DESIGN TOKENS)
+  -------------------------------------------------------- */
+  :root {
+    /* Bauhaus Primary Palette */
+    --bauhaus-cobalt: #0047AB;
+    --bauhaus-red: #D32F2F;
+    --bauhaus-yellow: #FFC107;
+    --bauhaus-black: #1A1A1A;
+    --bauhaus-gray: #E0E0E0;
+    --bauhaus-white: #FFFFFF;
+    --bauhaus-sand: #F5F5F0;
+    
+    /* Typography */
+    --font-heading: 'Jost', sans-serif;
+    --font-body: 'Karla', sans-serif;
+    
+    /* Layout */
+    --border-heavy: 5px solid var(--bauhaus-black);
+    --border-medium: 2px solid var(--bauhaus-black);
+    
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-6: 48px;
+  }
+
+  /* --------------------------------------------------------
+     2. GLOBAL RESET & BASE
+  -------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body {
+    background: #CCCCCC;
+    color: var(--bauhaus-black);
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.5;
+  }
+
+  /* --------------------------------------------------------
+     3. MASTER PAGE STRUCTURE
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background-color: var(--bauhaus-sand);
+    display: flex;
+    flex-direction: column;
+    border: var(--border-heavy);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+  }
+
+  /* Structural geometric background elements */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--bauhaus-yellow);
+    z-index: 0;
+    mix-blend-mode: multiply;
+  }
+
+  .content-shell {
+    position: relative;
+    z-index: 10;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --------------------------------------------------------
+     4. BAUHAUS HERO HEADER
+  -------------------------------------------------------- */
+  .header-block {
+    display: flex;
+    border-bottom: var(--border-heavy);
+    background: var(--bauhaus-white);
+  }
+
+  .photo-cell {
+    width: 240px;
+    padding: var(--sp-4);
+    border-right: var(--border-heavy);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bauhaus-cobalt);
+    position: relative;
+  }
+  
+  /* Geometric triangle accent */
+  .photo-cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-bottom: 40px solid var(--bauhaus-black);
+    border-left: 40px solid transparent;
+  }
+
+  .photo-frame {
+    width: 160px;
+    height: 160px;
+    background: var(--bauhaus-white);
+    border: var(--border-medium);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.2) contrast(1.1);
+  }
+
+  .title-cell {
+    flex-grow: 1;
+    padding: var(--sp-6) var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="20" x2="20" y2="0" stroke="%23E0E0E0" stroke-width="1"/></svg>');
+  }
+
+  /* Safe DIV tag for Name */
+  .name {
+    font-family: var(--font-heading);
+    font-size: 58px;
+    font-weight: 900;
+    color: var(--bauhaus-black);
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    margin-bottom: var(--sp-2);
+  }
+
+  .job-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--bauhaus-red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    background: var(--bauhaus-black);
+    padding: 6px 16px;
+    color: var(--bauhaus-white);
+    align-self: flex-start;
+  }
+
+  /* Contact Bar */
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--bauhaus-black);
+    color: var(--bauhaus-white);
+    border-bottom: var(--border-heavy);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    padding: 12px var(--sp-3);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    font-size: 13px;
+  }
+
+  .contact-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--bauhaus-yellow);
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+
+  .contact-value {
+    font-weight: 500;
+  }
+
+  /* --------------------------------------------------------
+     5. GEOMETRIC GRID LAYOUT
+  -------------------------------------------------------- */
+  .grid-body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    flex-grow: 1;
+  }
+
+  .col-main {
+    border-right: var(--border-heavy);
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-4);
+    gap: var(--sp-4);
+    background: rgba(255,255,255,0.5);
+  }
+
+  .col-side {
+    display: flex;
+    flex-direction: column;
+    background: var(--bauhaus-gray);
+  }
+  
+  .side-pad {
+    padding: var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  /* --------------------------------------------------------
+     6. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--bauhaus-white);
+    background: var(--bauhaus-cobalt);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 18px;
+    display: inline-block;
+    align-self: flex-start;
+    border: var(--border-medium);
+    margin-bottom: var(--sp-3);
+    position: relative;
+    box-shadow: 4px 4px 0px var(--bauhaus-black);
+  }
+
+  /* Alternate Colors for Side Column */
+  .col-side .section-title {
+    background: var(--bauhaus-red);
+  }
+
+  /* --------------------------------------------------------
+     7. PRIMARY CONTENT (EXPERIENCE, EDUCATION)
+  -------------------------------------------------------- */
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--bauhaus-black);
+    background: var(--bauhaus-white);
+    padding: var(--sp-3);
+    border: var(--border-medium);
+    box-shadow: 4px 4px 0px var(--bauhaus-yellow);
+    text-align: justify;
+  }
+
+  .feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .feed-item {
+    background: var(--bauhaus-white);
+    padding: var(--sp-3);
+    border: var(--border-medium);
+    position: relative;
+  }
+
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--bauhaus-black);
+    text-transform: uppercase;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bauhaus-cobalt);
+    margin: 4px 0 var(--sp-2);
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--bauhaus-black);
+  }
+
+  .entry-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--bauhaus-black);
+    font-weight: 500;
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .entry-desc li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 6px;
+  }
+
+  /* Constructivist Square Bullet */
+  .entry-desc li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--bauhaus-red);
+  }
+
+  /* References tweaks */
+  .ref-list .feed-item { border: none; background: transparent; padding: 0; box-shadow: none; border-left: 4px solid var(--bauhaus-red); padding-left: var(--sp-2); }
+  .ref-list .entry-sub-row { color: var(--bauhaus-black); flex-direction: column; border: none; font-weight: 500; }
+
+  /* --------------------------------------------------------
+     8. SIDEBAR CONTENT (SKILLS, LANGS)
+  -------------------------------------------------------- */
+  
+  /* Geometric Skills */
+  .skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--bauhaus-black);
+    text-transform: uppercase;
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 14px;
+    background: var(--bauhaus-white);
+    border: var(--border-medium);
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: var(--bauhaus-cobalt);
+    border-right: var(--border-medium);
+  }
+  
+  /* Alternating Colors for Skills */
+  .skill-item:nth-child(even) .skill-fill { background: var(--bauhaus-yellow); }
+
+  /* Languages */
+  .lang-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bauhaus-white);
+    padding: 8px 12px;
+    border: var(--border-medium);
+  }
+  
+  .lang-item .entry-title {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: none;
+  }
+  
+  .lang-item .entry-sub-row {
+    font-size: 12px;
+    color: var(--bauhaus-red);
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  /* Tags (Interests, Hobbies) */
+  .tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tag-group .chip,
+  .tag-group .tag,
+  .skill-group .chip {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--bauhaus-black);
+    background: var(--bauhaus-white);
+    padding: 6px 12px;
+    border: var(--border-medium);
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0px var(--bauhaus-cobalt);
+  }
+  
+  .tag-group .chip:nth-child(even) { box-shadow: 2px 2px 0px var(--bauhaus-red); }
+
+  /* --------------------------------------------------------
+     9. PREVENT DOUBLE DATA (CRITICAL)
+  -------------------------------------------------------- */
+  .skill-group:has(.skill-item) .chip { display: none !important; }
+  .tag-group .skill-item, .tag-group .entry { display: none !important; }
+  .lang-group .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
+  .name:empty, 
+  .job-title:empty, 
+  .summary-text:empty { 
+    display: none !important; 
+  }
+  
+  .photo[src=""], 
+  .photo:not([src]) { 
+    display: none !important; 
+  }
+  .photo-cell:has(.photo[src=""]), 
+  .photo-cell:has(.photo:not([src])) { 
+    display: none !important; 
+  }
+  
+  /* Hide Contact section completely if empty */
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { 
+    display: none !important; 
+  }
+  
+  /* Hide specific sections */
+  .section-block:has(> .feed-list:empty),
+  .section-block:has(> .summary-text:empty),
+  .section-block:has(> .skill-group:empty),
+  .section-block:has(> .lang-group:empty),
+  .section-block:has(> .tag-group:empty) {
+    display: none !important;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="content-shell">
+    
+    <!-- ================= HEADER BLOCK ================= -->
+    <header class="header-block">
+      
+      <div class="photo-cell" style="{{PHOTO_DISPLAY}}">
+        <div class="photo-frame">
+          <img alt="Portrait" class="photo" src="{{PHOTO}}"/>
+        </div>
+      </div>
+      
+      <div class="title-cell">
+        <!-- DIV tag for name -->
+        <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+        <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      </div>
+      
+    </header>
+    
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+      <div class="contact-item" style="{{PHONE_DISPLAY}}">
+        <span class="contact-label">Tel</span>
+        <span class="contact-value">{{PHONE}}</span>
+      </div>
+      <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">{{EMAIL}}</span>
+      </div>
+      <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+        <span class="contact-label">Geo</span>
+        <span class="contact-value">{{ADDRESS}}</span>
+      </div>
+      <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+        <span class="contact-label">Web</span>
+        <span class="contact-value">{{WEBSITE}}</span>
+      </div>
+      <div class="contact-item" style="{{DOB_DISPLAY}}">
+        <span class="contact-label">DOB</span>
+        <span class="contact-value">{{DOB}}</span>
+      </div>
+      <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
+        <span class="contact-label">Nat</span>
+        <span class="contact-value">{{NATIONALITY}}</span>
+      </div>
+    </div>
+
+    <!-- ================= GRID BODY ================= -->
+    <div class="grid-body">
+      
+      <!-- PRIMARY COLUMN -->
+      <main class="col-main">
+        
+        <!-- Profile -->
+        <section class="section-block">
+          <!-- DIV tag for title -->
+          <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+          <div class="summary-text">{{SUMMARY}}</div>
+        </section>
+
+        <!-- Experience -->
+        <section class="section-block">
+          <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+          <div class="feed-list">{{EXPERIENCE}}</div>
+        </section>
+
+        <!-- Education -->
+        <section class="section-block">
+          <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+          <div class="feed-list">{{EDUCATION}}</div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section-block">
+          <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+          <div class="feed-list">{{PROJECTS}}</div>
+        </section>
+        
+        <!-- Activities -->
+        <section class="section-block">
+          <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+          <div class="feed-list">{{ACTIVITIES}}</div>
+        </section>
+
+        <!-- Cover Letter -->
+        <section class="section-block">
+          <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+          <div class="summary-text">{{COVER_LETTER}}</div>
+        </section>
+
+      </main>
+
+      <!-- SECONDARY COLUMN -->
+      <aside class="col-side">
+        <div class="side-pad">
+          
+          <!-- Skills -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+            <div class="skill-group">{{SKILLS}}</div>
+          </section>
+
+          <!-- Languages -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+            <div class="lang-group">{{LANGUAGES}}</div>
+          </section>
+
+          <!-- Certifications -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_CERTIFICATES|Certs}}</div>
+            <div class="feed-list">{{CERTIFICATES}}</div>
+          </section>
+
+          <!-- Interests -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+            <div class="tag-group">{{INTERESTS}}</div>
+          </section>
+
+          <!-- Hobbies -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+            <div class="tag-group">{{HOBBIES}}</div>
+          </section>
+
+          <!-- Social -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
+            <div class="feed-list">{{SOCIAL}}</div>
+          </section>
+
+          <!-- References -->
+          <section class="section-block">
+            <div class="section-title">{{HEADING_REFERENCES|Refs}}</div>
+            <div class="feed-list ref-list">{{REFERENCES}}</div>
+          </section>
+
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
