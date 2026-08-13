@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gradient Mesh Aurora Header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: GRADIENT MESH AURORA HEADER
+Features:
+- Pure CSS Aurora Mesh Gradient in the header.
+- Intricate multi-radial background simulation.
+- 500+ lines of structural and typographic perfection.
+- Pure CSS :has() logic for flawlessly hiding empty data arrays.
+- Clean white modern body with sophisticated subtle shadows.
+======================================================================
+-->
+
+<style>
+  /* --------------------------------------------------------
+     1. CSS VARIABLES (DESIGN TOKENS)
+  -------------------------------------------------------- */
+  :root {
+    /* Aurora Colors */
+    --aurora-1: #10B981; /* Emerald */
+    --aurora-2: #3B82F6; /* Blue */
+    --aurora-3: #8B5CF6; /* Violet */
+    --aurora-4: #EC4899; /* Pink */
+    
+    /* Base Colors */
+    --bg-page: #F8FAFC; /* Slate 50 */
+    --bg-paper: #FFFFFF;
+    
+    /* Text Colors */
+    --text-primary: #0F172A; /* Slate 900 */
+    --text-secondary: #475569; /* Slate 600 */
+    --text-tertiary: #94A3B8; /* Slate 400 */
+    
+    /* Accents for body */
+    --accent-main: #3B82F6;
+    
+    /* Borders & Shadows */
+    --border-subtle: #E2E8F0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-aurora: 0 20px 40px -15px rgba(59, 130, 246, 0.3);
+    
+    /* Typography */
+    --font-sans: 'DM Sans', sans-serif;
+    --font-display: 'Syne', sans-serif;
+    
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    
+    /* Layout */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+  }
+
+  /* --------------------------------------------------------
+     2. GLOBAL RESET & BASE
+  -------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --------------------------------------------------------
+     3. MASTER LAYOUT
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background-color: var(--bg-paper);
+    box-shadow: 0 0 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Contains aurora overflow */
+  }
+
+  /* --------------------------------------------------------
+     4. AURORA GRADIENT HEADER
+  -------------------------------------------------------- */
+  .header-aurora {
+    position: relative;
+    padding: var(--space-12) var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    background-color: var(--aurora-2);
+    /* Fallback complex gradient */
+    background: linear-gradient(135deg, var(--aurora-1) 0%, var(--aurora-2) 35%, var(--aurora-3) 70%, var(--aurora-4) 100%);
+    overflow: hidden;
+    color: #FFFFFF;
+  }
+
+  /* Intricate Aurora Mesh Simulation */
+  .header-aurora::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 100%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.8) 0%, transparent 60%);
+    mix-blend-mode: overlay;
+    border-radius: 50%;
+  }
+
+  .header-aurora::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -20%;
+    width: 120%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 60%);
+    mix-blend-mode: overlay;
+    border-radius: 50%;
+  }
+
+  /* Subtle CSS "Noise" overlay trick using repeating gradients */
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-radial-gradient(
+        rgba(255,255,255,0.05) 0, 
+        rgba(255,255,255,0.05) 1px, 
+        transparent 1px, 
+        transparent 2px
+      );
+    background-size: 4px 4px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  /* Profile Photo with Glass Frame */
+  .photo-shell {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: var(--space-1);
+    box-shadow: var(--shadow-lg);
+    flex-shrink: 0;
+  }
+
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .header-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: var(--space-1);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .job-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Contact Bar overlay on Aurora */
+  .contact-bar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+  }
+
+  .contact-label {
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .contact-label::after { content: ':'; }
+
+  .contact-value {
+    color: #FFFFFF;
+    font-weight: 500;
+  }
+
+  /* --------------------------------------------------------
+     5. MAIN TWO-COLUMN BODY (WHITE THEME)
+  -------------------------------------------------------- */
+  .main-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-8);
+    padding: var(--space-8);
+    flex-grow: 1;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  /* --------------------------------------------------------
+     6. SECTION TYPOGRAPHY & BLOCKS
+  -------------------------------------------------------- */
+  .section-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-bottom: var(--space-2);
+    position: relative;
+  }
+
+  /* Elegant Gradient Underline */
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--aurora-2), var(--aurora-3));
+    border-radius: 2px;
+  }
+
+  .summary-text {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    text-align: justify;
+  }
+
+  /* --------------------------------------------------------
+     7. DATA ENTRIES (TIMELINE STYLE)
+  -------------------------------------------------------- */
+  .entry-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .entry {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: var(--space-4);
+  }
+
+  /* Sleek Modern Timeline */
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 20px;
+    width: 1px;
+    height: calc(100% + var(--space-6) - 20px);
+    background: var(--border-subtle);
+  }
+  .entry:last-child::before { display: none; }
+
+  .entry::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg-paper);
+    border: 2px solid var(--accent-main);
+  }
+
+  .entry-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent-main);
+    margin: var(--space-1) 0 var(--space-2);
+  }
+
+  .entry-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .entry-desc li {
+    position: relative;
+    padding-left: var(--space-4);
+  }
+  
+  .entry-desc li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+  }
+
+  /* Custom Reference Block (No Timeline) */
+  .ref-list .entry { padding-left: 0; border-left: none; }
+  .ref-list .entry::before, .ref-list .entry::after { display: none; }
+  .ref-list .entry-title { font-size: 14px; }
+  .ref-list .entry-sub-row { flex-direction: column; align-items: flex-start; color: var(--text-secondary); margin-top: 2px; }
+
+  /* --------------------------------------------------------
+     8. SIDEBAR SPECIFICS (SKILLS, TAGS, LANGS)
+  -------------------------------------------------------- */
+  
+  /* Skills Progress */
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .skill-level {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-page); /* Slight gray */
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  
+  /* Gradient progress bar */
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--aurora-2), var(--aurora-3));
+    border-radius: var(--radius-sm);
+  }
+
+  /* Tags (Chips) */
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  
+  .tags-list .chip,
+  .tags-list .tag,
+  .skills-list .chip {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: #FFF;
+    border: 1px solid var(--border-subtle);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Languages */
+  .lang-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .lang-item {
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--aurora-1); /* Emerald accent */
+  }
+  
+  .lang-item .entry-title {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  
+  .lang-item .entry-sub-row {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin: 2px 0 0 0;
+  }
+
+  /* --------------------------------------------------------
+     9. PREVENT DOUBLE DATA (CRITICAL)
+  -------------------------------------------------------- */
+  .skills-list:has(.skill-item) .chip { display: none !important; }
+  .tags-list .skill-item, .tags-list .entry { display: none !important; }
+  .lang-list .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
+  .name:empty, 
+  .job-title:empty, 
+  .summary-text:empty { 
+    display: none !important; 
+  }
+  
+  .photo[src=""], 
+  .photo:not([src]) { 
+    display: none !important; 
+  }
+  .photo-shell:has(.photo[src=""]), 
+  .photo-shell:has(.photo:not([src])) { 
+    display: none !important; 
+  }
+  
+  /* Hide Contact section completely if empty */
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { 
+    display: none !important; 
+  }
+  
+  /* Section hiding logic */
+  section:has(.section-content:empty),
+  section:has(.entry-list:empty),
+  section:has(.summary-text:empty),
+  section:has(.skills-list:empty),
+  section:has(.lang-list:empty),
+  section:has(.tags-list:empty) {
+    display: none !important;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ================= HEADER (AURORA MESH) ================= -->
+  <header class="header-aurora">
+    <div class="noise-overlay"></div>
+    
+    <div class="header-content">
+      <div class="photo-shell" style="{{PHOTO_DISPLAY}}">
+        <img alt="User Avatar" class="photo" src="{{PHOTO}}"/>
+      </div>
+      
+      <div class="header-info">
+        <h1 class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</h1>
+        <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      </div>
+    </div>
+    
+    <div class="contact-bar">
+      <div class="contact-item" style="{{PHONE_DISPLAY}}">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">{{PHONE}}</span>
+      </div>
+      <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">{{EMAIL}}</span>
+      </div>
+      <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+        <span class="contact-label">Loc</span>
+        <span class="contact-value">{{ADDRESS}}</span>
+      </div>
+      <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+        <span class="contact-label">Web</span>
+        <span class="contact-value">{{WEBSITE}}</span>
+      </div>
+      <div class="contact-item" style="{{DOB_DISPLAY}}">
+        <span class="contact-label">Born</span>
+        <span class="contact-value">{{DOB}}</span>
+      </div>
+      <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
+        <span class="contact-label">Nat</span>
+        <span class="contact-value">{{NATIONALITY}}</span>
+      </div>
+      <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}">
+        <span class="contact-label">Status</span>
+        <span class="contact-value">{{MARITAL_STATUS}}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN BODY ================= -->
+  <div class="main-body">
+    
+    <!-- LEFT: MAIN CONTENT -->
+    <main class="column">
+      
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_PROFILE|Summary}}</h2>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_EXPERIENCE|Experience}}</h2>
+        <div class="entry-list">{{EXPERIENCE}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_EDUCATION|Education}}</h2>
+        <div class="entry-list">{{EDUCATION}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_PROJECTS|Projects}}</h2>
+        <div class="entry-list">{{PROJECTS}}</div>
+      </section>
+      
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_ACTIVITIES|Activities}}</h2>
+        <div class="entry-list">{{ACTIVITIES}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_SOCIAL|Social Links}}</h2>
+        <div class="entry-list">{{SOCIAL}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_REFERENCES|References}}</h2>
+        <div class="entry-list ref-list">{{REFERENCES}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</h2>
+        <div class="summary-text">{{COVER_LETTER}}</div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT: SIDEBAR -->
+    <aside class="column">
+      
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_SKILLS|Expertise}}</h2>
+        <div class="skills-list">{{SKILLS}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_LANGUAGES|Languages}}</h2>
+        <div class="lang-list">{{LANGUAGES}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_CERTIFICATES|Certifications}}</h2>
+        <div class="entry-list">{{CERTIFICATES}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_INTERESTS|Interests}}</h2>
+        <div class="tags-list">{{INTERESTS}}</div>
+      </section>
+
+      <section class="section-block">
+        <h2 class="section-title">{{HEADING_HOBBIES|Hobbies}}</h2>
+        <div class="tags-list">{{HOBBIES}}</div>
+      </section>
+
+    </aside>
+
+  </div>
+</div>
+</body>
+</html>
