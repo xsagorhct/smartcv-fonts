@@ -212,7 +212,7 @@
 
   .side-skills { display: flex; flex-direction: column; gap: 12px; }
   
-  /* App-generated exact skill class targeting (FIXED) */
+  /* App-generated exact skill class targeting */
   .side-skills .skill-item { display: flex; flex-direction: column; gap: 6px; }
 
   .side-skills .skill-header {
@@ -267,8 +267,9 @@
   .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, .22); }
   .dot.filled { background: linear-gradient(135deg, var(--gold), var(--coral)); }
 
-  .side-tags { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .side-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .side-tags .tag,
+  .side-tags .chip,
   .side-tag {
     display: flex;
     align-items: center;
@@ -285,6 +286,7 @@
   }
 
   .side-tags .tag::before,
+  .side-tags .chip::before,
   .side-tag::before {
     content: '';
     flex: 0 0 auto;
@@ -299,6 +301,7 @@
   .main {
     position: relative;
     padding: 50px 48px 44px 46px;
+    counter-reset: sectionNum;
   }
 
   .main :first-child { margin-top: 0; }
@@ -318,7 +321,9 @@
     letter-spacing: .4px;
   }
 
-  .section-title .num {
+  .section-title::before {
+    counter-increment: sectionNum;
+    content: "0" counter(sectionNum);
     display: grid;
     flex: 0 0 auto;
     width: 25px;
@@ -394,6 +399,7 @@
   /* ---------- Auto-hide empty ---------- */
   .side-name:empty, .side-title:empty,
   .summary-text:empty, .side-skills:empty, .side-langs:empty,
+  .side-tags:empty,
   .photo[src=""], .photo:not([src]) { display: none !important; }
 
   .photo-shell:has(.photo[src=""]),
@@ -401,11 +407,17 @@
 
   .side-section:has(.contact-item[style*="display: none"]):not(:has(.contact-item:not([style*="display: none"]))) { display: none !important; }
 
+  /* Hide sidebar headings if their container is empty */
+  .side-section:has(.side-skills:empty),
+  .side-section:has(.side-langs:empty),
+  .side-section:has(.side-tags:empty) { display: none !important; }
+
   .section-block:has(.section-content:empty),
   .section-block:has(.summary-text:empty) { display: none !important; }
 
-  /* Hide legacy duplicate "chip" format the app may also inject alongside the new item markup */
-  .side-tags .chip, .side-langs .chip { display: none !important; }
+  /* Prevent double formatting in tags/langs */
+  .side-langs .chip { display: none !important; }
+  .side-tags .skill-item, .side-tags .entry { display: none !important; }
 
   @media print {
     body { background: #FFF; }
@@ -431,7 +443,7 @@
 
       <div class="sidebar-inner">
         <div class="photo-shell" style="{{PHOTO_DISPLAY}}"><img alt="" class="photo" src="{{PHOTO}}"/></div>
-        <div class="side-name">{{FULL_NAME}}</div>
+        <div class="side-name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
         <div class="side-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
 
         <div class="side-section">
@@ -461,6 +473,12 @@
           <div class="side-heading">{{HEADING_INTERESTS|Interests}}</div>
           <div class="side-tags">{{INTERESTS}}</div>
         </div>
+        
+        <!-- ADDED HOBBIES SECTION -->
+        <div class="side-section">
+          <div class="side-heading">{{HEADING_HOBBIES|Hobbies}}</div>
+          <div class="side-tags">{{HOBBIES}}</div>
+        </div>
       </div>
     </aside>
 
@@ -468,39 +486,50 @@
     <main class="main">
 
       <section class="section-block profile-section">
-        <div class="section-title"><span class="num">01</span>{{HEADING_PROFILE|About Me}}</div>
+        <div class="section-title">{{HEADING_PROFILE|About Me}}</div>
         <div class="summary-text">{{SUMMARY}}</div>
       </section>
 
       <section class="section-block experience-section">
-        <div class="section-title"><span class="num">02</span>{{HEADING_EXPERIENCE|Work Experience}}</div>
+        <div class="section-title">{{HEADING_EXPERIENCE|Work Experience}}</div>
         <div class="section-content">{{EXPERIENCE}}</div>
       </section>
 
       <section class="section-block education-section">
-        <div class="section-title"><span class="num">03</span>{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
         <div class="section-content">{{EDUCATION}}</div>
       </section>
 
       <section class="section-block certificates-section">
-        <div class="section-title"><span class="num">04</span>{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
         <div class="section-content">{{CERTIFICATES}}</div>
       </section>
 
+      <!-- ADDED ACTIVITIES SECTION -->
+      <section class="section-block activities-section">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </section>
+
       <section class="section-block projects-section">
-        <div class="section-title"><span class="num">05</span>{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
         <div class="section-content">{{PROJECTS}}</div>
       </section>
 
       <section class="section-block references-section">
-        <div class="section-title"><span class="num">06</span>{{HEADING_REFERENCES|References}}</div>
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
         <div class="section-content">{{REFERENCES}}</div>
       </section>
       
-      <!-- ADDED SOCIAL LINKS SECTION (Missing from the original) -->
       <section class="section-block social-section">
-        <div class="section-title"><span class="num">07</span>{{HEADING_SOCIAL|Social Links}}</div>
+        <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
         <div class="section-content">{{SOCIAL}}</div>
+      </section>
+      
+      <!-- ADDED COVER LETTER SECTION -->
+      <section class="section-block cover-section">
+        <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+        <div class="summary-text">{{COVER_LETTER}}</div>
       </section>
 
     </main>
