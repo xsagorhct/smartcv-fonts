@@ -3,21 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Neo Brutalist Bold Blocks</title>
+<title>Architect Blueprint Dark</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 
 <!--
 ======================================================================
-TEMPLATE: NEO BRUTALIST BOLD BLOCKS
+TEMPLATE: ARCHITECT BLUEPRINT DARK
 Features:
-- Neo-brutalism design trend (Thick borders, hard shadows).
-- Ultra-bold, unmissable section titles (User requirement).
-- High contrast palette (Yellow, Pink, Cyan, Black, White).
-- Raw, expressive typography (Syne + Space Mono).
-- 500+ lines of intricate styling rules.
-- Fully resilient auto-hiding logic for empty fields.
+- Technical blueprint style. Deep blue/indigo background.
+- Cyan and white architectural grid lines.
+- Rajdhani font for a technical, structural look.
+- Data boxes and wireframe-style borders.
+- NO h1/h2 tags used (div only) for perfect Android WebView rendering.
 ======================================================================
 -->
 
@@ -26,32 +25,30 @@ Features:
      1. CSS VARIABLES (DESIGN TOKENS)
   -------------------------------------------------------- */
   :root {
-    /* Brutalist Palette */
-    --brutal-black: #000000;
-    --brutal-white: #FFFFFF;
-    --brutal-yellow: #FFD500;
-    --brutal-pink: #FF00FF;
-    --brutal-cyan: #00FFFF;
-    --brutal-green: #00FF00;
+    /* Blueprint Palette */
+    --bp-bg: #0D2644;        /* Blueprint Deep Blue */
+    --bp-grid: rgba(94, 201, 255, 0.2); /* Faint Grid Line */
+    --bp-cyan: #5EC9FF;      /* Blueprint Cyan */
+    --bp-white: #FFFFFF;
     
-    /* Layout Variables */
-    --border-heavy: 4px solid var(--brutal-black);
-    --border-medium: 3px solid var(--brutal-black);
+    --bg-page: var(--bp-bg);
     
-    /* Hard Shadows */
-    --shadow-heavy: 8px 8px 0px 0px var(--brutal-black);
-    --shadow-medium: 5px 5px 0px 0px var(--brutal-black);
-    --shadow-sm: 3px 3px 0px 0px var(--brutal-black);
+    --text-dark: var(--bp-cyan);
+    --text-mid: #A5D7F0;
+    --text-light: #7BA8C4;
     
     /* Typography */
-    --font-display: 'Syne', sans-serif;
-    --font-mono: 'Space Mono', monospace;
+    --font-main: 'Rajdhani', sans-serif;
     
-    /* Spacing */
-    --gap-sm: 12px;
-    --gap-md: 24px;
-    --gap-lg: 32px;
-    --gap-xl: 48px;
+    /* Layout */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-5: 48px;
+    
+    /* Borders */
+    --b-tech: 1px solid var(--bp-cyan);
   }
 
   /* --------------------------------------------------------
@@ -69,290 +66,285 @@ Features:
   }
   
   body {
-    background: #E5E7EB; /* Workbench background */
-    color: var(--brutal-black);
-    font-family: var(--font-mono);
+    background: #000000;
+    color: var(--text-mid);
+    font-family: var(--font-main);
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
     line-height: 1.5;
-    font-size: 14px;
   }
 
   /* --------------------------------------------------------
-     3. MASTER PAGE LAYOUT
+     3. MASTER PAGE STRUCTURE
   -------------------------------------------------------- */
   .page {
     position: relative;
     width: 794px;
     min-height: 1122px;
     margin: 0 auto;
-    background: var(--brutal-white);
+    background-color: var(--bg-page);
     display: flex;
     flex-direction: column;
-    padding: var(--gap-lg);
-    border: var(--border-heavy);
-    box-shadow: 16px 16px 0px 0px rgba(0,0,0,0.2);
-    gap: var(--gap-lg);
-  }
-
-  /* Structural Grid for Neo Brutalism */
-  .grid-container {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: var(--gap-lg);
-    flex-grow: 1;
-    align-items: start;
-  }
-
-  .col-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-md);
+    padding: var(--sp-4);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    border: 4px solid var(--bp-cyan);
+    
+    /* Blueprint Grid Background */
+    background-image: 
+      linear-gradient(var(--bp-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px),
+      linear-gradient(rgba(94, 201, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(94, 201, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
   }
   
-  .col-main {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-lg);
+  /* Corner markings */
+  .page::before, .page::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 2px solid var(--bp-white);
+    pointer-events: none;
   }
+  .page::before { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+  .page::after { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
   /* --------------------------------------------------------
-     4. RAW HEADER BLOCK (HERO)
+     4. HEADER (TITLE BLOCK)
   -------------------------------------------------------- */
-  .header-block {
+  .header-bp {
     display: flex;
-    gap: var(--gap-lg);
-    background: var(--brutal-yellow);
-    border: var(--border-heavy);
-    padding: var(--gap-md);
-    box-shadow: var(--shadow-heavy);
     align-items: center;
+    border: var(--b-tech);
+    padding: var(--sp-3);
+    margin-bottom: var(--sp-4);
+    background: rgba(13, 38, 68, 0.8);
+    position: relative;
   }
 
-  /* brutalist photo frame */
   .photo-frame {
     width: 140px;
     height: 140px;
-    border: var(--border-heavy);
-    background: var(--brutal-cyan);
-    box-shadow: var(--shadow-medium);
+    margin-right: var(--sp-4);
+    border: var(--b-tech);
+    padding: 4px;
     flex-shrink: 0;
     position: relative;
-    overflow: hidden;
   }
-
+  .photo-frame::before {
+    content: 'FIG. 1';
+    position: absolute;
+    bottom: -10px; right: -10px;
+    background: var(--bp-bg);
+    color: var(--bp-cyan);
+    font-size: 10px;
+    padding: 0 4px;
+    font-weight: 700;
+  }
+  
   .photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: contrast(1.4) saturate(1.2);
+    filter: sepia(1) hue-rotate(180deg) saturate(2) brightness(0.8) contrast(1.2); /* Blueprint blue filter */
   }
 
-  .header-info {
-    flex-grow: 1;
+  .header-content {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
 
+  /* Safe DIV tag for Name */
   .name {
-    font-family: var(--font-display);
-    font-size: 54px;
-    font-weight: 800;
-    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--bp-white);
     line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -2px;
-    text-shadow: 2px 2px 0px var(--brutal-white);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
   .job-title {
-    font-family: var(--font-mono);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--brutal-white);
-    background: var(--brutal-black);
-    display: inline-flex;
-    padding: 6px 12px;
-    margin-bottom: var(--gap-md);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--bp-cyan);
+    margin-bottom: var(--sp-3);
     text-transform: uppercase;
-    box-shadow: var(--shadow-sm);
-    align-self: flex-start;
+    letter-spacing: 4px;
   }
 
-  /* Contact Badges */
-  .contact-badges {
+  /* Contact Line */
+  .contact-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .contact-item {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-sm);
-  }
-
-  .badge {
-    display: inline-flex;
     align-items: center;
-    background: var(--brutal-white);
-    border: var(--border-medium);
-    padding: 4px 8px;
-    font-weight: 700;
-    font-size: 12px;
-    box-shadow: var(--shadow-sm);
+    border-bottom: 1px dotted var(--bp-cyan);
+    padding-bottom: 2px;
   }
 
-  .badge-label {
-    background: var(--brutal-black);
-    color: var(--brutal-white);
-    padding: 2px 6px;
-    margin-right: 8px;
-    text-transform: uppercase;
+  .contact-label {
+    display: none;
   }
-
-  .badge-value {
-    color: var(--brutal-black);
+  
+  .contact-item::before {
+    content: '[';
+    color: var(--bp-white);
+    margin-right: 4px;
+  }
+  .contact-item::after {
+    content: ']';
+    color: var(--bp-white);
+    margin-left: 4px;
   }
 
   /* --------------------------------------------------------
-     5. BOLD SECTION TITLES (HIGH VISIBILITY)
+     5. GRID LAYOUT
   -------------------------------------------------------- */
-  .brutal-section {
-    display: flex;
-    flex-direction: column;
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--sp-4);
+    flex-grow: 1;
     position: relative;
+    z-index: 10;
   }
 
-  .title-wrapper {
-    margin-bottom: var(--gap-sm);
+  .col-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .col-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  /* --------------------------------------------------------
+     6. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-zone {
+    display: flex;
+    flex-direction: column;
+    border: var(--b-tech);
+    background: rgba(13, 38, 68, 0.8);
   }
 
   .section-title {
-    font-family: var(--font-display);
-    font-size: 26px;
-    font-weight: 800;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--bp-bg);
+    background: var(--bp-cyan);
     text-transform: uppercase;
-    background: var(--brutal-black);
-    color: var(--brutal-white);
-    padding: 8px 16px;
-    display: inline-block;
-    border: var(--border-medium);
-    border-color: var(--brutal-black); /* Redundant but safe */
-    box-shadow: var(--shadow-medium);
-    letter-spacing: -0.5px;
+    letter-spacing: 2px;
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-
-  /* Distinct colors for specific sections to make them pop even more */
-  .col-sidebar .section-title {
-    background: var(--brutal-pink);
-    color: var(--brutal-black);
-  }
-
-  .col-main .brutal-section:nth-child(even) .section-title {
-    background: var(--brutal-cyan);
-    color: var(--brutal-black);
+  .section-title::after {
+    content: 'SEC. /';
+    font-size: 12px;
+    font-weight: 500;
   }
 
   /* --------------------------------------------------------
-     6. MAIN CONTENT CARDS (EXPERIENCE, EDUCATION)
+     7. PRIMARY CONTENT (FEEDS)
   -------------------------------------------------------- */
   .summary-text {
-    background: var(--brutal-white);
-    border: var(--border-medium);
-    padding: var(--gap-md);
-    box-shadow: var(--shadow-medium);
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
-    font-weight: 700;
+    color: var(--bp-white);
+    padding: var(--sp-3);
   }
 
-  .card-list {
+  .feed-stack {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-md);
   }
 
-  .data-card {
-    background: var(--brutal-white);
-    border: var(--border-medium);
-    padding: var(--gap-md);
-    box-shadow: var(--shadow-medium);
-    position: relative;
+  .feed-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-3);
+    border-bottom: var(--b-tech);
   }
-  
-  /* Decorative tape piece */
-  .data-card::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 60px;
-    height: 20px;
-    background: rgba(255, 213, 0, 0.8);
-    border: 2px solid var(--brutal-black);
-    z-index: 5;
+  .feed-card:last-child {
+    border-bottom: none;
   }
 
   .entry-title {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bp-white);
+    margin-bottom: 2px;
     text-transform: uppercase;
-    line-height: 1.1;
   }
 
   .entry-sub-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--brutal-white);
-    background: var(--brutal-black);
-    padding: 4px 8px;
-    margin: var(--gap-sm) 0;
-    border: 2px solid var(--brutal-black);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bp-cyan);
+    margin-bottom: var(--sp-2);
   }
 
   .entry-desc {
-    font-size: 13.5px;
-    line-height: 1.6;
-    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-mid);
   }
 
   .entry-desc ul {
     list-style: none;
-    margin-top: var(--gap-sm);
+    margin-top: 8px;
   }
-  
+
   .entry-desc li {
     position: relative;
-    padding-left: 24px;
-    margin-bottom: 6px;
-    font-weight: 700; /* Bold lists */
+    padding-left: 20px;
+    margin-bottom: 4px;
   }
-  
+
   .entry-desc li::before {
-    content: '>>';
+    content: '+';
     position: absolute;
     left: 0;
-    top: 0;
-    color: var(--brutal-pink);
+    color: var(--bp-cyan);
+    font-weight: bold;
   }
 
-  /* Reference specific tweaks */
-  .ref-list .data-card::before { display: none; }
-  .ref-list .entry-sub-row { background: transparent; color: var(--brutal-black); padding: 0; border: none; flex-direction: column; }
+  /* References overrides */
+  .ref-list .feed-card { background: rgba(94, 201, 255, 0.1); }
 
   /* --------------------------------------------------------
-     7. SIDEBAR STYLES (SKILLS, TAGS)
+     8. WIDGETS (SKILLS, LANGS, TAGS)
   -------------------------------------------------------- */
-  
-  /* Brutalist Skill Bars */
-  .skills-box {
-    background: var(--brutal-white);
-    border: var(--border-medium);
-    padding: var(--gap-md);
-    box-shadow: var(--shadow-medium);
+  /* Sidebar padding */
+  .col-side .skill-stack,
+  .col-side .lang-stack,
+  .col-side .tag-cloud {
+    padding: var(--sp-3);
+  }
+
+  /* Skills */
+  .skill-stack {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-sm);
+    gap: var(--sp-3);
   }
   
   .skill-item {
@@ -362,99 +354,97 @@ Features:
   }
   
   .skill-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bp-white);
     display: flex;
     justify-content: space-between;
-    font-weight: 700;
-    font-size: 12px;
     text-transform: uppercase;
+  }
+  
+  .skill-level {
+    font-size: 12px;
+    color: var(--bp-cyan);
   }
   
   .skill-track {
     width: 100%;
-    height: 14px;
-    background: var(--brutal-white);
-    border: 2px solid var(--brutal-black);
+    height: 10px;
+    border: 1px solid var(--bp-cyan);
+    padding: 1px;
   }
   
   .skill-fill {
     height: 100%;
-    background: var(--brutal-cyan);
-    border-right: 2px solid var(--brutal-black);
-  }
-  
-  /* Checkerboard effect for alternate skills */
-  .skill-item:nth-child(even) .skill-fill {
-    background: var(--brutal-yellow);
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, var(--brutal-black) 4px, var(--brutal-black) 8px);
+    background: var(--bp-cyan);
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      rgba(255,255,255,0.3) 5px,
+      rgba(255,255,255,0.3) 10px
+    );
   }
 
   /* Languages */
-  .lang-box {
-    background: var(--brutal-white);
-    border: var(--border-medium);
-    padding: var(--gap-md);
-    box-shadow: var(--shadow-medium);
+  .lang-stack {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-sm);
+    gap: 8px;
   }
   
   .lang-item {
     display: flex;
-    flex-direction: column;
-    border-bottom: 2px solid var(--brutal-black);
-    padding-bottom: 6px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dotted var(--bp-cyan);
+    padding-bottom: 4px;
   }
-  .lang-item:last-child { border-bottom: none; padding-bottom: 0; }
   
   .lang-item .entry-title {
     font-size: 14px;
-    font-weight: 700;
-  }
-  
-  .lang-item .entry-sub-row {
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    color: var(--brutal-black);
-    border: none;
-    font-size: 11px;
-  }
-
-  /* Brutalist Tags (Pills) */
-  .tags-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-sm);
-    padding: 4px; /* Space for shadows */
-  }
-  
-  .tags-box .chip,
-  .tags-box .tag,
-  .skills-box .chip {
-    font-weight: 700;
-    font-size: 12px;
-    color: var(--brutal-black);
-    background: var(--brutal-green);
-    border: var(--border-medium);
-    padding: 6px 12px;
-    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+    color: var(--bp-white);
     text-transform: uppercase;
   }
   
-  /* Randomize colors in tags */
-  .tags-box .chip:nth-child(2n) { background: var(--brutal-yellow); }
-  .tags-box .chip:nth-child(3n) { background: var(--brutal-pink); }
+  .lang-item .entry-sub-row {
+    font-size: 13px;
+    color: var(--bp-cyan);
+    margin: 0;
+  }
+
+  /* Tags */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tag-cloud .chip,
+  .tag-cloud .tag,
+  .skill-stack .chip {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--bp-bg);
+    background: var(--bp-cyan);
+    padding: 2px 10px;
+    text-transform: uppercase;
+  }
+  
+  .tag-cloud .chip:nth-child(even) { 
+    background: var(--bp-white);
+  }
 
   /* --------------------------------------------------------
-     8. PREVENT DOUBLE DATA (CRITICAL)
+     9. PREVENT DOUBLE DATA (CRITICAL)
   -------------------------------------------------------- */
-  .skills-box:has(.skill-item) .chip { display: none !important; }
-  .tags-box .skill-item, .tags-box .entry { display: none !important; }
-  .lang-box .chip { display: none !important; }
+  .skill-stack:has(.skill-item) .chip { display: none !important; }
+  .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
+  .lang-stack .chip { display: none !important; }
 
   /* --------------------------------------------------------
-     9. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
   -------------------------------------------------------- */
   .name:empty, 
   .job-title:empty, 
@@ -471,19 +461,26 @@ Features:
     display: none !important; 
   }
   
-  /* Hide Contact badges if empty */
-  .contact-badges:not(:has(.badge:not([style*="display: none"]))) { 
+  /* Hide Contact section completely if empty */
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { 
     display: none !important; 
   }
   
-  /* Hide sections */
-  .brutal-section:has(> .section-content:empty),
-  .brutal-section:has(> .card-list:empty),
-  .brutal-section:has(> .summary-text:empty),
-  .brutal-section:has(> .skills-box:empty),
-  .brutal-section:has(> .lang-box:empty),
-  .brutal-section:has(> .tags-box:empty) {
+  /* Hide specific sections */
+  .section-zone:has(> .feed-stack:empty),
+  .section-zone:has(> .summary-text:empty),
+  .section-zone:has(> .skill-stack:empty),
+  .section-zone:has(> .lang-stack:empty),
+  .section-zone:has(> .tag-cloud:empty) {
+    display: none !important; 
+  }
+  
+  /* Hide Sidebar if entirely empty */
+  .col-side:not(:has(.section-zone:not([style*="display: none"]))) {
     display: none !important;
+  }
+  .layout-grid:has(.col-side[style*="display: none"]) {
+    grid-template-columns: 1fr;
   }
 
 </style>
@@ -491,165 +488,135 @@ Features:
 <body>
 <div class="page">
   
-  <!-- ================= HEADER BLOCK ================= -->
-  <header class="header-block">
+  <!-- ================= HEADER ================= -->
+  <header class="header-bp">
+    
     <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
-      <img alt="Operator Photo" class="photo" src="{{PHOTO}}"/>
+      <img alt="User" class="photo" src="{{PHOTO}}"/>
     </div>
     
-    <div class="header-info">
+    <div class="header-content">
+      <!-- DIV tag for name -->
       <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
       <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
       
-      <div class="contact-badges">
-        <div class="badge" style="{{PHONE_DISPLAY}}">
-          <span class="badge-label">TEL</span>
-          <span class="badge-value">{{PHONE}}</span>
+      <div class="contact-bar">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}">
+          <span class="contact-value">{{PHONE}}</span>
         </div>
-        <div class="badge" style="{{EMAIL_DISPLAY}}">
-          <span class="badge-label">MAIL</span>
-          <span class="badge-value">{{EMAIL}}</span>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+          <span class="contact-value">{{EMAIL}}</span>
         </div>
-        <div class="badge" style="{{ADDRESS_DISPLAY}}">
-          <span class="badge-label">LOC</span>
-          <span class="badge-value">{{ADDRESS}}</span>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+          <span class="contact-value">{{ADDRESS}}</span>
         </div>
-        <div class="badge" style="{{WEBSITE_DISPLAY}}">
-          <span class="badge-label">WEB</span>
-          <span class="badge-value">{{WEBSITE}}</span>
-        </div>
-        <div class="badge" style="{{DOB_DISPLAY}}">
-          <span class="badge-label">DOB</span>
-          <span class="badge-value">{{DOB}}</span>
-        </div>
-        <div class="badge" style="{{NATIONALITY_DISPLAY}}">
-          <span class="badge-label">NAT</span>
-          <span class="badge-value">{{NATIONALITY}}</span>
-        </div>
-        <div class="badge" style="{{MARITAL_STATUS_DISPLAY}}">
-          <span class="badge-label">STAT</span>
-          <span class="badge-value">{{MARITAL_STATUS}}</span>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+          <span class="contact-value">{{WEBSITE}}</span>
         </div>
       </div>
     </div>
+    
   </header>
 
-  <!-- ================= GRID CONTAINER ================= -->
-  <div class="grid-container">
+  <!-- ================= GRID LAYOUT ================= -->
+  <div class="layout-grid">
     
-    <!-- LEFT COLUMN (SIDEBAR) -->
-    <aside class="col-sidebar">
-      
-      <!-- Expertise -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
-        </div>
-        <div class="skills-box">{{SKILLS}}</div>
-      </section>
-
-      <!-- Languages -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
-        </div>
-        <div class="lang-box">{{LANGUAGES}}</div>
-      </section>
-
-      <!-- Certifications -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_CERTIFICATES|Certs}}</div>
-        </div>
-        <div class="card-list">{{CERTIFICATES}}</div>
-      </section>
-
-      <!-- Interests -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
-        </div>
-        <div class="tags-box">{{INTERESTS}}</div>
-      </section>
-
-      <!-- Hobbies -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
-        </div>
-        <div class="tags-box">{{HOBBIES}}</div>
-      </section>
-      
-      <!-- Social -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
-        </div>
-        <div class="card-list">{{SOCIAL}}</div>
-      </section>
-
-    </aside>
-
-    <!-- RIGHT COLUMN (MAIN) -->
+    <!-- LEFT MAIN COLUMN -->
     <main class="col-main">
-      
+
       <!-- Profile -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
-        </div>
+      <section class="section-zone">
+        <!-- DIV tag for title -->
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
         <div class="summary-text">{{SUMMARY}}</div>
       </section>
 
       <!-- Experience -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+        <div class="feed-stack">
+          {{EXPERIENCE}}
         </div>
-        <div class="card-list">{{EXPERIENCE}}</div>
       </section>
 
       <!-- Education -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="feed-stack">
+          {{EDUCATION}}
         </div>
-        <div class="card-list">{{EDUCATION}}</div>
       </section>
 
       <!-- Projects -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="feed-stack">
+          {{PROJECTS}}
         </div>
-        <div class="card-list">{{PROJECTS}}</div>
       </section>
 
+    </main>
+
+    <!-- RIGHT SIDE COLUMN -->
+    <aside class="col-side">
+      
+      <!-- Skills -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SKILLS|Skills}}</div>
+        <div class="skill-stack">{{SKILLS}}</div>
+      </section>
+
+      <!-- Languages -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="lang-stack">{{LANGUAGES}}</div>
+      </section>
+      
+      <!-- Certifications -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="feed-stack">{{CERTIFICATES}}</div>
+      </section>
+      
       <!-- Activities -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="feed-stack">
+          {{ACTIVITIES}}
         </div>
-        <div class="card-list">{{ACTIVITIES}}</div>
+      </section>
+
+      <!-- Interests -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="tag-cloud">{{INTERESTS}}</div>
+      </section>
+      
+      <!-- Hobbies -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-cloud">{{HOBBIES}}</div>
+      </section>
+      
+      <!-- Social -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
+        <div class="feed-stack">{{SOCIAL}}</div>
       </section>
 
       <!-- References -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_REFERENCES|References}}</div>
-        </div>
-        <div class="card-list ref-list">{{REFERENCES}}</div>
-      </section>
-
-      <!-- Cover Letter -->
-      <section class="brutal-section">
-        <div class="title-wrapper">
-          <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
-        </div>
-        <div class="summary-text">{{COVER_LETTER}}</div>
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="feed-stack ref-list">{{REFERENCES}}</div>
       </section>
       
-    </main>
+      <!-- Cover Letter -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+        <div class="summary-text" style="padding: 16px;">{{COVER_LETTER}}</div>
+      </section>
+
+    </aside>
 
   </div>
 </div>
