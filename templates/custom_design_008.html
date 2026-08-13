@@ -211,9 +211,11 @@
   .contact-value { color: #FFF; font-weight: 500; overflow-wrap: anywhere; }
 
   .side-skills { display: flex; flex-direction: column; gap: 12px; }
-  .side-skill-item { display: flex; flex-direction: column; gap: 6px; }
+  
+  /* App-generated exact skill class targeting (FIXED) */
+  .side-skills .skill-item { display: flex; flex-direction: column; gap: 6px; }
 
-  .side-skill-header {
+  .side-skills .skill-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -243,9 +245,21 @@
     text-transform: uppercase;
   }
 
-  .side-skill-track { width: 100%; height: 4px; border-radius: 99px; background: rgba(255, 255, 255, .16); overflow: hidden; }
-  .side-skill-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--gold), var(--sky)); }
+  .side-skills .skill-track { width: 100%; height: 4px; border-radius: 99px; background: rgba(255, 255, 255, .16); overflow: hidden; }
+  .side-skills .skill-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--gold), var(--sky)); }
 
+  /* Fallback chips if progress bars not used */
+  .side-skills .chip {
+    display: inline-block !important;
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--gold);
+    border-radius: 12px;
+    font-size: 9.5px;
+    margin: 2px;
+  }
+  .side-skills:has(.skill-item) .chip { display: none !important; }
+  
   .side-langs { display: flex; flex-direction: column; gap: 12px; }
   .side-lang-item { display: flex; align-items: center; justify-content: space-between; font-size: 10.5px; }
   .side-lang-name { color: #FFF; font-weight: 600; }
@@ -391,7 +405,7 @@
   .section-block:has(.summary-text:empty) { display: none !important; }
 
   /* Hide legacy duplicate "chip" format the app may also inject alongside the new item markup */
-  .side-skills .chip, .side-tags .chip, .side-langs .chip { display: none !important; }
+  .side-tags .chip, .side-langs .chip { display: none !important; }
 
   @media print {
     body { background: #FFF; }
@@ -436,37 +450,16 @@
         <div class="side-section">
           <div class="side-heading">{{HEADING_SKILLS|Skills}}</div>
           <div class="side-skills">{{SKILLS}}</div>
-          <!-- Repeatable skill example for app loop (use the app's exact skill-name / skill-level classes — do not rename them, and do not concatenate name+level into one string):
-          <div class="side-skill-item">
-            <div class="side-skill-header">
-              <span class="skill-name">{{SKILL_NAME}}</span>
-              <span class="skill-level">{{SKILL_LEVEL}}</span>
-            </div>
-            <div class="side-skill-track"><div class="side-skill-fill" style="width:{{SKILL_PERCENT}}%;"></div></div>
-          </div>
-          -->
         </div>
 
         <div class="side-section">
           <div class="side-heading">{{HEADING_LANGUAGES|Languages}}</div>
           <div class="side-langs">{{LANGUAGES}}</div>
-          <!-- Repeatable language example:
-          <div class="side-lang-item">
-            <div class="side-lang-name">{{LANGUAGE_NAME}}</div>
-            <div class="side-lang-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
-            </div>
-          </div>
-          -->
         </div>
 
         <div class="side-section">
           <div class="side-heading">{{HEADING_INTERESTS|Interests}}</div>
           <div class="side-tags">{{INTERESTS}}</div>
-          <!-- Repeatable interest example for app loop (use the app's exact 'tag' class):
-          <div class="tag">{{INTEREST_NAME}}</div>
-          -->
         </div>
       </div>
     </aside>
@@ -482,13 +475,6 @@
       <section class="section-block experience-section">
         <div class="section-title"><span class="num">02</span>{{HEADING_EXPERIENCE|Work Experience}}</div>
         <div class="section-content">{{EXPERIENCE}}</div>
-        <!-- Repeatable entry example:
-        <div class="entry">
-          <div class="entry-title">{{POSITION}} — {{COMPANY}}</div>
-          <div class="entry-sub-row"><span>{{LOCATION}}</span><span>{{START_DATE}} – {{END_DATE}}</span></div>
-          <div class="entry-desc"><ul><li>{{BULLET_1}}</li><li>{{BULLET_2}}</li></ul></div>
-        </div>
-        -->
       </section>
 
       <section class="section-block education-section">
@@ -509,6 +495,12 @@
       <section class="section-block references-section">
         <div class="section-title"><span class="num">06</span>{{HEADING_REFERENCES|References}}</div>
         <div class="section-content">{{REFERENCES}}</div>
+      </section>
+      
+      <!-- ADDED SOCIAL LINKS SECTION (Missing from the original) -->
+      <section class="section-block social-section">
+        <div class="section-title"><span class="num">07</span>{{HEADING_SOCIAL|Social Links}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
       </section>
 
     </main>
