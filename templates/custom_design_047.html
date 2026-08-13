@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Corporate Executive Silver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: CORPORATE EXECUTIVE SILVER
+Features:
+- Ultra-premium corporate executive aesthetic.
+- Pure white background, metallic silver gradients, charcoal text.
+- Playfair Display (headings) for elegance, Roboto (body) for clarity.
+- Crisp thin borders, highly structured grid.
+- NO h1/h2 tags used (div only) for perfect Android WebView rendering.
+======================================================================
+-->
+
+<style>
+  /* --------------------------------------------------------
+     1. CSS VARIABLES (DESIGN TOKENS)
+  -------------------------------------------------------- */
+  :root {
+    /* Executive Palette */
+    --ces-bg: #FFFFFF;       /* Pure White */
+    --ces-black: #1A1A1A;    /* Stark Black */
+    --ces-charcoal: #333333; /* Dark Grey */
+    --ces-silver: #E0E0E0;   /* Light Silver Border */
+    --ces-silver-dark: #999999; /* Darker Silver Accent */
+    
+    --bg-page: var(--ces-bg);
+    
+    --text-dark: var(--ces-black);
+    --text-mid: var(--ces-charcoal);
+    --text-light: #666666;
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Roboto', sans-serif;
+    
+    /* Layout */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-5: 48px;
+    
+    /* Gradients */
+    --grad-silver: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
+  }
+
+  /* --------------------------------------------------------
+     2. GLOBAL RESET & BASE
+  -------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body {
+    background: #EAEAEA;
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.5;
+  }
+
+  /* --------------------------------------------------------
+     3. MASTER PAGE STRUCTURE
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  /* --------------------------------------------------------
+     4. HEADER (EXECUTIVE BANNER)
+  -------------------------------------------------------- */
+  .header-ces {
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--ces-black);
+    padding-bottom: var(--sp-4);
+    margin-bottom: var(--sp-4);
+  }
+
+  .photo-frame {
+    width: 130px;
+    height: 130px;
+    margin-right: var(--sp-4);
+    border: 1px solid var(--ces-silver-dark);
+    padding: 3px;
+    background: var(--grad-silver);
+    flex-shrink: 0;
+  }
+  
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(10%) contrast(1.1); /* Professional look */
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+
+  /* Safe DIV tag for Name */
+  .name {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .job-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-bottom: var(--sp-3);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  /* Contact Line */
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-label {
+    display: none;
+  }
+  
+  .contact-item:not(:last-child)::after {
+    content: '|';
+    margin-left: var(--sp-3);
+    color: var(--ces-silver-dark);
+  }
+
+  /* --------------------------------------------------------
+     5. GRID LAYOUT
+  -------------------------------------------------------- */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: var(--sp-5);
+    flex-grow: 1;
+  }
+
+  .col-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .col-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  /* --------------------------------------------------------
+     6. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-zone {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--sp-3);
+    padding: 8px 12px;
+    background: var(--grad-silver);
+    border-left: 4px solid var(--ces-black);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* --------------------------------------------------------
+     7. PRIMARY CONTENT (FEEDS)
+  -------------------------------------------------------- */
+  .summary-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    padding-left: 16px;
+    border-left: 1px solid var(--ces-silver);
+  }
+
+  .feed-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .feed-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: var(--sp-2);
+  }
+  
+  .entry-sub-row span:first-child {
+    color: var(--ces-black);
+    font-weight: 700;
+  }
+
+  .entry-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .entry-desc li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 4px;
+  }
+
+  .entry-desc li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ces-silver-dark);
+    font-weight: bold;
+  }
+
+  /* References overrides */
+  .ref-list .feed-card { padding-left: 16px; border-left: 1px solid var(--ces-silver); }
+
+  /* --------------------------------------------------------
+     8. WIDGETS (SKILLS, LANGS, TAGS)
+  -------------------------------------------------------- */
+  /* Skills */
+  .skill-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .skill-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skill-level {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 4px;
+    background: var(--ces-silver);
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: var(--ces-black);
+  }
+
+  /* Languages */
+  .lang-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--ces-silver);
+    padding-bottom: 4px;
+  }
+  
+  .lang-item .entry-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  .lang-item .entry-sub-row {
+    font-size: 12px;
+    color: var(--text-light);
+    margin: 0;
+  }
+
+  /* Tags */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .tag-cloud .chip,
+  .tag-cloud .tag,
+  .skill-stack .chip {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dark);
+    background: var(--ces-bg);
+    border: 1px solid var(--ces-silver-dark);
+    padding: 4px 10px;
+  }
+
+  /* --------------------------------------------------------
+     9. PREVENT DOUBLE DATA (CRITICAL)
+  -------------------------------------------------------- */
+  .skill-stack:has(.skill-item) .chip { display: none !important; }
+  .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
+  .lang-stack .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
+  .name:empty, 
+  .job-title:empty, 
+  .summary-text:empty { 
+    display: none !important; 
+  }
+  
+  .photo[src=""], 
+  .photo:not([src]) { 
+    display: none !important; 
+  }
+  .photo-frame:has(.photo[src=""]), 
+  .photo-frame:has(.photo:not([src])) { 
+    display: none !important; 
+  }
+  
+  /* Hide Contact section completely if empty */
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { 
+    display: none !important; 
+  }
+  
+  /* Hide specific sections */
+  .section-zone:has(> .feed-stack:empty),
+  .section-zone:has(> .summary-text:empty),
+  .section-zone:has(> .skill-stack:empty),
+  .section-zone:has(> .lang-stack:empty),
+  .section-zone:has(> .tag-cloud:empty) {
+    display: none !important; 
+  }
+  
+  /* Hide Sidebar if entirely empty */
+  .col-side:not(:has(.section-zone:not([style*="display: none"]))) {
+    display: none !important;
+  }
+  .layout-grid:has(.col-side[style*="display: none"]) {
+    grid-template-columns: 1fr;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ================= HEADER ================= -->
+  <header class="header-ces">
+    
+    <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
+      <img alt="User" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-content">
+      <!-- DIV tag for name -->
+      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      
+      <div class="contact-bar">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}">
+          <span class="contact-value">{{PHONE}}</span>
+        </div>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+          <span class="contact-value">{{EMAIL}}</span>
+        </div>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+          <span class="contact-value">{{ADDRESS}}</span>
+        </div>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+          <span class="contact-value">{{WEBSITE}}</span>
+        </div>
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- ================= GRID LAYOUT ================= -->
+  <div class="layout-grid">
+    
+    <!-- LEFT MAIN COLUMN -->
+    <main class="col-main">
+
+      <!-- Profile -->
+      <section class="section-zone">
+        <!-- DIV tag for title -->
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+        <div class="feed-stack">
+          {{EXPERIENCE}}
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="feed-stack">
+          {{EDUCATION}}
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="feed-stack">
+          {{PROJECTS}}
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT SIDE COLUMN -->
+    <aside class="col-side">
+      
+      <!-- Skills -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SKILLS|Skills}}</div>
+        <div class="skill-stack">{{SKILLS}}</div>
+      </section>
+
+      <!-- Languages -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="lang-stack">{{LANGUAGES}}</div>
+      </section>
+      
+      <!-- Certifications -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="feed-stack">{{CERTIFICATES}}</div>
+      </section>
+      
+      <!-- Activities -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="feed-stack">
+          {{ACTIVITIES}}
+        </div>
+      </section>
+
+      <!-- Interests -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="tag-cloud">{{INTERESTS}}</div>
+      </section>
+      
+      <!-- Hobbies -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-cloud">{{HOBBIES}}</div>
+      </section>
+      
+      <!-- Social -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
+        <div class="feed-stack">{{SOCIAL}}</div>
+      </section>
+
+      <!-- References -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="feed-stack ref-list">{{REFERENCES}}</div>
+      </section>
+      
+      <!-- Cover Letter -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+        <div class="summary-text" style="padding:0; border:none;">{{COVER_LETTER}}</div>
+      </section>
+
+    </aside>
+
+  </div>
+</div>
+</body>
+</html>
