@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ATS Plain Single Column</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --text-main: #000000;
+    --border: #000000;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  @page { size: A4 portrait; margin: 0; }
+  
+  body {
+    background: #E5E7EB;
+    color: var(--text-main);
+    font-family: Arial, Helvetica, sans-serif; /* Max parsability ATS safe */
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 70px 75px; /* generous margins for ATS */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  /* ---------- HEADER (SIMPLE, CENTERED) ---------- */
+  .header {
+    text-align: center;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .photo-shell { display: none !important; } /* ATS avoids photos */
+  
+  .name {
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  
+  .job-title {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 16px;
+  }
+  
+  .contact-item {
+    font-size: 11px;
+  }
+  
+  .contact-label { display: none; } /* Raw data is better for ATS sometimes, or keep simple labels */
+  .contact-label.show { display: inline; font-weight: 700; margin-right: 4px; }
+  .contact-label.show::after { content: ':'; }
+  
+  .contact-value { font-weight: 400; }
+  
+  /* ---------- ATS MAIN CONTENT ---------- */
+  .section-block { position: relative; }
+  
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+  
+  .summary-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  .entry { margin-bottom: 16px; }
+  .entry:last-child { margin-bottom: 0; }
+  
+  .entry-title {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 400;
+    margin: 2px 0 6px;
+  }
+  
+  .entry-desc {
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+  
+  .entry-desc ul { margin: 4px 0 0 16px; }
+  .entry-desc li + li { margin-top: 2px; }
+  
+  /* ---------- ATS SKILLS & TAGS ---------- */
+  /* Comma separated is best for ATS */
+  .skills-container, .languages-container, .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .skill-item, .lang-item { display: flex; font-size: 12px; margin-right: 12px; }
+  .skill-header { font-weight: 700; margin-right: 6px; }
+  .skill-header::after { content: ':'; }
+  .skill-level { font-weight: 400; }
+  .skill-track, .skill-fill { display: none; }
+  
+  .lang-item .entry-title { font-weight: 700; margin-right: 6px; font-size: 12px; }
+  .lang-item .entry-title::after { content: ':'; }
+  .lang-item .entry-sub-row { margin: 0; font-size: 12px; }
+  
+  .tag-row .chip, .tag-row .tag, .skills-container .chip {
+    font-size: 12px;
+  }
+  .tag-row .chip::after, .tag-row .tag::after, .skills-container .chip::after {
+    content: ', ';
+  }
+  .tag-row .chip:last-child::after, .tag-row .tag:last-child::after, .skills-container .chip:last-child::after {
+    content: '';
+  }
+  
+  .ref-item { margin-bottom: 12px; }
+  .ref-item .entry-title { font-size: 13px; font-weight: 700; }
+  .ref-item .entry-sub-row { display: block; margin-top: 2px; font-size: 11px; }
+  
+  /* ---------- AUTO-HIDE RULES (CRITICAL) ---------- */
+  .name:empty, .job-title:empty, .summary-text:empty { display: none !important; }
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { display: none !important; }
+  
+  .section-block:has(.section-content:empty),
+  .section-block:has(.summary-text:empty),
+  .section-block:has(.skills-container:empty),
+  .section-block:has(.languages-container:empty),
+  .section-block:has(.tag-row:empty) {
+    display: none !important;
+  }
+  
+  /* Prevent Double Data */
+  .skills-container:has(.skill-item) .chip { display: none !important; }
+  .tag-row .skill-item, .tag-row .entry { display: none !important; }
+  .languages-container .chip { display: none !important; }
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <header class="header">
+    <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+    
+    <div class="contact-bar">
+      <div class="contact-item" style="{{PHONE_DISPLAY}}">
+        <span class="contact-value">{{PHONE}}</span>
+      </div>
+      <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+        <span class="contact-label show">Email</span>
+        <span class="contact-value">{{EMAIL}}</span>
+      </div>
+      <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+        <span class="contact-value">{{ADDRESS}}</span>
+      </div>
+      <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+        <span class="contact-value">{{WEBSITE}}</span>
+      </div>
+      <div class="contact-item" style="{{DOB_DISPLAY}}">
+        <span class="contact-label show">DOB</span>
+        <span class="contact-value">{{DOB}}</span>
+      </div>
+      <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
+        <span class="contact-value">{{NATIONALITY}}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section-block">
+    <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+    <div class="summary-text">{{SUMMARY}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+    <div class="section-content">{{EXPERIENCE}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+    <div class="section-content">{{EDUCATION}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+    <div class="skills-container">{{SKILLS}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+    <div class="section-content">{{PROJECTS}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+    <div class="section-content">{{CERTIFICATES}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+    <div class="languages-container">{{LANGUAGES}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+    <div class="section-content">{{ACTIVITIES}}</div>
+  </section>
+  
+  <section class="section-block">
+    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+    <div class="section-content">{{REFERENCES}}</div>
+  </section>
+
+</div>
+</body>
+</html>
