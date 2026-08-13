@@ -145,7 +145,7 @@
   .entry-desc ul { margin: 4px 0 0 14px; }
   .entry-desc li + li { margin-top: 2px; }
 
-  /* ---- Skills ---- */
+  /* ---- Skills & Chips ---- */
   .skills-container { display: flex; flex-direction: column; gap: 10px; }
   .skill-item { display: flex; flex-direction: column; gap: 4px; }
   .skill-header { display: flex; justify-content: space-between; font-size: 11.5px; }
@@ -153,6 +153,21 @@
   .skill-level { color: var(--muted); font-size: 10px; }
   .skill-track { width: 100%; height: 3px; border-radius: 99px; background: var(--line); }
   .skill-fill { height: 100%; border-radius: inherit; background: var(--accent); }
+
+  .chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    color: var(--ink-soft);
+    background: #FAFBFC;
+    font-size: 10.5px;
+    font-weight: 500;
+    margin: 2px;
+  }
+  
+  /* FIXED: Hides duplicate chips if progress bar items exist */
+  .skills-container:has(.skill-item) .chip { display: none !important; }
 
   .languages-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .lang-item { font-size: 11.5px; }
@@ -239,13 +254,6 @@
       <section class="section-block experience-section">
         <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
         <div class="section-content">{{EXPERIENCE}}</div>
-        <!-- Repeatable entry example for app-side loop:
-        <div class="entry">
-          <div class="entry-title">{{POSITION}} — {{COMPANY}}</div>
-          <div class="entry-sub-row"><span>{{LOCATION}}</span><span>{{START_DATE}} – {{END_DATE}}</span></div>
-          <div class="entry-desc"><ul><li>{{BULLET_1}}</li><li>{{BULLET_2}}</li></ul></div>
-        </div>
-        -->
       </section>
 
       <section class="section-block education-section">
@@ -265,12 +273,6 @@
       <section class="section-block skills-section">
         <div class="section-title">{{HEADING_SKILLS|Skills}}</div>
         <div class="skills-container">{{SKILLS}}</div>
-        <!-- Repeatable skill example:
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">{{SKILL_NAME}}</span><span class="skill-level">{{SKILL_LEVEL}}</span></div>
-          <div class="skill-track"><div class="skill-fill" style="width:{{SKILL_PERCENT}}%;"></div></div>
-        </div>
-        -->
       </section>
 
       <section class="section-block languages-section">
