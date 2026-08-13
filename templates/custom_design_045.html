@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Corporate Blue Wave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: CORPORATE BLUE WAVE
+Features:
+- Professional, corporate agency style.
+- Clean standard blue palette with an SVG wave header.
+- Roboto (Headings) and Open Sans (Body).
+- Extremely clean, readable layout suited for traditional businesses.
+- NO h1/h2 tags used (div only) for perfect Android WebView rendering.
+======================================================================
+-->
+
+<style>
+  /* --------------------------------------------------------
+     1. CSS VARIABLES (DESIGN TOKENS)
+  -------------------------------------------------------- */
+  :root {
+    /* Corporate Palette */
+    --cw-primary: #1565C0;   /* Deep Blue */
+    --cw-secondary: #1E88E5; /* Bright Blue */
+    --cw-accent: #64B5F6;    /* Light Blue */
+    --cw-bg: #F5F7FA;        /* Very light cool grey */
+    --cw-white: #FFFFFF;
+    
+    --bg-page: var(--cw-white);
+    
+    --text-dark: #1E293B;
+    --text-mid: #475569;
+    --text-light: #94A3B8;
+    
+    /* Typography */
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    
+    /* Layout */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-5: 48px;
+  }
+
+  /* --------------------------------------------------------
+     2. GLOBAL RESET & BASE
+  -------------------------------------------------------- */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  
+  body {
+    background: #E5E5E5;
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.6;
+  }
+
+  /* --------------------------------------------------------
+     3. MASTER PAGE STRUCTURE
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 0 auto;
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  /* --------------------------------------------------------
+     4. HEADER (WAVE EFFECT)
+  -------------------------------------------------------- */
+  .header-cw {
+    display: flex;
+    position: relative;
+    padding: var(--sp-5) var(--sp-5) 120px var(--sp-5); /* Extra bottom padding for wave */
+    background: linear-gradient(135deg, var(--cw-primary) 0%, var(--cw-secondary) 100%);
+    color: var(--cw-white);
+  }
+  
+  /* SVG Wave Background */
+  .wave-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .wave-bg svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 90px;
+  }
+  .wave-bg .shape-fill {
+    fill: var(--cw-white);
+  }
+
+  .header-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  /* Safe DIV tag for Name */
+  .name {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .job-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--cw-accent);
+    margin-bottom: var(--sp-3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Contact Line */
+  .contact-bar {
+    display: flex;
+    flex-direction: column; /* Stacked for corporate look on the right, or grid */
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-label {
+    font-weight: 700;
+    color: var(--cw-accent);
+    margin-right: 8px;
+    width: 24px;
+  }
+  
+  .photo-wrap {
+    z-index: 10;
+    margin-left: var(--sp-4);
+  }
+  .photo-frame {
+    width: 160px;
+    height: 160px;
+    border: 6px solid var(--cw-white);
+    background: var(--cw-bg);
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  }
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* --------------------------------------------------------
+     5. GRID LAYOUT
+  -------------------------------------------------------- */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Sidebar Left */
+    flex-grow: 1;
+  }
+
+  .col-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    background: var(--cw-bg);
+    padding: var(--sp-4);
+  }
+
+  .col-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    padding: var(--sp-4) var(--sp-5) var(--sp-4) var(--sp-4);
+  }
+
+  /* --------------------------------------------------------
+     6. HIGH VISIBILITY SECTION TITLES (USING DIV)
+  -------------------------------------------------------- */
+  .section-zone {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cw-primary);
+    text-transform: uppercase;
+    margin-bottom: var(--sp-3);
+    display: flex;
+    align-items: center;
+  }
+  
+  .col-main .section-title::after {
+    content: '';
+    flex-grow: 1;
+    height: 2px;
+    background: var(--cw-bg);
+    margin-left: 16px;
+  }
+
+  /* --------------------------------------------------------
+     7. PRIMARY CONTENT (FEEDS)
+  -------------------------------------------------------- */
+  .summary-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    text-align: justify;
+  }
+
+  .feed-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .feed-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+
+  .entry-sub-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cw-secondary);
+    margin-bottom: var(--sp-1);
+  }
+
+  .entry-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 6px;
+  }
+
+  .entry-desc li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 4px;
+  }
+
+  .entry-desc li::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: var(--cw-secondary);
+    font-size: 10px;
+    top: 5px;
+  }
+
+  /* References overrides */
+  .ref-list .feed-card { background: var(--cw-bg); padding: 12px; border-radius: 4px; border-left: 4px solid var(--cw-primary); }
+
+  /* --------------------------------------------------------
+     8. WIDGETS (SKILLS, LANGS, TAGS)
+  -------------------------------------------------------- */
+  /* Sidebar Skills */
+  .skill-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .skill-header {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .skill-level {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 6px;
+    background: #E2E8F0;
+    border-radius: 3px;
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: var(--cw-primary);
+    border-radius: 3px;
+  }
+
+  /* Languages */
+  .lang-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 4px;
+  }
+  
+  .lang-item .entry-title {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  
+  .lang-item .entry-sub-row {
+    font-size: 12px;
+    color: var(--cw-secondary);
+    margin: 0;
+  }
+
+  /* Tags */
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .tag-cloud .chip,
+  .tag-cloud .tag,
+  .skill-stack .chip {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cw-primary);
+    background: #FFFFFF;
+    border: 1px solid var(--cw-accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* --------------------------------------------------------
+     9. PREVENT DOUBLE DATA (CRITICAL)
+  -------------------------------------------------------- */
+  .skill-stack:has(.skill-item) .chip { display: none !important; }
+  .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
+  .lang-stack .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
+  .name:empty, 
+  .job-title:empty, 
+  .summary-text:empty { 
+    display: none !important; 
+  }
+  
+  .photo[src=""], 
+  .photo:not([src]) { 
+    display: none !important; 
+  }
+  .photo-frame:has(.photo[src=""]), 
+  .photo-frame:has(.photo:not([src])) { 
+    display: none !important; 
+  }
+  
+  /* Hide Contact section completely if empty */
+  .contact-bar:not(:has(.contact-item:not([style*="display: none"]))) { 
+    display: none !important; 
+  }
+  
+  /* Hide specific sections */
+  .section-zone:has(> .feed-stack:empty),
+  .section-zone:has(> .summary-text:empty),
+  .section-zone:has(> .skill-stack:empty),
+  .section-zone:has(> .lang-stack:empty),
+  .section-zone:has(> .tag-cloud:empty) {
+    display: none !important; 
+  }
+  
+  /* Hide Sidebar if entirely empty */
+  .col-side:not(:has(.section-zone:not([style*="display: none"]))) {
+    display: none !important;
+  }
+  .layout-grid:has(.col-side[style*="display: none"]) {
+    grid-template-columns: 1fr;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ================= HEADER ================= -->
+  <header class="header-cw">
+    <div class="header-content">
+      <div class="header-text">
+        <!-- DIV tag for name -->
+        <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+        <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+        
+        <div class="contact-bar">
+          <div class="contact-item" style="{{PHONE_DISPLAY}}">
+            <span class="contact-label">TEL</span>
+            <span class="contact-value">{{PHONE}}</span>
+          </div>
+          <div class="contact-item" style="{{EMAIL_DISPLAY}}">
+            <span class="contact-label">EML</span>
+            <span class="contact-value">{{EMAIL}}</span>
+          </div>
+          <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
+            <span class="contact-label">LOC</span>
+            <span class="contact-value">{{ADDRESS}}</span>
+          </div>
+          <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
+            <span class="contact-label">WEB</span>
+            <span class="contact-value">{{WEBSITE}}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="photo-wrap" style="{{PHOTO_DISPLAY}}">
+        <div class="photo-frame">
+          <img alt="User" class="photo" src="{{PHOTO}}"/>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SVG Wave shape -->
+    <div class="wave-bg">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,121.57,192.5,107.82,236.4,98,280.12,74.72,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ================= GRID LAYOUT ================= -->
+  <div class="layout-grid">
+    
+    <!-- LEFT SIDE COLUMN -->
+    <aside class="col-side">
+      
+      <!-- Skills -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skill-stack">{{SKILLS}}</div>
+      </section>
+
+      <!-- Languages -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="lang-stack">{{LANGUAGES}}</div>
+      </section>
+      
+      <!-- Certifications -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="feed-stack">{{CERTIFICATES}}</div>
+      </section>
+      
+      <!-- Activities -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="feed-stack">
+          {{ACTIVITIES}}
+        </div>
+      </section>
+
+      <!-- Interests -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="tag-cloud">{{INTERESTS}}</div>
+      </section>
+      
+      <!-- Hobbies -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-cloud">{{HOBBIES}}</div>
+      </section>
+      
+      <!-- Social -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_SOCIAL|Social Media}}</div>
+        <div class="feed-stack">{{SOCIAL}}</div>
+      </section>
+
+      <!-- Cover Letter -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_COVER_LETTER|Cover Letter}}</div>
+        <div class="summary-text" style="padding:0;">{{COVER_LETTER}}</div>
+      </section>
+
+    </aside>
+
+    <!-- RIGHT MAIN COLUMN -->
+    <main class="col-main">
+
+      <!-- Profile -->
+      <section class="section-zone">
+        <!-- DIV tag for title -->
+        <div class="section-title">{{HEADING_PROFILE|Profile Summary}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="feed-stack">
+          {{EXPERIENCE}}
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_EDUCATION|Education Background}}</div>
+        <div class="feed-stack">
+          {{EDUCATION}}
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_PROJECTS|Selected Projects}}</div>
+        <div class="feed-stack">
+          {{PROJECTS}}
+        </div>
+      </section>
+      
+      <!-- References -->
+      <section class="section-zone">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="feed-stack ref-list">{{REFERENCES}}</div>
+      </section>
+
+    </main>
+
+  </div>
+</div>
+</body>
+</html>
