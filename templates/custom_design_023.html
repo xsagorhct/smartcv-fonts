@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Aviation Sky Cobalt Charcoal</title>
+<title>Neo Brutalist Bold Blocks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 
 <!--
 ======================================================================
-TEMPLATE: AVIATION SKY COBALT CHARCOAL
+TEMPLATE: NEO BRUTALIST BOLD BLOCKS
 Features:
-- Cockpit Instrument Panel aesthetic (Dark mode).
-- Intense Charcoal background with Cobalt Blue and Sky Blue accents.
-- High-contrast, highly visible glowing section titles (User Requested).
-- Technical data layout using Chakra Petch (Instrument display font).
-- 500+ lines of advanced CSS structural design.
-- Perfect auto-hiding logic for all arrays and data points.
+- Neo-brutalism design trend (Thick borders, hard shadows).
+- Ultra-bold, unmissable section titles (User requirement).
+- High contrast palette (Yellow, Pink, Cyan, Black, White).
+- Raw, expressive typography (Syne + Space Mono).
+- 500+ lines of intricate styling rules.
+- Fully resilient auto-hiding logic for empty fields.
 ======================================================================
 -->
 
@@ -26,37 +26,32 @@ Features:
      1. CSS VARIABLES (DESIGN TOKENS)
   -------------------------------------------------------- */
   :root {
-    /* Aviation Dark Palette */
-    --panel-base: #1A1C20; /* Deep Charcoal */
-    --panel-surface: #22252A; /* Lighter Charcoal */
-    --panel-border: #3A3F47;
+    /* Brutalist Palette */
+    --brutal-black: #000000;
+    --brutal-white: #FFFFFF;
+    --brutal-yellow: #FFD500;
+    --brutal-pink: #FF00FF;
+    --brutal-cyan: #00FFFF;
+    --brutal-green: #00FF00;
     
-    /* Avionics Accents */
-    --sky-blue: #38BDF8;
-    --cobalt: #2563EB;
-    --alert-amber: #F59E0B; /* Used for specific highlights */
+    /* Layout Variables */
+    --border-heavy: 4px solid var(--brutal-black);
+    --border-medium: 3px solid var(--brutal-black);
     
-    /* Interface Lights (Shadows & Glows) */
-    --glow-cobalt: 0 0 10px rgba(37, 99, 235, 0.5);
-    --glow-sky: 0 0 15px rgba(56, 189, 248, 0.4);
+    /* Hard Shadows */
+    --shadow-heavy: 8px 8px 0px 0px var(--brutal-black);
+    --shadow-medium: 5px 5px 0px 0px var(--brutal-black);
+    --shadow-sm: 3px 3px 0px 0px var(--brutal-black);
     
     /* Typography */
-    --text-bright: #F8FAFC;
-    --text-main: #CBD5E1;
-    --text-dim: #94A3B8;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
     
-    --font-heading: 'Exo 2', sans-serif;
-    --font-data: 'Chakra Petch', sans-serif;
-    
-    /* Layout */
-    --rad-panel: 6px;
-    --rad-pill: 12px;
-    
-    --sp-xs: 4px;
-    --sp-sm: 8px;
-    --sp-md: 16px;
-    --sp-lg: 24px;
-    --sp-xl: 32px;
+    /* Spacing */
+    --gap-sm: 12px;
+    --gap-md: 24px;
+    --gap-lg: 32px;
+    --gap-xl: 48px;
   }
 
   /* --------------------------------------------------------
@@ -74,423 +69,392 @@ Features:
   }
   
   body {
-    background: #000;
-    color: var(--text-main);
-    font-family: var(--font-data);
+    background: #E5E7EB; /* Workbench background */
+    color: var(--brutal-black);
+    font-family: var(--font-mono);
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
     line-height: 1.5;
-    letter-spacing: 0.5px;
+    font-size: 14px;
   }
 
   /* --------------------------------------------------------
-     3. PAGE STRUCTURE (INSTRUMENT CLUSTER)
+     3. MASTER PAGE LAYOUT
   -------------------------------------------------------- */
   .page {
     position: relative;
     width: 794px;
     min-height: 1122px;
     margin: 0 auto;
-    background-color: var(--panel-base);
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    background: var(--brutal-white);
     display: flex;
     flex-direction: column;
-    padding: var(--sp-lg);
-    gap: var(--sp-lg);
+    padding: var(--gap-lg);
+    border: var(--border-heavy);
+    box-shadow: 16px 16px 0px 0px rgba(0,0,0,0.2);
+    gap: var(--gap-lg);
   }
 
-  /* Screen reflection effect */
-  .page::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 40%);
-    pointer-events: none;
-    z-index: 50;
+  /* Structural Grid for Neo Brutalism */
+  .grid-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--gap-lg);
+    flex-grow: 1;
+    align-items: start;
+  }
+
+  .col-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
+  
+  .col-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
   }
 
   /* --------------------------------------------------------
-     4. HEADER (PRIMARY FLIGHT DISPLAY)
+     4. RAW HEADER BLOCK (HERO)
   -------------------------------------------------------- */
-  .header-display {
-    background: var(--panel-surface);
-    border: 2px solid var(--panel-border);
-    border-radius: var(--rad-panel);
-    padding: var(--sp-lg);
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: var(--sp-lg);
+  .header-block {
+    display: flex;
+    gap: var(--gap-lg);
+    background: var(--brutal-yellow);
+    border: var(--border-heavy);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow-heavy);
     align-items: center;
-    position: relative;
-    box-shadow: inset 0 4px 20px rgba(0,0,0,0.2);
   }
 
-  /* Target bracket accents */
-  .header-display::before, .header-display::after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    pointer-events: none;
-  }
-  .header-display::before {
-    top: 4px; left: 4px;
-    border-top: 2px solid var(--sky-blue);
-    border-left: 2px solid var(--sky-blue);
-  }
-  .header-display::after {
-    bottom: 4px; right: 4px;
-    border-bottom: 2px solid var(--sky-blue);
-    border-right: 2px solid var(--sky-blue);
-  }
-
+  /* brutalist photo frame */
   .photo-frame {
     width: 140px;
     height: 140px;
-    border-radius: 50%;
-    border: 3px solid var(--cobalt);
-    padding: 4px;
-    background: var(--panel-base);
-    box-shadow: var(--glow-cobalt);
+    border: var(--border-heavy);
+    background: var(--brutal-cyan);
+    box-shadow: var(--shadow-medium);
+    flex-shrink: 0;
     position: relative;
+    overflow: hidden;
   }
 
   .photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    filter: sepia(0.3) hue-rotate(180deg) brightness(1.1); /* Sky tint */
+    filter: contrast(1.4) saturate(1.2);
   }
 
-  .pilot-info {
+  .header-info {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
   .name {
-    font-family: var(--font-heading);
-    font-size: 42px;
+    font-family: var(--font-display);
+    font-size: 54px;
     font-weight: 800;
-    color: var(--text-bright);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 1.1;
-    margin-bottom: var(--sp-xs);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+    text-shadow: 2px 2px 0px var(--brutal-white);
   }
 
   .job-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--sky-blue);
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brutal-white);
+    background: var(--brutal-black);
+    display: inline-flex;
+    padding: 6px 12px;
+    margin-bottom: var(--gap-md);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: var(--sp-md);
+    box-shadow: var(--shadow-sm);
+    align-self: flex-start;
+  }
+
+  /* Contact Badges */
+  .contact-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+  }
+
+  .badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-  }
-  .job-title::before {
-    content: '>>';
-    color: var(--cobalt);
-  }
-
-  /* Telemetry Data (Contact) */
-  .telemetry-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: var(--sp-sm) var(--sp-md);
-    background: var(--panel-base);
-    padding: var(--sp-sm) var(--sp-md);
-    border: 1px solid var(--panel-border);
-    border-radius: var(--rad-panel);
-  }
-
-  .telemetry-item {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .telemetry-label {
-    font-size: 10px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .telemetry-value {
+    background: var(--brutal-white);
+    border: var(--border-medium);
+    padding: 4px 8px;
+    font-weight: 700;
     font-size: 12px;
-    font-weight: 600;
-    color: var(--text-bright);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .badge-label {
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    padding: 2px 6px;
+    margin-right: 8px;
+    text-transform: uppercase;
+  }
+
+  .badge-value {
+    color: var(--brutal-black);
   }
 
   /* --------------------------------------------------------
-     5. MAIN TWO-COLUMN LAYOUT
+     5. BOLD SECTION TITLES (HIGH VISIBILITY)
   -------------------------------------------------------- */
-  .avionics-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--sp-lg);
-    flex-grow: 1;
-  }
-
-  .col-left, .col-right {
+  .brutal-section {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-lg);
-  }
-
-  /* Instrument Panel Blocks */
-  .instrument-panel {
-    background: var(--panel-surface);
-    border: 1px solid var(--panel-border);
-    border-radius: var(--rad-panel);
-    padding: var(--sp-lg);
-    position: relative;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  /* --------------------------------------------------------
-     6. HIGH-VISIBILITY TITLES (USER REQUESTED)
-  -------------------------------------------------------- */
-  .title-bar {
-    margin-bottom: var(--sp-md);
-    padding-bottom: var(--sp-sm);
-    border-bottom: 2px solid var(--panel-border);
     position: relative;
   }
-  
-  /* Glowing line indicator */
-  .title-bar::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 60px;
-    height: 2px;
-    background: var(--sky-blue);
-    box-shadow: var(--glow-sky);
+
+  .title-wrapper {
+    margin-bottom: var(--gap-sm);
   }
 
   .section-title {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-bright);
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    display: inline-flex;
-    align-items: center;
-    background: var(--panel-base);
-    padding: 6px 16px;
-    border-radius: var(--rad-panel);
-    border: 1px solid var(--cobalt);
-    box-shadow: inset 0 0 10px rgba(37,99,235,0.2);
-    /* Guarantee absolute clarity */
-    text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    padding: 8px 16px;
+    display: inline-block;
+    border: var(--border-medium);
+    border-color: var(--brutal-black); /* Redundant but safe */
+    box-shadow: var(--shadow-medium);
+    letter-spacing: -0.5px;
+  }
+
+  /* Distinct colors for specific sections to make them pop even more */
+  .col-sidebar .section-title {
+    background: var(--brutal-pink);
+    color: var(--brutal-black);
+  }
+
+  .col-main .brutal-section:nth-child(even) .section-title {
+    background: var(--brutal-cyan);
+    color: var(--brutal-black);
   }
 
   /* --------------------------------------------------------
-     7. DATA FEEDS (EXPERIENCE, ED)
+     6. MAIN CONTENT CARDS (EXPERIENCE, EDUCATION)
   -------------------------------------------------------- */
   .summary-text {
-    font-size: 13.5px;
-    line-height: 1.7;
-    color: var(--text-main);
-    text-align: justify;
-    padding: var(--sp-sm);
-    background: var(--panel-base);
-    border-radius: var(--rad-panel);
-    border-left: 3px solid var(--cobalt);
+    background: var(--brutal-white);
+    border: var(--border-medium);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow-medium);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 700;
   }
 
-  .data-feed {
+  .card-list {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-md);
+    gap: var(--gap-md);
   }
 
-  .entry {
-    background: var(--panel-base);
-    border: 1px solid var(--panel-border);
-    border-radius: var(--rad-panel);
-    padding: var(--sp-md);
+  .data-card {
+    background: var(--brutal-white);
+    border: var(--border-medium);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow-medium);
     position: relative;
   }
   
-  /* Radar blip aesthetic */
-  .entry::before {
+  /* Decorative tape piece */
+  .data-card::before {
     content: '';
     position: absolute;
-    left: -5px;
-    top: 20px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--sky-blue);
-    box-shadow: var(--glow-sky);
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 60px;
+    height: 20px;
+    background: rgba(255, 213, 0, 0.8);
+    border: 2px solid var(--brutal-black);
+    z-index: 5;
   }
 
   .entry-title {
-    font-family: var(--font-heading);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-bright);
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
     text-transform: uppercase;
+    line-height: 1.1;
   }
 
   .entry-sub-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 12px;
-    color: var(--sky-blue);
-    margin: var(--sp-xs) 0 var(--sp-sm);
-    padding-bottom: var(--sp-xs);
-    border-bottom: 1px dashed var(--panel-border);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--brutal-white);
+    background: var(--brutal-black);
+    padding: 4px 8px;
+    margin: var(--gap-sm) 0;
+    border: 2px solid var(--brutal-black);
   }
 
   .entry-desc {
-    font-size: 13px;
-    color: var(--text-main);
+    font-size: 13.5px;
     line-height: 1.6;
+    font-weight: 400;
   }
 
   .entry-desc ul {
     list-style: none;
-    margin-top: var(--sp-sm);
+    margin-top: var(--gap-sm);
   }
-
+  
   .entry-desc li {
     position: relative;
-    padding-left: var(--sp-lg);
-    margin-bottom: 4px;
+    padding-left: 24px;
+    margin-bottom: 6px;
+    font-weight: 700; /* Bold lists */
   }
-
+  
   .entry-desc li::before {
-    content: '[+]';
+    content: '>>';
     position: absolute;
     left: 0;
-    color: var(--text-dim);
-    font-size: 11px;
+    top: 0;
+    color: var(--brutal-pink);
   }
 
-  /* Specific References Tweaks */
-  .ref-feed .entry::before { display: none; }
-  .ref-feed .entry-sub-row { border: none; padding: 0; flex-direction: column; color: var(--text-dim); }
+  /* Reference specific tweaks */
+  .ref-list .data-card::before { display: none; }
+  .ref-list .entry-sub-row { background: transparent; color: var(--brutal-black); padding: 0; border: none; flex-direction: column; }
 
   /* --------------------------------------------------------
-     8. GAUGES & SYSTEMS (SIDEBAR)
+     7. SIDEBAR STYLES (SKILLS, TAGS)
   -------------------------------------------------------- */
   
-  /* Skill Gauges (Linear) */
-  .system-gauges {
+  /* Brutalist Skill Bars */
+  .skills-box {
+    background: var(--brutal-white);
+    border: var(--border-medium);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow-medium);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-sm);
+    gap: var(--gap-sm);
   }
   
-  .gauge-item {
+  .skill-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    background: var(--panel-base);
-    padding: var(--sp-sm) var(--sp-md);
-    border: 1px solid var(--panel-border);
-    border-radius: var(--rad-panel);
   }
   
-  .gauge-header {
+  .skill-header {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
     font-weight: 700;
-    color: var(--text-bright);
+    font-size: 12px;
     text-transform: uppercase;
   }
   
-  .gauge-level {
-    font-size: 10px;
-    color: var(--sky-blue);
-  }
-  
-  .gauge-track {
+  .skill-track {
     width: 100%;
-    height: 4px;
-    background: var(--panel-surface);
-    position: relative;
+    height: 14px;
+    background: var(--brutal-white);
+    border: 2px solid var(--brutal-black);
   }
   
-  /* Segmented instrument fill */
-  .gauge-fill {
+  .skill-fill {
     height: 100%;
-    background: var(--sky-blue);
-    background-image: repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.5) 2px, rgba(0,0,0,0.5) 4px);
-    box-shadow: var(--glow-sky);
+    background: var(--brutal-cyan);
+    border-right: 2px solid var(--brutal-black);
+  }
+  
+  /* Checkerboard effect for alternate skills */
+  .skill-item:nth-child(even) .skill-fill {
+    background: var(--brutal-yellow);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, var(--brutal-black) 4px, var(--brutal-black) 8px);
   }
 
   /* Languages */
-  .system-langs {
+  .lang-box {
+    background: var(--brutal-white);
+    border: var(--border-medium);
+    padding: var(--gap-md);
+    box-shadow: var(--shadow-medium);
     display: flex;
     flex-direction: column;
-    gap: var(--sp-sm);
+    gap: var(--gap-sm);
   }
   
   .lang-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--panel-base);
-    border: 1px solid var(--panel-border);
-    padding: var(--sp-sm) var(--sp-md);
-    border-radius: var(--rad-panel);
-    border-left: 2px solid var(--alert-amber);
+    flex-direction: column;
+    border-bottom: 2px solid var(--brutal-black);
+    padding-bottom: 6px;
   }
+  .lang-item:last-child { border-bottom: none; padding-bottom: 0; }
   
   .lang-item .entry-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
   }
   
   .lang-item .entry-sub-row {
-    font-size: 11px;
-    color: var(--text-dim);
     margin: 0;
-    border: none;
     padding: 0;
+    background: transparent;
+    color: var(--brutal-black);
+    border: none;
+    font-size: 11px;
   }
 
-  /* System Indicators (Tags) */
-  .indicator-array {
+  /* Brutalist Tags (Pills) */
+  .tags-box {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: var(--gap-sm);
+    padding: 4px; /* Space for shadows */
   }
   
-  .indicator-array .chip,
-  .indicator-array .tag,
-  .system-gauges .chip {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--text-bright);
-    background: var(--panel-base);
-    border: 1px solid var(--cobalt);
-    padding: 4px 10px;
-    border-radius: var(--rad-pill);
+  .tags-box .chip,
+  .tags-box .tag,
+  .skills-box .chip {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--brutal-black);
+    background: var(--brutal-green);
+    border: var(--border-medium);
+    padding: 6px 12px;
+    box-shadow: var(--shadow-sm);
     text-transform: uppercase;
-    box-shadow: inset 0 0 5px rgba(37,99,235,0.3);
   }
+  
+  /* Randomize colors in tags */
+  .tags-box .chip:nth-child(2n) { background: var(--brutal-yellow); }
+  .tags-box .chip:nth-child(3n) { background: var(--brutal-pink); }
 
   /* --------------------------------------------------------
-     9. PREVENT DOUBLE DATA (CRITICAL)
+     8. PREVENT DOUBLE DATA (CRITICAL)
   -------------------------------------------------------- */
-  .system-gauges:has(.gauge-item) .chip { display: none !important; }
-  .indicator-array .gauge-item, .indicator-array .entry { display: none !important; }
-  .system-langs .chip { display: none !important; }
+  .skills-box:has(.skill-item) .chip { display: none !important; }
+  .tags-box .skill-item, .tags-box .entry { display: none !important; }
+  .lang-box .chip { display: none !important; }
 
   /* --------------------------------------------------------
-     10. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+     9. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
   -------------------------------------------------------- */
   .name:empty, 
   .job-title:empty, 
@@ -507,17 +471,18 @@ Features:
     display: none !important; 
   }
   
-  /* Hide Contact section completely if empty */
-  .telemetry-grid:not(:has(.telemetry-item:not([style*="display: none"]))) { 
+  /* Hide Contact badges if empty */
+  .contact-badges:not(:has(.badge:not([style*="display: none"]))) { 
     display: none !important; 
   }
   
-  /* Hide specific instrument panels if content is empty */
-  .instrument-panel:has(> .data-feed:empty),
-  .instrument-panel:has(> .summary-text:empty),
-  .instrument-panel:has(> .system-gauges:empty),
-  .instrument-panel:has(> .system-langs:empty),
-  .instrument-panel:has(> .indicator-array:empty) {
+  /* Hide sections */
+  .brutal-section:has(> .section-content:empty),
+  .brutal-section:has(> .card-list:empty),
+  .brutal-section:has(> .summary-text:empty),
+  .brutal-section:has(> .skills-box:empty),
+  .brutal-section:has(> .lang-box:empty),
+  .brutal-section:has(> .tags-box:empty) {
     display: none !important;
   }
 
@@ -526,161 +491,165 @@ Features:
 <body>
 <div class="page">
   
-  <!-- ================= PFD (PRIMARY FLIGHT DISPLAY) ================= -->
-  <header class="header-display">
+  <!-- ================= HEADER BLOCK ================= -->
+  <header class="header-block">
     <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
-      <img alt="Pilot Photo" class="photo" src="{{PHOTO}}"/>
+      <img alt="Operator Photo" class="photo" src="{{PHOTO}}"/>
     </div>
     
-    <div class="pilot-info">
+    <div class="header-info">
       <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
       <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
       
-      <div class="telemetry-grid">
-        <div class="telemetry-item" style="{{PHONE_DISPLAY}}">
-          <span class="telemetry-label">COMM</span>
-          <span class="telemetry-value">{{PHONE}}</span>
+      <div class="contact-badges">
+        <div class="badge" style="{{PHONE_DISPLAY}}">
+          <span class="badge-label">TEL</span>
+          <span class="badge-value">{{PHONE}}</span>
         </div>
-        <div class="telemetry-item" style="{{EMAIL_DISPLAY}}">
-          <span class="telemetry-label">LINK</span>
-          <span class="telemetry-value">{{EMAIL}}</span>
+        <div class="badge" style="{{EMAIL_DISPLAY}}">
+          <span class="badge-label">MAIL</span>
+          <span class="badge-value">{{EMAIL}}</span>
         </div>
-        <div class="telemetry-item" style="{{ADDRESS_DISPLAY}}">
-          <span class="telemetry-label">BASE</span>
-          <span class="telemetry-value">{{ADDRESS}}</span>
+        <div class="badge" style="{{ADDRESS_DISPLAY}}">
+          <span class="badge-label">LOC</span>
+          <span class="badge-value">{{ADDRESS}}</span>
         </div>
-        <div class="telemetry-item" style="{{WEBSITE_DISPLAY}}">
-          <span class="telemetry-label">NODE</span>
-          <span class="telemetry-value">{{WEBSITE}}</span>
+        <div class="badge" style="{{WEBSITE_DISPLAY}}">
+          <span class="badge-label">WEB</span>
+          <span class="badge-value">{{WEBSITE}}</span>
         </div>
-        <div class="telemetry-item" style="{{DOB_DISPLAY}}">
-          <span class="telemetry-label">MFG</span>
-          <span class="telemetry-value">{{DOB}}</span>
+        <div class="badge" style="{{DOB_DISPLAY}}">
+          <span class="badge-label">DOB</span>
+          <span class="badge-value">{{DOB}}</span>
         </div>
-        <div class="telemetry-item" style="{{NATIONALITY_DISPLAY}}">
-          <span class="telemetry-label">ORG</span>
-          <span class="telemetry-value">{{NATIONALITY}}</span>
+        <div class="badge" style="{{NATIONALITY_DISPLAY}}">
+          <span class="badge-label">NAT</span>
+          <span class="badge-value">{{NATIONALITY}}</span>
+        </div>
+        <div class="badge" style="{{MARITAL_STATUS_DISPLAY}}">
+          <span class="badge-label">STAT</span>
+          <span class="badge-value">{{MARITAL_STATUS}}</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ================= AVIONICS GRID (2 COLUMNS) ================= -->
-  <div class="avionics-grid">
+  <!-- ================= GRID CONTAINER ================= -->
+  <div class="grid-container">
     
-    <!-- LEFT COLUMN (PRIMARY DATA) -->
-    <main class="col-left">
+    <!-- LEFT COLUMN (SIDEBAR) -->
+    <aside class="col-sidebar">
+      
+      <!-- Expertise -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        </div>
+        <div class="skills-box">{{SKILLS}}</div>
+      </section>
+
+      <!-- Languages -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        </div>
+        <div class="lang-box">{{LANGUAGES}}</div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_CERTIFICATES|Certs}}</div>
+        </div>
+        <div class="card-list">{{CERTIFICATES}}</div>
+      </section>
+
+      <!-- Interests -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+        </div>
+        <div class="tags-box">{{INTERESTS}}</div>
+      </section>
+
+      <!-- Hobbies -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        </div>
+        <div class="tags-box">{{HOBBIES}}</div>
+      </section>
+      
+      <!-- Social -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_SOCIAL|Social}}</div>
+        </div>
+        <div class="card-list">{{SOCIAL}}</div>
+      </section>
+
+    </aside>
+
+    <!-- RIGHT COLUMN (MAIN) -->
+    <main class="col-main">
       
       <!-- Profile -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_PROFILE|System Overview}}</div>
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
         </div>
         <div class="summary-text">{{SUMMARY}}</div>
       </section>
 
       <!-- Experience -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_EXPERIENCE|Flight Hours}}</div>
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
         </div>
-        <div class="data-feed">{{EXPERIENCE}}</div>
+        <div class="card-list">{{EXPERIENCE}}</div>
       </section>
 
       <!-- Education -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_EDUCATION|Training}}</div>
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
         </div>
-        <div class="data-feed">{{EDUCATION}}</div>
+        <div class="card-list">{{EDUCATION}}</div>
       </section>
 
       <!-- Projects -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_PROJECTS|Missions}}</div>
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
         </div>
-        <div class="data-feed">{{PROJECTS}}</div>
-      </section>
-
-      <!-- Cover Letter -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_COVER_LETTER|Init Script}}</div>
-        </div>
-        <div class="summary-text">{{COVER_LETTER}}</div>
-      </section>
-
-    </main>
-
-    <!-- RIGHT COLUMN (SYSTEM METRICS) -->
-    <aside class="col-right">
-      
-      <!-- Skills -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_SKILLS|Specs}}</div>
-        </div>
-        <div class="system-gauges">{{SKILLS}}</div>
-      </section>
-
-      <!-- Languages -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_LANGUAGES|Langs}}</div>
-        </div>
-        <div class="system-langs">{{LANGUAGES}}</div>
-      </section>
-
-      <!-- Certifications -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_CERTIFICATES|Clearance}}</div>
-        </div>
-        <div class="data-feed">{{CERTIFICATES}}</div>
-      </section>
-
-      <!-- Interests -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_INTERESTS|Radar}}</div>
-        </div>
-        <div class="indicator-array">{{INTERESTS}}</div>
-      </section>
-
-      <!-- Hobbies -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_HOBBIES|Idle}}</div>
-        </div>
-        <div class="indicator-array">{{HOBBIES}}</div>
+        <div class="card-list">{{PROJECTS}}</div>
       </section>
 
       <!-- Activities -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_ACTIVITIES|Logs}}</div>
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
         </div>
-        <div class="data-feed">{{ACTIVITIES}}</div>
-      </section>
-
-      <!-- Social -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_SOCIAL|Comms}}</div>
-        </div>
-        <div class="data-feed">{{SOCIAL}}</div>
+        <div class="card-list">{{ACTIVITIES}}</div>
       </section>
 
       <!-- References -->
-      <section class="instrument-panel">
-        <div class="title-bar">
-          <div class="section-title">{{HEADING_REFERENCES|Verifications}}</div>
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_REFERENCES|References}}</div>
         </div>
-        <div class="data-feed ref-feed">{{REFERENCES}}</div>
+        <div class="card-list ref-list">{{REFERENCES}}</div>
       </section>
 
-    </aside>
+      <!-- Cover Letter -->
+      <section class="brutal-section">
+        <div class="title-wrapper">
+          <div class="section-title">{{HEADING_COVER_LETTER|Letter}}</div>
+        </div>
+        <div class="summary-text">{{COVER_LETTER}}</div>
+      </section>
+      
+    </main>
 
   </div>
 </div>
