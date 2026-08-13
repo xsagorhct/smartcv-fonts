@@ -220,7 +220,7 @@
     gap: 8px;
   }
 
-  .side-skill-name {
+  .side-skills .skill-name {
     min-width: 0;
     overflow: hidden;
     color: #FFF;
@@ -231,7 +231,7 @@
     text-overflow: ellipsis;
   }
 
-  .side-skill-level {
+  .side-skills .skill-level {
     flex: 0 0 auto;
     padding: 2px 9px;
     border-radius: 99px;
@@ -254,6 +254,7 @@
   .dot.filled { background: linear-gradient(135deg, var(--gold), var(--coral)); }
 
   .side-tags { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .side-tags .tag,
   .side-tag {
     display: flex;
     align-items: center;
@@ -269,6 +270,7 @@
     line-height: 1.3;
   }
 
+  .side-tags .tag::before,
   .side-tag::before {
     content: '';
     flex: 0 0 auto;
@@ -434,11 +436,11 @@
         <div class="side-section">
           <div class="side-heading">{{HEADING_SKILLS|Skills}}</div>
           <div class="side-skills">{{SKILLS}}</div>
-          <!-- Repeatable skill example for app loop (name and level are two separate fields — do not concatenate them into one string before inserting):
+          <!-- Repeatable skill example for app loop (use the app's exact skill-name / skill-level classes — do not rename them, and do not concatenate name+level into one string):
           <div class="side-skill-item">
             <div class="side-skill-header">
-              <span class="side-skill-name">{{SKILL_NAME}}</span>
-              <span class="side-skill-level">{{SKILL_LEVEL}}</span>
+              <span class="skill-name">{{SKILL_NAME}}</span>
+              <span class="skill-level">{{SKILL_LEVEL}}</span>
             </div>
             <div class="side-skill-track"><div class="side-skill-fill" style="width:{{SKILL_PERCENT}}%;"></div></div>
           </div>
@@ -462,8 +464,8 @@
         <div class="side-section">
           <div class="side-heading">{{HEADING_INTERESTS|Interests}}</div>
           <div class="side-tags">{{INTERESTS}}</div>
-          <!-- Repeatable interest example for app loop:
-          <div class="side-tag">{{INTEREST_NAME}}</div>
+          <!-- Repeatable interest example for app loop (use the app's exact 'tag' class):
+          <div class="tag">{{INTEREST_NAME}}</div>
           -->
         </div>
       </div>
