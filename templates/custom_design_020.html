@@ -3,72 +3,61 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cyber Neon Obsidian Violet</title>
+<title>Singapore Cyber Teal Titanium</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Jura:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 
 <!--
 ======================================================================
-TEMPLATE SYSTEM LOGIC:
-1. Pure CSS auto-hiding for empty sections (:empty & :has).
-2. Developer Portfolio tone with Obsidian Black and Neon Violet.
-3. Complex nested grid system with glowing pseudo-elements.
-4. Over 500 lines of highly optimized, modular, high-fidelity CSS.
+TEMPLATE: SINGAPORE CYBER TEAL TITANIUM
+Features:
+- Dark titanium sidebar with cyber teal laser accents.
+- Modern fintech aesthetic.
+- NO h1/h2 tags used (div only) for perfect Android WebView rendering.
+- Extremely bold, high-contrast section titles.
+- Complex grid layout with resilient auto-hiding logic.
 ======================================================================
 -->
 
 <style>
   /* --------------------------------------------------------
-     1. CSS VARIABLES & TOKENS
+     1. CSS VARIABLES (DESIGN TOKENS)
   -------------------------------------------------------- */
   :root {
-    /* Primary Colors */
-    --neon-violet: #8B5CF6; /* Primary Violet Accent */
-    --neon-violet-light: #A78BFA;
-    --neon-violet-dark: #6D28D9;
+    /* Fintech Cyber Palette */
+    --titanium-dark: #1E232A;
+    --titanium-base: #2B313B;
+    --titanium-light: #3A414D;
     
-    /* Background & Surfaces */
-    --obsidian: #09090B;
-    --obsidian-surface: #18181B;
-    --obsidian-surface-hover: #27272A;
+    --cyber-teal: #00E5FF;
+    --cyber-teal-dim: rgba(0, 229, 255, 0.15);
+    --laser-glow: 0 0 10px rgba(0, 229, 255, 0.6);
     
-    /* Text Colors */
-    --text-primary: #FAFAFA;
-    --text-secondary: #A1A1AA;
-    --text-tertiary: #71717A;
+    /* Text */
+    --text-bright: #F8FAFC;
+    --text-main: #CBD5E1;
+    --text-dim: #94A3B8;
+    --text-dark: #1E293B; /* For light main column */
+    --text-dark-muted: #475569;
     
-    /* Glow Effects */
-    --glow-violet-sm: 0 0 5px rgba(139, 92, 246, 0.3);
-    --glow-violet-md: 0 0 15px rgba(139, 92, 246, 0.4);
-    --glow-violet-lg: 0 0 30px rgba(139, 92, 246, 0.5);
+    /* Page Base */
+    --page-bg: #F8FAFC;
     
-    /* Structural Borders */
-    --border-subtle: #27272A;
-    --border-neon: rgba(139, 92, 246, 0.5);
+    /* Typography */
+    --font-heading: 'Exo', sans-serif;
+    --font-body: 'Jura', sans-serif;
     
-    /* Typography System */
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
-    
-    /* Spacing System */
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 20px;
-    --space-6: 24px;
-    --space-8: 32px;
-    --space-10: 40px;
-    --space-12: 48px;
-    
-    /* Transitions */
-    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Spacing */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-6: 48px;
   }
-  
+
   /* --------------------------------------------------------
-     2. GLOBAL RESET & BASE STYLES
+     2. GLOBAL RESET & BASE
   -------------------------------------------------------- */
   *, *::before, *::after {
     box-sizing: border-box;
@@ -82,567 +71,466 @@ TEMPLATE SYSTEM LOGIC:
   }
   
   body {
-    background: #000000;
-    color: var(--text-primary);
-    font-family: var(--font-sans);
+    background: #000;
+    color: var(--text-dark);
+    font-family: var(--font-body);
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.5;
+    line-height: 1.6;
   }
-  
+
+  /* --------------------------------------------------------
+     3. PAGE STRUCTURE
+  -------------------------------------------------------- */
   .page {
     position: relative;
     width: 794px;
     min-height: 1122px;
     margin: 0 auto;
-    background: var(--obsidian);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    background-color: var(--page-bg);
     display: flex;
-    flex-direction: row; /* Sidebar layout */
     overflow: hidden;
   }
-  
-  /* --------------------------------------------------------
-     3. CYBER NEON SIDEBAR (LEFT COLUMN)
-  -------------------------------------------------------- */
+
+  /* Titanium Sidebar */
   .sidebar {
-    position: relative;
     width: 280px;
-    background: var(--obsidian-surface);
-    padding: var(--space-12) var(--space-6);
+    background: linear-gradient(180deg, var(--titanium-dark), var(--titanium-base));
+    color: var(--text-main);
     display: flex;
     flex-direction: column;
-    gap: var(--space-10);
-    border-right: 1px solid var(--border-subtle);
+    position: relative;
+    border-right: 2px solid var(--cyber-teal);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.1);
     z-index: 10;
   }
   
-  /* Subtle Neon Edge Glow on Sidebar Right Edge */
+  /* Cyber laser line */
   .sidebar::after {
     content: '';
     position: absolute;
     top: 0;
-    right: -1px;
-    width: 1px;
-    height: 100%;
-    background: var(--neon-violet);
-    box-shadow: var(--glow-violet-md);
-    opacity: 0.8;
+    right: -2px;
+    bottom: 0;
+    width: 2px;
+    background: var(--cyber-teal);
+    box-shadow: var(--laser-glow);
   }
-  
-  /* Profile Photo with Hexagon/Neon frame */
-  .photo-shell {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-    border-radius: 12px;
-    background: var(--obsidian);
-    padding: 4px;
-    z-index: 2;
+
+  /* Main Area */
+  .main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--sp-6) var(--sp-4);
+    background: url('data:image/svg+xml;utf8,<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="1" fill="%23CBD5E1"/></svg>');
   }
-  
-  /* Animated Neon Border Illusion (Static for PDF) */
-  .photo-shell::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--neon-violet), transparent, var(--neon-violet-dark));
-    z-index: -1;
-    box-shadow: var(--glow-violet-md);
+
+  /* --------------------------------------------------------
+     4. SIDEBAR CONTENT (HEADER & META)
+  -------------------------------------------------------- */
+  .profile-zone {
+    padding: var(--sp-6) var(--sp-4) var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid var(--titanium-light);
+  }
+
+  .photo-frame {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--cyber-teal);
+    box-shadow: var(--laser-glow);
+    padding: 6px;
+    background: var(--titanium-dark);
+    margin-bottom: var(--sp-4);
   }
   
   .photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    filter: contrast(1.1) brightness(0.9);
+    border-radius: 50%;
+    filter: contrast(1.1) saturate(0.8);
   }
-  
-  /* Contact Information Section */
-  .contact-section {
+
+  /* Using DIV for Name (Avoiding h1/h2 restrictions) */
+  .name {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--text-bright);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: var(--sp-1);
+    letter-spacing: 1px;
+  }
+
+  .job-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cyber-teal);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Contact Matrix */
+  .contact-matrix {
+    padding: var(--sp-4);
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    background: rgba(0,0,0,0.2);
-    padding: var(--space-4);
-    border-radius: 8px;
-    border: 1px solid var(--border-subtle);
+    gap: var(--sp-2);
+    border-bottom: 1px solid var(--titanium-light);
   }
   
   .contact-item {
     display: flex;
     flex-direction: column;
-    gap: 2px;
   }
   
   .contact-label {
-    font-family: var(--font-mono);
+    font-family: var(--font-heading);
     font-size: 10px;
-    font-weight: 600;
-    color: var(--neon-violet-light);
+    color: var(--text-dim);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
+    letter-spacing: 2px;
   }
-  
-  .contact-label::before {
-    content: '>';
-    margin-right: 6px;
-    color: var(--neon-violet);
-  }
-  
-  .contact-label::after { content: ''; } /* No colon for cyber style */
   
   .contact-value {
-    font-family: var(--font-sans);
-    font-size: 11.5px;
-    color: var(--text-primary);
-    font-weight: 400;
-    padding-left: 12px; /* Indent below label */
-    word-break: break-word;
-  }
-  
-  /* Sidebar Generic Section blocks */
-  .side-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-  
-  .side-title {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 8px;
-    position: relative;
-  }
-  
-  /* Glowing line indicator below title */
-  .side-title::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 30px;
-    height: 2px;
-    background: var(--neon-violet);
-    box-shadow: var(--glow-violet-sm);
-  }
-  
-  /* Sidebar Skills Progress Bars */
-  .side-skills {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-  
-  .side-skills .skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .side-skills .skill-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  
-  .skill-name {
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
-  
-  .side-skills .skill-level {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--text-secondary);
-    letter-spacing: 1px;
-  }
-  
-  /* Cyber track and fill */
-  .side-skills .skill-track {
-    width: 100%;
-    height: 4px;
-    background: var(--obsidian);
-    border-radius: 2px;
-    border: 1px solid var(--border-subtle);
-    overflow: hidden;
-  }
-  
-  .side-skills .skill-fill {
-    height: 100%;
-    background: var(--neon-violet);
-    box-shadow: inset 0 0 5px rgba(255,255,255,0.2), var(--glow-violet-sm);
-    border-radius: 2px;
-  }
-  
-  /* Languages */
-  .side-langs {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-  
-  .side-langs .lang-item {
-    background: var(--obsidian);
-    border: 1px solid var(--border-subtle);
-    padding: var(--space-2) var(--space-3);
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  
-  .side-langs .lang-item .entry-title {
     font-size: 12px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  
-  .side-langs .lang-item .entry-sub-row {
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    color: var(--neon-violet-light);
-    margin: 0;
-    text-transform: uppercase;
-  }
-  
-  /* Cyber Tags (Chips) */
-  .side-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-  
-  .side-tags .chip,
-  .side-tags .tag,
-  .side-skills .chip {
-    font-family: var(--font-mono);
-    font-size: 9.5px;
+    color: var(--text-bright);
     font-weight: 500;
-    color: var(--text-primary);
-    background: transparent;
-    border: 1px solid var(--border-subtle);
-    padding: 4px 10px;
-    border-radius: 4px;
-    transition: var(--transition-fast);
+    word-break: break-all;
   }
-  
+
+  /* Sidebar Sections */
+  .sidebar-section {
+    padding: var(--sp-4);
+    border-bottom: 1px solid var(--titanium-light);
+  }
+  .sidebar-section:last-child { border-bottom: none; }
+
   /* --------------------------------------------------------
-     4. MAIN CONTENT AREA (RIGHT COLUMN)
+     5. HIGH VISIBILITY SECTION TITLES (USING DIV)
   -------------------------------------------------------- */
-  .main-body {
-    flex: 1;
-    padding: var(--space-12);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-10);
-    position: relative;
-    z-index: 5;
-  }
-  
-  /* Grid Background Faint Overlay for Cyber Feel */
-  .main-body::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    z-index: -1;
-    pointer-events: none;
-  }
-  
-  /* Main Header Area (Name & Title) */
-  .header-name {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    margin-bottom: var(--space-4);
-  }
-  
-  .name {
-    font-family: var(--font-sans);
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: -1.5px;
-    line-height: 1;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  }
-  
-  .job-title {
-    font-family: var(--font-mono);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--neon-violet);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 6px 12px;
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid var(--border-neon);
-    border-radius: 4px;
-    align-self: flex-start;
-  }
-  
-  /* Section Blocks wrapper */
-  .main-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-  
-  /* Complex Cyber Section Titles */
-  .section-title {
-    font-family: var(--font-mono);
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  /* Decorative pseudo-elements for Title */
-  .section-title::before {
-    content: '//';
-    color: var(--neon-violet);
-    font-weight: 400;
-    font-size: 16px;
-  }
-  
-  .section-title::after {
-    content: '';
-    flex-grow: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border-neon), transparent);
-  }
-  
-  /* Professional Summary styling */
-  .summary-text {
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    text-align: justify;
-    padding: var(--space-5);
-    background: var(--obsidian-surface);
-    border-left: 3px solid var(--neon-violet);
-    border-radius: 0 8px 8px 0;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-  
-  /* Standard Entry Items (Experience, Education, etc.) */
-  .entry {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    position: relative;
-    padding-left: var(--space-6);
-    margin-bottom: var(--space-8);
-  }
-  
-  .entry:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Timeline node on the left of entries */
-  .entry::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 6px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--neon-violet);
-    box-shadow: var(--glow-violet-sm);
-  }
-  
-  /* Timeline connecting line */
-  .entry::after {
-    content: '';
-    position: absolute;
-    left: 3px;
-    top: 14px;
-    width: 2px;
-    height: calc(100% + var(--space-8) - 14px);
-    background: var(--border-subtle);
-  }
-  
-  .entry:last-child::after {
-    display: none;
-  }
-  
-  .entry-title {
-    font-family: var(--font-sans);
+  /* Sidebar Titles */
+  .side-title {
+    font-family: var(--font-heading);
     font-size: 16px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--cyber-teal);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: var(--sp-3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .side-title::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--cyber-teal);
+    box-shadow: var(--laser-glow);
+  }
+
+  /* Main Area Titles */
+  .main-title {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--titanium-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--sp-4);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-bottom: 8px;
   }
   
+  .main-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: var(--cyber-teal);
+    box-shadow: var(--laser-glow);
+  }
+
+  /* --------------------------------------------------------
+     6. MAIN CONTENT DATA (EXPERIENCE, EDUCATION)
+  -------------------------------------------------------- */
+  .main-section {
+    margin-bottom: var(--sp-6);
+  }
+  .main-section:last-child { margin-bottom: 0; }
+
+  .summary-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-dark-muted);
+    text-align: justify;
+    background: #FFF;
+    padding: var(--sp-3);
+    border-left: 4px solid var(--cyber-teal);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  }
+
+  .data-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+
+  .entry-block {
+    background: #FFF;
+    padding: var(--sp-3);
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  }
+  
+  .entry-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--titanium-light);
+    transition: 0.3s;
+  }
+
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--titanium-dark);
+    text-transform: uppercase;
+  }
+
   .entry-sub-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--neon-violet-light);
-    margin-bottom: var(--space-1);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cyber-teal);
+    margin: 4px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #E2E8F0;
   }
-  
-  .entry-sub-row span {
-    display: inline-block;
-  }
-  
+
   .entry-desc {
-    font-size: 12.5px;
-    line-height: 1.7;
-    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dark-muted);
   }
-  
-  /* Custom Bullet Points */
+
   .entry-desc ul {
-    list-style: none; /* Remove default */
-    margin: var(--space-3) 0 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
+    list-style: none;
+    margin-top: 8px;
   }
-  
+
   .entry-desc li {
     position: relative;
-    padding-left: var(--space-4);
+    padding-left: 16px;
+    margin-bottom: 4px;
   }
-  
+
   .entry-desc li::before {
-    content: '▹';
+    content: '>';
     position: absolute;
     left: 0;
-    top: -1px;
-    color: var(--neon-violet);
-    font-size: 14px;
+    color: var(--cyber-teal);
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  /* References tweaks */
+  .ref-list .entry-block::before { display: none; }
+  .ref-list .entry-sub-row { border: none; padding: 0; flex-direction: column; color: var(--text-dark-muted); font-weight: 500; text-transform: none; }
+
+  /* --------------------------------------------------------
+     7. SIDEBAR MODULES (SKILLS, LANGS)
+  -------------------------------------------------------- */
+  /* Laser Skill Bars */
+  .skill-array {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
   }
   
-  /* References Section Overrides */
-  .ref-item {
-    background: var(--obsidian-surface);
-    padding: var(--space-4);
-    border-radius: 8px;
-    border: 1px solid var(--border-subtle);
-    margin-bottom: var(--space-4);
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
   
-  .ref-item::before, .ref-item::after { display: none; } /* Remove timeline node */
-  .ref-item { padding-left: var(--space-4); } /* Reset padding */
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-bright);
+    text-transform: uppercase;
+  }
   
-  .ref-item .entry-sub-row {
-    justify-content: flex-start;
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
+  .skill-level {
+    font-size: 10px;
+    color: var(--cyber-teal);
+  }
+  
+  .skill-track {
+    width: 100%;
+    height: 4px;
+    background: var(--titanium-light);
+    border-radius: 2px;
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: var(--cyber-teal);
+    box-shadow: var(--laser-glow);
+    border-radius: 2px;
+  }
+
+  /* Languages */
+  .lang-array {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+  
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--titanium-light);
+    padding-bottom: 6px;
+  }
+  .lang-item:last-child { border-bottom: none; padding-bottom: 0; }
+  
+  .lang-item .entry-title {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-bright);
     text-transform: none;
-    margin-top: var(--space-1);
   }
   
-  /* --------------------------------------------------------
-     5. UTILITIES & PREVENT DOUBLE DATA (CRITICAL)
-  -------------------------------------------------------- */
-  /* Prevent showing data in tags if they belong to skills/languages */
-  .side-skills:has(.skill-item) .chip { display: none !important; }
-  .side-tags .skill-item, .side-tags .entry { display: none !important; }
-  .side-langs .chip { display: none !important; }
+  .lang-item .entry-sub-row {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* Titanium Tags */
+  .tag-array {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   
+  .tag-array .chip,
+  .tag-array .tag,
+  .skill-array .chip {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-bright);
+    background: var(--titanium-light);
+    border: 1px solid var(--cyber-teal);
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
   /* --------------------------------------------------------
-     6. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATE)
-     Ensures no empty space, borders, or phantom sections 
-     are rendered when a user field is blank.
+     8. PREVENT DOUBLE DATA (CRITICAL)
   -------------------------------------------------------- */
-  /* Hide core individual fields */
+  .skill-array:has(.skill-item) .chip { display: none !important; }
+  .tag-array .skill-item, .tag-array .entry { display: none !important; }
+  .lang-array .chip { display: none !important; }
+
+  /* --------------------------------------------------------
+     9. STRICT AUTO-HIDE LOGIC (CRITICAL FOR TEMPLATES)
+  -------------------------------------------------------- */
   .name:empty, 
   .job-title:empty, 
   .summary-text:empty { 
     display: none !important; 
   }
   
-  /* Hide Photo logic */
   .photo[src=""], 
   .photo:not([src]) { 
     display: none !important; 
   }
-  .photo-shell:has(.photo[src=""]), 
-  .photo-shell:has(.photo:not([src])) { 
+  .photo-frame:has(.photo[src=""]), 
+  .photo-frame:has(.photo:not([src])) { 
     display: none !important; 
   }
   
-  /* Hide Contact section completely if all child items are hidden */
-  .contact-section:not(:has(.contact-item:not([style*="display: none"]))) { 
+  /* Hide Contact section completely if empty */
+  .contact-matrix:not(:has(.contact-item:not([style*="display: none"]))) { 
     display: none !important; 
   }
   
-  /* Hide specific side sections if empty */
-  .side-section:has(.side-skills:empty),
-  .side-section:has(.side-langs:empty),
-  .side-section:has(.side-tags:empty) { 
-    display: none !important; 
+  /* Hide specific sections */
+  .sidebar-section:has(> .skill-array:empty),
+  .sidebar-section:has(> .lang-array:empty),
+  .sidebar-section:has(> .tag-array:empty),
+  .sidebar-section:has(> .data-list:empty) {
+    display: none !important;
   }
   
-  /* Hide specific main sections if empty */
-  .main-section:has(.section-content:empty),
-  .main-section:has(.summary-text:empty) { 
-    display: none !important; 
+  .main-section:has(> .data-list:empty),
+  .main-section:has(> .summary-text:empty) {
+    display: none !important;
   }
-  
+
 </style>
 </head>
 <body>
 <div class="page">
   
-  <!-- ================= LEFT COLUMN: SIDEBAR ================= -->
+  <!-- ================= TITANIUM SIDEBAR ================= -->
   <aside class="sidebar">
     
-    <!-- Photo Shell -->
-    <div class="photo-shell" style="{{PHOTO_DISPLAY}}">
-      <img alt="Profile" class="photo" src="{{PHOTO}}"/>
+    <div class="profile-zone">
+      <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
+        <img alt="Portrait" class="photo" src="{{PHOTO}}"/>
+      </div>
+      <!-- USING DIV INSTEAD OF H1 -->
+      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
     </div>
     
-    <!-- Contact Info -->
-    <div class="contact-section">
+    <div class="contact-matrix">
       <div class="contact-item" style="{{PHONE_DISPLAY}}">
-        <span class="contact-label">PHONE</span>
+        <span class="contact-label">Tel</span>
         <span class="contact-value">{{PHONE}}</span>
       </div>
       <div class="contact-item" style="{{EMAIL_DISPLAY}}">
-        <span class="contact-label">EMAIL</span>
+        <span class="contact-label">Mail</span>
         <span class="contact-value">{{EMAIL}}</span>
       </div>
       <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
-        <span class="contact-label">BASE</span>
+        <span class="contact-label">Base</span>
         <span class="contact-value">{{ADDRESS}}</span>
       </div>
       <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
-        <span class="contact-label">SYS.LINK</span>
+        <span class="contact-label">Node</span>
         <span class="contact-value">{{WEBSITE}}</span>
       </div>
       <div class="contact-item" style="{{DOB_DISPLAY}}">
@@ -650,105 +538,97 @@ TEMPLATE SYSTEM LOGIC:
         <span class="contact-value">{{DOB}}</span>
       </div>
       <div class="contact-item" style="{{NATIONALITY_DISPLAY}}">
-        <span class="contact-label">NAT</span>
+        <span class="contact-label">Nat</span>
         <span class="contact-value">{{NATIONALITY}}</span>
       </div>
-      <div class="contact-item" style="{{MARITAL_STATUS_DISPLAY}}">
-        <span class="contact-label">STAT</span>
-        <span class="contact-value">{{MARITAL_STATUS}}</span>
-      </div>
     </div>
-    
-    <!-- Core Skills (Progress Bars) -->
-    <div class="side-section">
+
+    <!-- Expertise -->
+    <div class="sidebar-section">
       <div class="side-title">{{HEADING_SKILLS|Expertise}}</div>
-      <div class="side-skills">{{SKILLS}}</div>
+      <div class="skill-array">{{SKILLS}}</div>
     </div>
-    
+
     <!-- Languages -->
-    <div class="side-section">
+    <div class="sidebar-section">
       <div class="side-title">{{HEADING_LANGUAGES|Languages}}</div>
-      <div class="side-langs">{{LANGUAGES}}</div>
+      <div class="lang-array">{{LANGUAGES}}</div>
     </div>
     
-    <!-- Interests Tags -->
-    <div class="side-section">
+    <!-- Interests -->
+    <div class="sidebar-section">
       <div class="side-title">{{HEADING_INTERESTS|Interests}}</div>
-      <div class="side-tags">{{INTERESTS}}</div>
+      <div class="tag-array">{{INTERESTS}}</div>
     </div>
     
-    <!-- Hobbies Tags -->
-    <div class="side-section">
+    <!-- Hobbies -->
+    <div class="sidebar-section">
       <div class="side-title">{{HEADING_HOBBIES|Hobbies}}</div>
-      <div class="side-tags">{{HOBBIES}}</div>
+      <div class="tag-array">{{HOBBIES}}</div>
     </div>
-    
+
   </aside>
-  
-  <!-- ================= RIGHT COLUMN: MAIN CONTENT ================= -->
-  <main class="main-body">
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="main-area">
     
-    <!-- Header Block -->
-    <header class="header-name">
-      <h1 class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</h1>
-      <h2 class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</h2>
-    </header>
-    
-    <!-- Professional Summary -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_PROFILE|System Core}}</div>
+    <!-- Profile -->
+    <section class="main-section">
+      <!-- USING DIV INSTEAD OF H2 -->
+      <div class="main-title">{{HEADING_PROFILE|System Overview}}</div>
       <div class="summary-text">{{SUMMARY}}</div>
-    </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_EXPERIENCE|Experience Logs}}</div>
+      <div class="data-list">{{EXPERIENCE}}</div>
+    </section>
+
+    <!-- Education -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_EDUCATION|Education Base}}</div>
+      <div class="data-list">{{EDUCATION}}</div>
+    </section>
+
+    <!-- Projects -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_PROJECTS|Deployed Projects}}</div>
+      <div class="data-list">{{PROJECTS}}</div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="data-list">{{CERTIFICATES}}</div>
+    </section>
+
+    <!-- Activities -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="data-list">{{ACTIVITIES}}</div>
+    </section>
     
-    <!-- Experience Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_EXPERIENCE|Runtime Log}}</div>
-      <div class="section-content">{{EXPERIENCE}}</div>
-    </div>
-    
-    <!-- Education Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_EDUCATION|Training Data}}</div>
-      <div class="section-content">{{EDUCATION}}</div>
-    </div>
-    
-    <!-- Projects Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_PROJECTS|Deployments}}</div>
-      <div class="section-content">{{PROJECTS}}</div>
-    </div>
-    
-    <!-- Certifications Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
-      <div class="section-content">{{CERTIFICATES}}</div>
-    </div>
-    
-    <!-- Activities Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
-      <div class="section-content">{{ACTIVITIES}}</div>
-    </div>
-    
-    <!-- Social Links Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_SOCIAL|Network Links}}</div>
-      <div class="section-content">{{SOCIAL}}</div>
-    </div>
-    
-    <!-- References Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_REFERENCES|Dependencies}}</div>
-      <div class="section-content">{{REFERENCES}}</div>
-    </div>
-    
-    <!-- Cover Letter Section -->
-    <div class="main-section">
-      <div class="section-title">{{HEADING_COVER_LETTER|Init Script}}</div>
+    <!-- Social -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_SOCIAL|Social Networks}}</div>
+      <div class="data-list">{{SOCIAL}}</div>
+    </section>
+
+    <!-- References -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_REFERENCES|Verifications}}</div>
+      <div class="data-list ref-list">{{REFERENCES}}</div>
+    </section>
+
+    <!-- Cover Letter -->
+    <section class="main-section">
+      <div class="main-title">{{HEADING_COVER_LETTER|Init Script}}</div>
       <div class="summary-text">{{COVER_LETTER}}</div>
-    </div>
+    </section>
     
   </main>
+
 </div>
 </body>
 </html>
