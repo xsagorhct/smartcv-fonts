@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Corporate Royal Blue Banner - Executive</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --p: #1E40AF; /* Royal Blue */
+  --p-light: #3B82F6;
+  --text-main: #1F2937;
+  --text-muted: #4B5563;
+  --text-light: #9CA3AF;
+  --bg-page: #FFFFFF;
+  --bg-header: var(--p);
+  --border-color: #E5E7EB;
+  --gold: #F59E0B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #F3F4F6;
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 11px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+.page {
+  width: 794px;
+  min-height: 1122px !important;
+  margin: 20px auto;
+  background: var(--bg-page);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: 1122px !important;
+  }
+}
+
+/* Header */
+.header-band {
+  background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+  color: #FFFFFF;
+  padding: 35px 40px;
+  text-align: center;
+  position: relative;
+  border-bottom: 5px solid var(--gold);
+}
+
+.photo-container {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  background: #FFFFFF;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.name {
+  font-family: 'Merriweather', serif;
+  font-size: 32px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #DBEAFE;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 10.5px;
+  color: #FFFFFF !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: #FFFFFF !important;
+  font-weight: 400;
+}
+
+.contact-item svg {
+  fill: var(--gold) !important;
+  width: 12px;
+  height: 12px;
+}
+
+/* Auto-hide empty header */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* Main Content Layout */
+.content-area {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.col-left {
+  width: 33%;
+  padding: 30px 24px 30px 30px;
+  background-color: #F9FAFB;
+  border-right: 1px solid var(--border-color);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.col-right {
+  width: 67%;
+  padding: 30px 32px 30px 24px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Sections */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-family: 'Merriweather', serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--p);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 6px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 35px;
+  background-color: var(--gold);
+}
+
+/* Generated Classes Styling */
+.entry {
+  margin-bottom: 14px;
+}
+.entry:last-child {
+  margin-bottom: 0;
+}
+.entry-header {
+  margin-bottom: 3px;
+}
+.entry-title {
+  font-family: 'Merriweather', serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.entry-sub-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+.entry-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--p);
+  overflow-wrap: anywhere;
+}
+.entry-date {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-light);
+  overflow-wrap: anywhere;
+}
+.entry-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.summary-text {
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.65;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.skill-name {
+  overflow-wrap: anywhere;
+}
+.skill-level {
+  color: var(--text-light);
+  font-size: 10px;
+}
+.skill-track {
+  width: 100%;
+  height: 5px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  background-color: var(--p);
+  border-radius: 4px;
+}
+
+/* Ensure only one display style for skills */
+.skills-container:has(.skill-item) .chip { display: none !important; }
+
+/* Languages Container */
+.languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.languages-container .skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* Tags (Hobbies/Interests) */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.chip {
+  background-color: #E5E7EB;
+  color: var(--text-main);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid #D1D5DB;
+  overflow-wrap: anywhere;
+}
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* References */
+.ref-entry {
+  margin-bottom: 12px;
+}
+.ref-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.ref-icon {
+  fill: var(--p);
+}
+.ref-text {
+  font-weight: 700;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+/* Empty Section Auto-hide */
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(.summary-text:empty) {
+  display: none !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header-band">
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    <div class="name">
+      {{FULL_NAME}}
+    </div>
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+      {{JOB_TITLE}}
+    </div>
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </div>
+  
+  <div class="content-area">
+    <aside class="col-left">
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="tag-row">{{ACTIVITIES}}</div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+    </aside>
+    
+    <main class="col-right">
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Career Objective}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+      
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="section-content">{{REFERENCES}}</div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
