@@ -3,544 +3,376 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>1Page Compact - Elite Navy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<title>Timeline Ribbon Modern</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
 
 <!--
 ======================================================================
-TEMPLATE: 1PAGE COMPACT - ELITE NAVY (High-End Remastered)
+TEMPLATE: TIMELINE RIBBON MODERN
+Category: Timeline · Modern
 Features:
-- Specifically engineered for 1-PAGE FIT while maintaining LUXURY aesthetics.
-- Fixed Language color mapping for Dark Sidebar (White/Gold contrast).
-- Upgraded UI: Deep gradient Navy sidebar, double-bordered photo, richer typography.
-- Ultra-compact spacing replacing large margins.
-- Cinzel (Headings) + Inter (Body).
+- Vertical timeline ribbon tracking along the entries.
+- Modern 35/65 Split Grid Layout (Left Grey, Right White).
+- Montserrat + Open Sans typography.
+- Main sections positioned for perfect 1-page fit.
 ======================================================================
 -->
 
 <style>
-  /* --------------------------------------------------------
-     1. CSS VARIABLES (DESIGN TOKENS)
-  -------------------------------------------------------- */
   :root {
-    --primary-dark: #070B14;
-    --primary: #0F172A; /* Deep Navy */
-    --accent: #D4AF37;  /* Metallic Gold */
-    --accent-light: #FCEABB;
-    --accent-dark: #A67C00;
+    --p: #00ADB5; /* Teal Accent */
+    --p-dark: #222831; /* Charcoal Dark */
+    --p-light: #E8F9F9;
     
-    --text-dark: #1E293B;
-    --text-mid: #475569;
-    --text-light: #64748B;
+    --text-dark: #222831;
+    --text-mid: #393E46;
+    --text-light: #7A808A;
     
     --bg-page: #FFFFFF;
-    --bg-sidebar: linear-gradient(170deg, var(--primary-dark), var(--primary));
+    --bg-sidebar: #EEEEEE;
     
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
     
     /* COMPACT SPACING */
-    --sp-1: 4px;
-    --sp-2: 8px;
-    --sp-3: 12px;
-    --sp-4: 16px;
-    --sp-5: 22px;
+    --sp-1: 6px; --sp-2: 12px; --sp-3: 16px; --sp-4: 24px;
   }
 
-  /* --------------------------------------------------------
-     2. GLOBAL RESET & BASE
-  -------------------------------------------------------- */
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   @page { size: A4 portrait; margin: 0; }
   
   body {
-    background: #E2E8F0;
+    background: #D5D5D5;
     color: var(--text-mid);
     font-family: var(--font-body);
     -webkit-print-color-adjust: exact !important;
-    color-adjust: exact !important;
     print-color-adjust: exact !important;
-    line-height: 1.4;
+    color-adjust: exact !important;
+    line-height: 1.45;
   }
 
-  /* --------------------------------------------------------
-     3. MASTER PAGE STRUCTURE
-  -------------------------------------------------------- */
   .page {
     position: relative;
     width: 794px;
     min-height: 1122px;
     margin: 20px auto;
-    background-color: var(--bg-page);
+    background: var(--bg-page);
     display: grid;
-    grid-template-columns: 270px 1fr;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    overflow: hidden; 
+    grid-template-columns: 280px 1fr;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
   }
 
   @media print {
     body { background: #FFFFFF !important; }
-    .page {
-      margin: 0 !important;
-      height: 1122px !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
+    .page { margin: 0 !important; height: 1122px !important; box-shadow: none !important; border: none !important; }
   }
 
   /* --------------------------------------------------------
-     4. LEFT SIDEBAR (High-End Contrast)
+     1. LEFT SIDEBAR
   -------------------------------------------------------- */
   .sidebar {
     background: var(--bg-sidebar);
-    color: #FFFFFF;
-    padding: var(--sp-5) var(--sp-4);
+    padding: 35px 25px;
     display: flex;
     flex-direction: column;
     gap: var(--sp-4);
-    border-right: 5px solid var(--accent);
-    position: relative;
   }
-
+  
   .photo-frame {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto var(--sp-3) auto;
-    border-radius: 50%;
-    border: 3px solid var(--accent);
-    padding: 3px;
-    background: var(--primary-dark);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-  }
-  .photo-frame img {
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    margin: 0 auto;
+    border: 4px solid #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
 
-  .name-area { text-align: center; margin-bottom: var(--sp-2); }
-  
+  .name-area { text-align: center; }
   .name {
     font-family: var(--font-heading);
     font-size: 26px;
     font-weight: 800;
-    color: #FFFFFF;
-    line-height: 1.1;
-    margin-bottom: var(--sp-1);
+    color: var(--text-dark);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 4px;
   }
   .job-title {
+    font-family: var(--font-heading);
     font-size: 11px;
-    font-weight: 600;
-    color: var(--accent-light);
+    font-weight: 700;
+    color: var(--p);
     text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 1.5px;
   }
 
-  /* Contact Items */
   .contact-zone {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 10px;
   }
   .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 10.5px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.9);
-  }
-  .contact-item span:first-child {
-    color: var(--accent);
-    font-size: 13px;
-    min-width: 16px;
-    text-align: center;
-  }
-
-  /* Sidebar Titles */
-  .sidebar .section-title {
-    font-family: var(--font-heading);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
-    padding-bottom: var(--sp-1);
-    margin-bottom: var(--sp-3);
-  }
-
-  /* Languages & Entries inside Sidebar (Fixing Color Contrast) */
-  .sidebar .entry-title {
-    color: #FFFFFF;
-    font-size: 11.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .sidebar .entry-sub-row {
-    color: var(--accent);
     font-size: 10.5px;
     font-weight: 600;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
-  .sidebar .entry-date { color: var(--accent-light); }
-  .sidebar .entry-badge { color: var(--accent); }
-  .sidebar .entry-desc {
-    color: rgba(255,255,255,0.7);
-    font-size: 10px;
+  .contact-item span:first-child {
+    color: var(--p);
+    font-size: 12px;
+    background: #FFF;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .sidebar .section-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--p);
+    border-radius: 2px;
   }
 
   /* --------------------------------------------------------
-     5. MAIN CONTENT COLUMN
+     2. RIGHT MAIN CONTENT & TIMELINE
   -------------------------------------------------------- */
   .main-content {
-    padding: var(--sp-5) var(--sp-5);
+    padding: 35px 40px;
     display: flex;
     flex-direction: column;
-    gap: var(--sp-4);
+    gap: 24px;
   }
 
+  .section-zone { display: flex; flex-direction: column; gap: var(--sp-2); }
+  
   .main-content .section-title {
     font-family: var(--font-heading);
     font-size: 18px;
     font-weight: 800;
-    color: var(--primary);
+    color: var(--p-dark);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    position: relative;
-    padding-bottom: var(--sp-1);
-    margin-bottom: var(--sp-3);
-  }
-  .main-content .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
-  }
-  
-  /* Decorative background underline */
-  .main-content .section-title::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: #E2E8F0;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--bg-sidebar);
   }
 
-  /* Summary */
   .summary-text {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.6;
-    color: var(--text-mid);
     text-align: justify;
   }
-  .summary-text::first-letter {
-    font-family: var(--font-heading);
-    font-size: 32px;
-    color: var(--accent-dark);
-    float: left;
-    line-height: 0.9;
-    margin-right: 6px;
-    margin-top: -2px;
-  }
 
-  /* --------------------------------------------------------
-     6. ENTRY STACKS (Experience, Education, etc)
-  -------------------------------------------------------- */
+  /* TIMELINE CORE */
   .feed-stack {
     display: flex;
     flex-direction: column;
     gap: var(--sp-3);
+    border-left: 2px solid var(--bg-sidebar);
+    margin-left: 6px;
+    padding-left: 18px;
   }
-  .feed-card {
+  
+  .entry {
     display: flex;
     flex-direction: column;
+    position: relative;
   }
-  .main-content .entry-title {
-    font-size: 13px;
+  
+  /* Timeline Dot */
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: -25px; /* Aligns with the border-left of feed-stack */
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    background: #FFFFFF;
+    border: 3px solid var(--p);
+    border-radius: 50%;
+  }
+  
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
     font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 2px;
+    color: var(--text-dark);
   }
-  .main-content .entry-sub-row {
-    font-size: 10.5px;
+  
+  .entry-sub-row {
+    font-size: 11px;
     font-weight: 600;
-    color: var(--accent-dark);
+    color: var(--p);
     display: flex;
     justify-content: space-between;
     margin-bottom: var(--sp-1);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin-top: 2px;
   }
-  .main-content .entry-date {
+  
+  .entry-date {
     color: var(--text-light);
-    font-weight: 500;
+    font-weight: 600;
+    background: var(--bg-sidebar);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 10px;
   }
-  .main-content .entry-desc {
+  
+  .entry-desc {
     font-size: 11px;
     line-height: 1.5;
-    color: var(--text-mid);
-    text-align: justify;
   }
-  
-  /* Custom Bullet points for descriptions */
-  .entry-desc ul {
-    list-style: none;
-    margin-top: 4px;
-  }
-  .entry-desc li {
-    position: relative;
-    padding-left: 14px;
-    margin-bottom: 3px;
-  }
-  .main-content .entry-desc li::before {
-    content: '◆';
+  .entry-desc ul { list-style: none; margin-top: 4px; }
+  .entry-desc li { position: relative; padding-left: 12px; margin-bottom: 3px; }
+  .entry-desc li::before {
+    content: '-';
     position: absolute;
     left: 0;
-    color: var(--accent);
-    font-size: 8px;
-    top: 3px;
-  }
-  .sidebar .entry-desc li::before {
-    content: '◆';
-    position: absolute;
-    left: 0;
-    color: var(--accent-light);
-    font-size: 8px;
-    top: 3px;
+    color: var(--p-dark);
+    font-weight: bold;
   }
 
   /* --------------------------------------------------------
-     7. WIDGETS: SKILLS
+     3. WIDGETS (SKILLS, TAGS)
   -------------------------------------------------------- */
-  .skill-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-  }
-  .skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
+  .skill-item { margin-bottom: 8px; }
   .skill-header {
-    font-size: 10.5px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.95);
     display: flex;
     justify-content: space-between;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .skill-level {
-    font-size: 9px;
-    color: var(--accent);
-  }
-  .skill-track {
-    width: 100%;
-    height: 4px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 2px;
-  }
-  .skill-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
-    border-radius: 2px;
-  }
-
-  /* --------------------------------------------------------
-     8. WIDGETS: TAGS (Hobbies, Interests)
-  -------------------------------------------------------- */
-  .tag-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .tag-cloud .chip,
-  .tag-cloud .tag,
-  .skill-stack .chip {
-    font-size: 9.5px;
+    font-size: 11px;
     font-weight: 600;
-    color: #FFFFFF;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    padding: 4px 10px;
-    border-radius: 2px;
+    color: var(--text-dark);
+    margin-bottom: 3px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+  }
+  .skill-track { height: 4px; background: #D5D5D5; border-radius: 4px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--p); border-radius: 4px; }
+
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--p-dark);
+    background: #FFF;
+    border: 1px solid #D5D5D5;
+    padding: 4px 10px;
+    border-radius: 12px;
   }
 
-  /* --------------------------------------------------------
-     9. STRICT AUTO-HIDE LOGIC (CRITICAL)
-  -------------------------------------------------------- */
-  /* Prevent double data */
-  .skill-stack:has(.skill-item) .chip { display: none !important; }
+  /* Strict auto-hide */
+  .skills-container:has(.skill-item) .chip { display: none !important; }
   .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
-  
-  /* Hide empty elements */
   .name:empty, .job-title:empty, .summary-text:empty { display: none !important; }
-  
-  /* Hide Section Zones perfectly if empty */
-  .section-zone:has(> .feed-stack:empty),
-  .section-zone:has(> .summary-text:empty),
-  .section-zone:has(> .skill-stack:empty),
-  .section-zone:has(> .tag-cloud:empty) {
-    display: none !important;
-  }
-  
-  /* References styling */
-  .ref-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--sp-3);
-  }
-  .ref-list .feed-card, .ref-list .entry {
-    background: #F8FAFC;
-    padding: 12px;
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-  }
+  .section-zone:has(> .feed-stack:empty), .section-zone:has(> .skills-container:empty), .section-zone:has(> .tag-cloud:empty) { display: none !important; }
+
 </style>
 </head>
 <body>
 
 <div class="page">
   
-  <!-- ================= LEFT SIDEBAR ================= -->
+  <!-- LEFT SIDEBAR -->
   <aside class="sidebar">
-    
-    <div class="photo-frame" style="{{PHOTO_DISPLAY}}">
-      <img alt="User" src="{{PHOTO}}"/>
-    </div>
+    <img class="photo-frame" src="{{PHOTO}}" style="{{PHOTO_DISPLAY}}"/>
     
     <div class="name-area">
       <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
       <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
     </div>
     
-    <!-- Contact Info -->
     <div class="contact-zone">
-      <div class="contact-item" style="{{PHONE_DISPLAY}}">
-        <span>&#9742;</span>
-        <span>{{PHONE}}</span>
-      </div>
-      <div class="contact-item" style="{{EMAIL_DISPLAY}}">
-        <span>&#9993;</span>
-        <span>{{EMAIL}}</span>
-      </div>
-      <div class="contact-item" style="{{ADDRESS_DISPLAY}}">
-        <span>&#128205;</span>
-        <span>{{ADDRESS}}</span>
-      </div>
-      <div class="contact-item" style="{{LINKEDIN_DISPLAY}}">
-        <span>in</span>
-        <span>{{LINKEDIN}}</span>
-      </div>
-      <div class="contact-item" style="{{GITHUB_DISPLAY}}">
-        <span>gh</span>
-        <span>{{GITHUB}}</span>
-      </div>
-      <div class="contact-item" style="{{WEBSITE_DISPLAY}}">
-        <span>&#127103;</span>
-        <span>{{WEBSITE}}</span>
-      </div>
+      <div class="contact-item" style="{{PHONE_DISPLAY}}"><span>&#9742;</span><span>{{PHONE}}</span></div>
+      <div class="contact-item" style="{{EMAIL_DISPLAY}}"><span>&#9993;</span><span>{{EMAIL}}</span></div>
+      <div class="contact-item" style="{{ADDRESS_DISPLAY}}"><span>&#128205;</span><span>{{ADDRESS}}</span></div>
+      <div class="contact-item" style="{{LINKEDIN_DISPLAY}}"><span>in</span><span>{{LINKEDIN}}</span></div>
+      <div class="contact-item" style="{{GITHUB_DISPLAY}}"><span>gh</span><span>{{GITHUB}}</span></div>
+      <div class="contact-item" style="{{WEBSITE_DISPLAY}}"><span>&#127103;</span><span>{{WEBSITE}}</span></div>
       {{CONTACT_ITEMS}}
     </div>
-    
-    <!-- Skills -->
+
     <section class="section-zone">
-      <div class="section-title" style="{{HEADING_SKILLS_DISPLAY}}">{{HEADING_SKILLS|Expertise}}</div>
-      <div class="skill-stack">{{SKILLS}}</div>
+      <div class="section-title" style="{{HEADING_SKILLS_DISPLAY}}">{{HEADING_SKILLS|Skills}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
     </section>
-    
-    <!-- Languages -->
+
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_LANGUAGES_DISPLAY}}">{{HEADING_LANGUAGES|Languages}}</div>
-      <div class="feed-stack">{{LANGUAGES}}</div>
+      <div class="skills-container">{{LANGUAGES}}</div>
     </section>
     
-    <!-- Hobbies -->
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_HOBBIES_DISPLAY}}">{{HEADING_HOBBIES|Hobbies}}</div>
       <div class="tag-cloud">{{HOBBIES}}</div>
     </section>
-
-    <!-- Interests -->
+    
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_INTERESTS_DISPLAY}}">{{HEADING_INTERESTS|Interests}}</div>
       <div class="tag-cloud">{{INTERESTS}}</div>
     </section>
-    
   </aside>
 
-  <!-- ================= MAIN CONTENT ================= -->
+  <!-- RIGHT MAIN (TIMELINE) -->
   <main class="main-content">
-    
-    <!-- Summary -->
     <section class="section-zone">
-      <div class="section-title" style="{{HEADING_PROFILE_DISPLAY}}">{{HEADING_PROFILE|Professional Profile}}</div>
+      <div class="section-title" style="{{HEADING_PROFILE_DISPLAY}}">{{HEADING_PROFILE|Profile}}</div>
       <div class="summary-text">{{SUMMARY}}</div>
     </section>
-    
-    <!-- Experience -->
+
     <section class="section-zone">
-      <div class="section-title" style="{{HEADING_EXPERIENCE_DISPLAY}}">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+      <div class="section-title" style="{{HEADING_EXPERIENCE_DISPLAY}}">{{HEADING_EXPERIENCE|Experience}}</div>
       <div class="feed-stack">{{EXPERIENCE}}</div>
     </section>
-    
-    <!-- Education -->
+
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_EDUCATION_DISPLAY}}">{{HEADING_EDUCATION|Education}}</div>
       <div class="feed-stack">{{EDUCATION}}</div>
     </section>
     
-    <!-- Projects -->
     <section class="section-zone">
-      <div class="section-title" style="{{HEADING_PROJECTS_DISPLAY}}">{{HEADING_PROJECTS|Key Projects}}</div>
+      <div class="section-title" style="{{HEADING_PROJECTS_DISPLAY}}">{{HEADING_PROJECTS|Projects}}</div>
       <div class="feed-stack">{{PROJECTS}}</div>
     </section>
     
-    <!-- Certificates -->
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_CERTIFICATES_DISPLAY}}">{{HEADING_CERTIFICATES|Certifications}}</div>
       <div class="feed-stack">{{CERTIFICATES}}</div>
     </section>
 
-    <!-- Activities -->
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_ACTIVITIES_DISPLAY}}">{{HEADING_ACTIVITIES|Activities}}</div>
       <div class="feed-stack">{{ACTIVITIES}}</div>
     </section>
-
-    <!-- References -->
+    
     <section class="section-zone">
       <div class="section-title" style="{{HEADING_REFERENCES_DISPLAY}}">{{HEADING_REFERENCES|References}}</div>
-      <div class="feed-stack ref-list">{{REFERENCES}}</div>
+      <div class="feed-stack">{{REFERENCES}}</div>
     </section>
-
-    <!-- Cover Letter -->
-    <section class="section-zone">
-      <div class="section-title" style="{{HEADING_COVER_LETTER_DISPLAY}}">{{HEADING_COVER_LETTER|Cover Letter}}</div>
-      <div class="summary-text" style="font-style: italic;">{{COVER_LETTER}}</div>
-    </section>
-    
   </main>
+
 </div>
+
 </body>
 </html>
