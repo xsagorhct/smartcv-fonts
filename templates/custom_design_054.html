@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tokyo Crimson Edge Avant-Garde</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<!--
+======================================================================
+TEMPLATE: TOKYO CRIMSON EDGE AVANT-GARDE
+Category: Modern · Creative
+Features:
+- Asymmetric Japanese Minimalist aesthetic.
+- Left edge crimson stripe, off-grid alignment.
+- Photo aligned strictly to the top right in a sharp rectangle.
+- Syne & Space Grotesk fonts for a bold, avant-garde feel.
+- High-quality balanced structure with distinct UI logic.
+======================================================================
+-->
+
+<style>
+  :root {
+    --crimson: #D90429;
+    --crimson-dark: #8D0801;
+    --onyx: #1A1A1D;
+    --slate: #4E4E50;
+    
+    --text-dark: #121212;
+    --text-mid: #4A4A4A;
+    --text-light: #8E8E8E;
+    
+    --bg-page: #FAFAFA;
+    --bg-accent: #F4F4F4;
+    
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    
+    /* ASYMMETRIC SPACING */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 36px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  @page { size: A4 portrait; margin: 0; }
+  
+  body {
+    background: #EBEBEB;
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    line-height: 1.6;
+  }
+
+  /* --------------------------------------------------------
+     1. ASYMMETRIC MASTER CONTAINER
+  -------------------------------------------------------- */
+  .page {
+    position: relative;
+    width: 794px;
+    min-height: 1122px;
+    margin: 20px auto;
+    background: var(--bg-page);
+    border-left: 24px solid var(--crimson); /* The Crimson Edge */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+
+  @media print {
+    body { background: #FFFFFF !important; }
+    .page { margin: 0 !important; height: 1122px !important; box-shadow: none !important; }
+  }
+
+  /* --------------------------------------------------------
+     2. AVANT-GARDE HEADER (PHOTO RIGHT)
+  -------------------------------------------------------- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 50px 40px 30px 40px;
+    border-bottom: 2px solid var(--onyx);
+    background: var(--bg-page);
+    position: relative;
+  }
+  
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 65%;
+  }
+
+  .name {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 0.9;
+  }
+  
+  .job-title {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--crimson);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding-left: 4px;
+  }
+
+  .contact-zone {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-top: 10px;
+    padding-left: 4px;
+  }
+  
+  .contact-item {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--slate);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .contact-item span:first-child {
+    font-size: 12px;
+    color: var(--onyx);
+    background: var(--bg-accent);
+    padding: 4px;
+    border-radius: 2px;
+  }
+
+  .photo-frame {
+    width: 140px;
+    height: 180px; /* Sharp Vertical Rectangle */
+    object-fit: cover;
+    border-radius: 0;
+    border: none;
+    box-shadow: -8px 8px 0px var(--crimson);
+    position: absolute;
+    right: 40px;
+    bottom: -20px;
+    z-index: 10;
+    background: var(--onyx);
+  }
+
+  /* --------------------------------------------------------
+     3. ASYMMETRIC GRID BODY
+  -------------------------------------------------------- */
+  .body-content {
+    display: grid;
+    grid-template-columns: 3.5fr 2fr; /* Unorthodox ratio */
+    gap: 50px;
+    padding: 60px 40px 40px 40px;
+    flex: 1;
+    background: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23E0E0E0"/></svg>');
+    /* Subtle dot grid pattern */
+  }
+
+  .col-main { display: flex; flex-direction: column; gap: 40px; }
+  .col-side { display: flex; flex-direction: column; gap: 40px; }
+
+  /* --------------------------------------------------------
+     4. AVANT-GARDE TYPOGRAPHY
+  -------------------------------------------------------- */
+  .section-zone { display: flex; flex-direction: column; gap: var(--sp-2); position: relative; }
+  
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--onyx);
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 16px;
+  }
+  
+  /* Vertical crimson bar next to section titles */
+  .section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background: var(--crimson);
+  }
+
+  .summary-text {
+    font-size: 12.5px;
+    line-height: 1.7;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-dark);
+    background: var(--bg-page);
+    padding: 16px;
+    border: 1px solid #E0E0E0;
+    box-shadow: 4px 4px 0px var(--onyx);
+  }
+
+  /* --------------------------------------------------------
+     5. FEED STACKS (EXPERIENCE / EDUCATION)
+  -------------------------------------------------------- */
+  .feed-stack { display: flex; flex-direction: column; gap: 24px; background: var(--bg-page); }
+  
+  .entry {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  
+  .entry-title {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--onyx);
+  }
+  
+  .entry-date {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--crimson);
+    background: var(--bg-accent);
+    padding: 2px 8px;
+    border: 1px solid var(--onyx);
+  }
+  
+  .entry-sub-row {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  
+  .entry-desc {
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .entry-desc ul {
+    list-style: none;
+    margin-top: 6px;
+    padding-left: 4px;
+    border-left: 2px solid var(--bg-accent);
+  }
+  
+  .entry-desc li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 6px;
+  }
+  
+  .entry-desc li::before {
+    content: '+';
+    position: absolute;
+    left: 4px;
+    color: var(--crimson);
+    font-weight: 800;
+    font-size: 14px;
+    top: -2px;
+  }
+
+  /* --------------------------------------------------------
+     6. WIDGETS (SKILLS, TAGS)
+  -------------------------------------------------------- */
+  .skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--bg-page);
+  }
+  
+  .skill-item { display: flex; flex-direction: column; gap: 6px; }
+  
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--onyx);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Broken/Segmented skill bar for Avant-Garde look */
+  .skill-track {
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    border: 1px solid var(--onyx);
+    position: relative;
+    padding: 1px;
+  }
+  
+  .skill-fill {
+    height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--crimson),
+      var(--crimson) 4px,
+      var(--onyx) 4px,
+      var(--onyx) 8px
+    );
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: var(--bg-page);
+  }
+  
+  .chip {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--bg-page);
+    background: var(--onyx);
+    padding: 6px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0; /* Square edges */
+  }
+
+  /* --------------------------------------------------------
+     7. STRICT AUTO-HIDE LOGIC
+  -------------------------------------------------------- */
+  .skills-container:has(.skill-item) .chip { display: none !important; }
+  .tag-cloud .skill-item, .tag-cloud .entry { display: none !important; }
+  .name:empty, .job-title:empty, .summary-text:empty { display: none !important; }
+  .section-zone:has(> .feed-stack:empty), 
+  .section-zone:has(> .skills-container:empty), 
+  .section-zone:has(> .tag-cloud:empty),
+  .section-zone:has(> .summary-text:empty) { 
+    display: none !important; 
+  }
+  
+</style>
+</head>
+<body>
+
+<div class="page">
+  
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <div class="name" style="{{FULL_NAME_DISPLAY}}">{{FULL_NAME}}</div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+      
+      <div class="contact-zone">
+        <div class="contact-item" style="{{PHONE_DISPLAY}}"><span>TEL</span><span>{{PHONE}}</span></div>
+        <div class="contact-item" style="{{EMAIL_DISPLAY}}"><span>EML</span><span>{{EMAIL}}</span></div>
+        <div class="contact-item" style="{{ADDRESS_DISPLAY}}"><span>LOC</span><span>{{ADDRESS}}</span></div>
+        <div class="contact-item" style="{{LINKEDIN_DISPLAY}}"><span>LNK</span><span>{{LINKEDIN}}</span></div>
+        <div class="contact-item" style="{{GITHUB_DISPLAY}}"><span>GIT</span><span>{{GITHUB}}</span></div>
+        <div class="contact-item" style="{{WEBSITE_DISPLAY}}"><span>WEB</span><span>{{WEBSITE}}</span></div>
+        {{CONTACT_ITEMS}}
+      </div>
+    </div>
+    
+    <img class="photo-frame" src="{{PHOTO}}" style="{{PHOTO_DISPLAY}}"/>
+  </header>
+
+  <!-- BODY GRID -->
+  <div class="body-content">
+    
+    <!-- MAIN COLUMN: 3.5fr -->
+    <div class="col-main">
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_PROFILE_DISPLAY}}">{{HEADING_PROFILE|Profile Overview}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </section>
+
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_EXPERIENCE_DISPLAY}}">{{HEADING_EXPERIENCE|Work Experience}}</div>
+        <div class="feed-stack">{{EXPERIENCE}}</div>
+      </section>
+      
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_EDUCATION_DISPLAY}}">{{HEADING_EDUCATION|Academic Background}}</div>
+        <div class="feed-stack">{{EDUCATION}}</div>
+      </section>
+      
+      <!-- Optional Main Content -->
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_PROJECTS_DISPLAY}}">{{HEADING_PROJECTS|Selected Works}}</div>
+        <div class="feed-stack">{{PROJECTS}}</div>
+      </section>
+    </div>
+
+    <!-- SIDE COLUMN: 2fr -->
+    <div class="col-side">
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_SKILLS_DISPLAY}}">{{HEADING_SKILLS|Core Skills}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </section>
+      
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_LANGUAGES_DISPLAY}}">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="skills-container">{{LANGUAGES}}</div>
+      </section>
+
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_CERTIFICATES_DISPLAY}}">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="feed-stack">{{CERTIFICATES}}</div>
+      </section>
+      
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_ACTIVITIES_DISPLAY}}">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="feed-stack">{{ACTIVITIES}}</div>
+      </section>
+      
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_INTERESTS_DISPLAY}}">{{HEADING_INTERESTS|Interests}}</div>
+        <div class="tag-cloud">{{INTERESTS}}</div>
+      </section>
+      
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_HOBBIES_DISPLAY}}">{{HEADING_HOBBIES|Hobbies}}</div>
+        <div class="tag-cloud">{{HOBBIES}}</div>
+      </section>
+      
+      <section class="section-zone">
+        <div class="section-title" style="{{HEADING_REFERENCES_DISPLAY}}">{{HEADING_REFERENCES|References}}</div>
+        <div class="feed-stack">{{REFERENCES}}</div>
+      </section>
+    </div>
+    
+  </div>
+
+</div>
+
+</body>
+</html>
