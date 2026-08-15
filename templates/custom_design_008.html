@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aviation Sky Cobalt Charcoal - Modern</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=Roboto+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - AVIATION SKY COBALT CHARCOAL
+   Theme: Modern (Template 141)
+   Style: Cockpit instrument panel feel, cobalt gauges for skills, charcoal base
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette - Aviation Instrument Panel */
+  --bg-page: #12161D; /* Deep Charcoal Base */
+  --panel-bg: #1A1F28; /* Slightly lighter charcoal for panels */
+  
+  --cobalt: #0066CC; /* Bright instrument cobalt */
+  --cobalt-glow: #00A6FF; /* Sky blue glow */
+  --alert: #FF3366; /* Warning/Alert Red */
+  
+  --text-main: #C0C8D0; /* Light instrument gray */
+  --text-muted: #808B96; 
+  --text-heading: #FFFFFF;
+  
+  --border-tech: rgba(0, 166, 255, 0.3);
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Chakra Petch', sans-serif; /* Tech/Square font */
+  --font-body: 'Roboto Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #0A0D12; /* Outer background */
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+  padding: 30px;
+  gap: 20px;
+  /* subtle scanline effect */
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Dashboard corner frames */
+.page::before {
+  content: '';
+  position: absolute;
+  top: 15px; left: 15px;
+  width: 40px; height: 40px;
+  border-top: 2px solid var(--cobalt-glow);
+  border-left: 2px solid var(--cobalt-glow);
+  pointer-events: none;
+}
+.page::after {
+  content: '';
+  position: absolute;
+  bottom: 15px; right: 15px;
+  width: 40px; height: 40px;
+  border-bottom: 2px solid var(--cobalt-glow);
+  border-right: 2px solid var(--cobalt-glow);
+  pointer-events: none;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+    background-image: none;
+    /* Optional: Convert to white for print? The prompt implies dark mode is intended. Let's keep dark for print. */
+  }
+  .page::before, .page::after { display: none; }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   HEADER ZONE (HUD DISPLAY)
+   ========================================================================== */
+.header-hud {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-tech);
+  padding: 20px;
+  gap: 20px;
+  position: relative;
+}
+
+/* Crosshairs */
+.header-hud::before {
+  content: '+';
+  position: absolute;
+  top: 5px; right: 10px;
+  color: var(--cobalt-glow);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.header-hud::after {
+  content: '+';
+  position: absolute;
+  bottom: 5px; left: 10px;
+  color: var(--cobalt-glow);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+/* Photo Treatment - Octagon / HUD Target */
+.photo-container {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  position: relative;
+  border: 2px solid var(--cobalt);
+  padding: 4px;
+  /* Octagon clip path */
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  filter: grayscale(0.5) contrast(1.1) brightness(0.9);
+}
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  text-shadow: 0 0 8px rgba(0, 166, 255, 0.4);
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cobalt-glow);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  font-size: 10px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-tech);
+  padding: 4px 10px;
+  background: rgba(0, 102, 204, 0.1);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-heading) !important;
+}
+
+.contact-item svg {
+  fill: var(--cobalt-glow) !important;
+  width: 12px;
+  height: 12px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+.header-hud:has(> *:not([style*="display: none"])):not(:has(> :first-child)) { display: none !important; }
+
+/* ==========================================================================
+   CONTENT LAYOUT (2 COLUMNS)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 0;
+  gap: 20px;
+}
+
+.col-main {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.col-side {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   SECTION BLOCKS (INSTRUMENT PANELS)
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-tech);
+  padding: 20px;
+  position: relative;
+}
+
+/* Panel top highlight */
+.section-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--cobalt-glow);
+}
+
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Blinking dot indicator */
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--cobalt-glow);
+  box-shadow: 0 0 5px var(--cobalt-glow);
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-heading);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--cobalt-glow);
+  text-align: right;
+  min-width: 100px;
+  overflow-wrap: anywhere;
+  padding-left: 10px;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 1px;
+}
+
+.entry-badge {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-main);
+  background: rgba(255,255,255,0.05);
+  padding: 2px 6px;
+  border-left: 2px solid var(--alert);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-top: 4px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.7;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES (Instrument Gauges)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-heading);
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: var(--cobalt-glow);
+}
+
+/* Gauge Track - Segmented */
+.skill-track {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(0, 102, 204, 0.1);
+  border: 1px solid var(--border-tech);
+  position: relative;
+}
+
+.skill-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--cobalt-glow),
+    var(--cobalt-glow) 4px,
+    transparent 4px,
+    transparent 6px
+  );
+  box-shadow: 0 0 8px rgba(0, 166, 255, 0.5);
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Data Nodes)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background-color: transparent;
+  color: var(--text-heading);
+  padding: 4px 8px;
+  font-size: 10px;
+  font-family: var(--font-body);
+  overflow-wrap: anywhere;
+  border: 1px solid var(--border-tech);
+  border-left: 2px solid var(--cobalt-glow);
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--border-tech);
+  padding: 10px;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.ref-icon {
+  fill: var(--cobalt-glow) !important;
+  width: 10px;
+  height: 10px;
+}
+
+.ref-text {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-heading);
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (HUD DISPLAY)
+       ========================================== -->
+  <header class="header-hud">
+    <!-- Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-text-container">
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+      
+      <div class="contact-zone">
+        {{CONTACT_ITEMS}}
+      </div>
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (2 COLUMNS)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- MAIN COLUMN -->
+    <div class="col-main">
+      <!-- Profile / Summary -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <!-- Experience -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+    </div>
+    
+    <!-- SIDE COLUMN -->
+    <aside class="col-side">
+      <!-- Skills -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+
+      <!-- Activities -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
+
+      <!-- Hobbies / Interests -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+      
+      <!-- References -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="references-grid">{{REFERENCES}}</div>
+      </div>
+    </aside>
+    
+  </main>
+</div>
+</body>
+</html>
