@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline Ribbon Modern - Professional CV</title>
+    <!-- Preconnect for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Premium Google Fonts: Inter for high legibility timeline data -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & DESIGN TOKENS (TIMELINE / METRO)
+           ========================================================================== */
+        :root {
+            --p: #0F766E; /* Teal 700 - Primary Brand */
+            --s: #134E4A; /* Teal 900 - Dark contrast */
+            --accent: #14B8A6; /* Teal 500 - Bright accents */
+            --bg-page: #FFFFFF;
+            --bg-sidebar: #F8FAFC; /* Slate 50 */
+            --bg-muted: #F1F5F9; /* Slate 100 */
+            --text-main: #374151; /* Gray 700 */
+            --text-dark: #0F172A; /* Slate 900 */
+            --text-light: #94A3B8; /* Slate 400 */
+            --border-light: #E2E8F0; /* Slate 200 */
+            --border-medium: #CBD5E1; /* Slate 300 */
+            --timeline-color: #0F766E; /* Matches primary */
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15, 118, 110, 0.1), 0 2px 4px -1px rgba(15, 118, 110, 0.06);
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+            
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --page-width: 794px;
+            --page-min-height: 1122px;
+            --transition-speed: 0.25s;
+        }
+
+        /* ==========================================================================
+           2. GLOBAL RESETS & BASE TYPOGRAPHY
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: #E5E7EB;
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            font-size: 11px; /* Scaled precisely for WebView */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        ::selection {
+            background-color: var(--p);
+            color: #FFFFFF;
+        }
+
+        /* Webkit scrollbar for desktop preview */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-muted);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: var(--radius-full);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--p);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-dark);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        /* ==========================================================================
+           3. PAGE CONTAINER & GRID STRUCTURE
+           ========================================================================== */
+        .page {
+            width: var(--page-width);
+            min-height: var(--page-min-height) !important;
+            background-color: var(--bg-page);
+            padding: 35px 40px; /* Precise internal padding */
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: visible; /* CRITICAL for PDFs */
+        }
+
+        /* ==========================================================================
+           4. HEADER ROW COMPONENT
+           ========================================================================== */
+        .header-row {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--bg-sidebar);
+            position: relative;
+        }
+
+        /* Modern ribbon visual indicator under the header */
+        .header-row::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--p);
+            transition: width 0.4s ease;
+        }
+
+        .header-row:hover::after {
+            width: 120px;
+        }
+
+        /* 4.1 Photo Container */
+        .photo-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 2px solid var(--border-light);
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .photo-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 4.2 Name & Title Info */
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--s);
+            line-height: 1.1;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+            overflow-wrap: anywhere;
+        }
+
+        .job-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--p);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        /* 4.3 Contact Strip */
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            font-size: 11px;
+            font-weight: 500;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-main) !important;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .contact-item:hover {
+            color: var(--p) !important;
+        }
+
+        .contact-item span:first-child {
+            color: var(--p);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item span:not(:first-child) {
+            color: var(--text-dark) !important;
+            text-decoration: none !important;
+        }
+
+        /* ==========================================================================
+           5. MAIN CONTENT SPLIT (60/40)
+           ========================================================================== */
+        .body-grid {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .col-main {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .col-side {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: var(--bg-sidebar);
+            padding: 20px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        /* ==========================================================================
+           6. SECTION STYLING & HEADINGS
+           ========================================================================== */
+        .section-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 6.1 Main Column Titles */
+        .section-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--s);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .col-main .section-title::before {
+            content: "";
+            width: 18px;
+            height: 3px;
+            background-color: var(--p);
+            border-radius: var(--radius-full);
+            transition: width var(--transition-speed) ease;
+        }
+
+        .col-main .section-block:hover .section-title::before {
+            width: 28px;
+        }
+
+        /* 6.2 Side Column Titles */
+        .col-side .section-title {
+            border-bottom: 2px solid var(--border-medium);
+            padding-bottom: 6px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .col-side .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--p);
+        }
+
+        .col-side .section-title::before {
+            display: none; /* Hide the pill from main col */
+        }
+
+        /* 6.3 Standard Text */
+        .summary-text {
+            font-size: 11.5px;
+            line-height: 1.6;
+            text-align: justify;
+            color: var(--text-main);
+            white-space: pre-line;
+        }
+
+        /* ==========================================================================
+           7. THE TIMELINE ARCHITECTURE
+           ========================================================================== */
+        
+        /* The container for timeline entries */
+        .timeline-section .section-content {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--timeline-color);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-left: 6px;
+        }
+
+        .timeline-section .entry {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            page-break-inside: avoid;
+        }
+
+        /* Timeline Dots */
+        .timeline-section .entry::before {
+            content: "";
+            position: absolute;
+            left: -27px; /* Aligns exactly over the border */
+            top: 3px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--bg-page);
+            border: 2px solid var(--timeline-color);
+            border-radius: var(--radius-full);
+            box-shadow: 0 0 0 3px var(--bg-page);
+            z-index: 2;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+
+        .timeline-section .entry:hover::before {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* Non-timeline entries (for side col) */
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .entry-sub-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2px;
+        }
+
+        .entry-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .entry-badge {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--p);
+            margin-bottom: 2px;
+        }
+
+        .entry-date {
+            font-size: 10.5px;
+            font-weight: 500;
+            color: var(--text-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .entry-desc {
+            font-size: 11.5px;
+            line-height: 1.5;
+            text-align: justify;
+            margin-top: 4px;
+            white-space: pre-line;
+            color: var(--text-main);
+        }
+
+        .entry-desc ul {
+            padding-left: 16px;
+            margin-top: 4px;
+        }
+
+        .entry-desc li {
+            margin-bottom: 3px;
+        }
+
+        .entry-desc li::marker {
+            color: var(--timeline-color);
+        }
+
+        /* ==========================================================================
+           8. SKILLS, LANGUAGES, AND TAGS (Modern Chips)
+           ========================================================================== */
+        .skills-container, .languages-container, .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            background-color: rgba(15, 118, 110, 0.08);
+            color: var(--s);
+            padding: 5px 12px;
+            border-radius: var(--radius-md);
+            font-size: 10.5px;
+            font-weight: 600;
+            border: 1px solid rgba(15, 118, 110, 0.15);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .chip:hover {
+            background-color: var(--p);
+            color: #FFFFFF;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Prevent renderer doubling: Hide full skill items, rely only on chip tags */
+        .skills-container .skill-item, .languages-container .skill-item, .tag-row .skill-item, .tag-row .entry {
+            display: none !important;
+        }
+
+        /* ==========================================================================
+           9. REFERENCES STYLING
+           ========================================================================== */
+        .references-container .entry {
+            background-color: var(--bg-page);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--p);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--transition-speed) ease;
+        }
+
+        .references-container .entry:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .ref-item {
+            font-size: 11px;
+            margin-top: 2px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ref-icon {
+            color: var(--p);
+            font-size: 12px;
+        }
+
+        /* ==========================================================================
+           10. EMPTY STATE / AUTO HIDE LOGIC
+           ========================================================================== */
+        
+        .photo-wrapper:has(> .photo[src=""]),
+        .photo-wrapper:has(> .photo:not([src])),
+        .photo-wrapper:empty {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .name:empty, 
+        .job-title:empty, 
+        .summary-text:empty {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .section-block:has(> .section-content:empty),
+        .section-block:has(> .skills-container:empty),
+        .section-block:has(> .languages-container:empty),
+        .section-block:has(> .tag-row:empty),
+        .section-block:has(> .summary-text:empty) {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .header-info:has(> .contact-list:empty) .contact-list {
+            display: none !important;
+        }
+
+        .col-side:has(> .section-block:empty) {
+            /* Handled gracefully by flex */
+        }
+
+        /* ==========================================================================
+           11. PRINT AND EXPORT OPTIMIZATIONS
+           ========================================================================== */
+        @media print {
+            body {
+                background: transparent;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                min-height: var(--page-min-height) !important;
+                height: auto;
+                overflow: visible !important;
+                page-break-after: auto;
+            }
+            
+            /* Crucial: Prevent entries from splitting mid-way */
+            .entry, .section-block {
+                page-break-inside: avoid;
+            }
+            
+            h1, h2, h3, h4, h5, h6, .section-title {
+                page-break-after: avoid;
+            }
+            
+            /* Ensure timeline rail prints completely on subsequent pages */
+            .timeline-section .section-content {
+                border-left: 2px solid var(--timeline-color) !important;
+            }
+
+            /* Remove interactive hover states */
+            .chip:hover, .timeline-section .entry:hover::before, .photo-wrapper:hover {
+                transform: none !important;
+                background-color: inherit;
+                box-shadow: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER COMPONENT -->
+        <div class="header-row">
+            <div class="photo-wrapper" style="{{PHOTO_DISPLAY}}">
+                <img class="photo" src="{{PHOTO}}" alt="Professional Headshot"/>
+            </div>
+            
+            <div class="header-info">
+                <div class="name">{{FULL_NAME}}</div>
+                <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+                <div class="contact-list">
+                    {{CONTACT_ITEMS}}
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN LAYOUT GRID -->
+        <div class="body-grid">
+            
+            <!-- LEFT COLUMN (MAIN CONTENT) -->
+            <div class="col-main">
+                
+                <!-- Summary Section -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROFILE|Summary}}</div>
+                    <div class="summary-text">{{SUMMARY}}</div>
+                </div>
+
+                <!-- Experience (Timeline Style) -->
+                <div class="section-block timeline-section">
+                    <div class="section-title">{{HEADING_EXPERIENCE|Experience}}</div>
+                    <div class="section-content">
+                        {{EXPERIENCE}}
+                    </div>
+                </div>
+
+                <!-- Education (Timeline Style) -->
+                <div class="section-block timeline-section">
+                    <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+                    <div class="section-content">
+                        {{EDUCATION}}
+                    </div>
+                </div>
+
+            </div> <!-- END LEFT COLUMN -->
+
+            <!-- RIGHT COLUMN (SIDEBAR) -->
+            <div class="col-side">
+                
+                <!-- Skills (Chips) -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_SKILLS|Skills}}</div>
+                    <div class="skills-container">
+                        {{SKILLS}}
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+                    <div class="section-content">
+                        {{PROJECTS}}
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_CERTIFICATES|Certificates}}</div>
+                    <div class="section-content">
+                        {{CERTIFICATES}}
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+                    <div class="languages-container">
+                        {{LANGUAGES}}
+                    </div>
+                </div>
+
+                <!-- Interests/Hobbies (Tags) -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+                    <div class="tag-row">
+                        {{HOBBIES}}
+                    </div>
+                </div>
+
+                <!-- Social/Network -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+                    <div class="contact-list">
+                        {{SOCIAL}}
+                    </div>
+                </div>
+
+                <!-- Activities -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+                    <div class="section-content">
+                        {{ACTIVITIES}}
+                    </div>
+                </div>
+
+                <!-- References -->
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+                    <div class="section-content references-container">
+                        {{REFERENCES}}
+                    </div>
+                </div>
+
+            </div> <!-- END RIGHT COLUMN -->
+        </div> <!-- END BODY GRID -->
+    </div> <!-- END PAGE -->
+</body>
+</html>
