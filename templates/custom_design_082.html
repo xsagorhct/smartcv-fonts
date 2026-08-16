@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Startup Cobalt Bento - Modern Creative CV</title>
+    <!-- Preconnect for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Premium Google Fonts: Outfit for a modern tech startup feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & DESIGN TOKENS (GLASSMORPHISM / BENTO BOX)
+           ========================================================================== */
+        :root {
+            --p: #1E3A8A; /* Cobalt Blue Primary */
+            --s: #3B82F6; /* Bright Tech Blue Secondary */
+            --accent: #10B981; /* Emerald accent for tiny details */
+            --bg-page: #F3F4F6; /* Soft gray for page back */
+            --bg-card: #FFFFFF; /* White bento cards */
+            --bg-card-hover: #F8FAFC;
+            --text-main: #4B5563; /* Slate 600 */
+            --text-dark: #111827; /* Gray 900 */
+            --text-light: #9CA3AF; /* Gray 400 */
+            --border-light: #E5E7EB; /* Gray 200 */
+            --shadow-subtle: 0 4px 15px rgba(0, 0, 0, 0.02);
+            --shadow-hover: 0 10px 30px rgba(30, 58, 138, 0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition-speed: 0.3s;
+            --page-width: 794px;
+            --page-min-height: 1122px;
+        }
+
+        /* ==========================================================================
+           2. GLOBAL RESETS & BASE TYPOGRAPHY
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: #D1D5DB; /* Outer canvas background */
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            line-height: 1.5;
+            font-size: 11px; /* Optimal scaled size for 794px webview */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        ::selection {
+            background-color: var(--s);
+            color: #FFFFFF;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-page);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-light);
+            border-radius: var(--radius-lg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--p);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-dark);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            margin-bottom: 1em;
+            overflow-wrap: anywhere;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* ==========================================================================
+           3. MAIN PAGE CONTAINER
+           ========================================================================== */
+        .page {
+            width: var(--page-width);
+            min-height: var(--page-min-height) !important;
+            background-color: var(--bg-page);
+            position: relative;
+            padding: 25px; /* Scaled padding for bento tiles */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Bento grid gap */
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: visible; /* Prevent multi-page PDF cutoff */
+        }
+
+        /* Decorative background element */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           4. BENTO HEADER COMPONENT (Top Card)
+           ========================================================================== */
+        .header-bento {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 25px 30px;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-top: 6px solid var(--p);
+            position: relative;
+            z-index: 10;
+            transition: box-shadow var(--transition-speed) ease;
+        }
+
+        .header-bento:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-width: 65%;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            overflow-wrap: anywhere;
+        }
+
+        .job-title {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--s);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background-color: #EFF6FF;
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            overflow-wrap: anywhere;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .header-bento:hover .job-title {
+            transform: translateX(4px);
+        }
+
+        /* Absolute positioned photo floating over the top right edge */
+        .photo-container {
+            position: absolute;
+            top: -15px;
+            right: 25px;
+            z-index: 20;
+        }
+
+        .photo-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-card);
+            padding: 4px;
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.1);
+            transform: rotate(3deg);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .photo-container:hover .photo-wrapper {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--radius-md) - 3px);
+        }
+
+        /* ==========================================================================
+           5. CONTACT STRIP BENTO CARD
+           ========================================================================== */
+        .contact-zone {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 12px 20px;
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+            z-index: 5;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            font-size: 11px;
+            font-weight: 500;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main) !important;
+            background-color: #F8FAFC;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-light);
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--s);
+        }
+
+        .contact-item span:first-child {
+            color: var(--s);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item span:not(:first-child) {
+            color: var(--text-dark) !important;
+            text-decoration: none !important;
+        }
+
+        /* ==========================================================================
+           6. MAIN CONTENT GRID SYSTEM (60/40 Split)
+           ========================================================================== */
+        .grid-body {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 5;
+        }
+
+        .col-left {
+            width: 62%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .col-right {
+            width: 38%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Individual Section Cards */
+        .bento-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+
+        .bento-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ==========================================================================
+           7. TYPOGRAPHY & INTERNAL ELEMENTS FOR CARDS
+           ========================================================================== */
+        
+        /* 7.1 Section Headings */
+        .section-title {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: capitalize;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--s);
+            border-radius: 3px;
+            box-shadow: 2px 2px 0 var(--p);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .bento-card:hover .section-title::before {
+            transform: scale(1.2);
+        }
+
+        /* 7.2 Paragraphs */
+        .summary-text, .about-text, .profile-text {
+            font-size: 11.5px;
+            line-height: 1.6;
+            text-align: justify;
+            color: var(--text-main);
+            overflow-wrap: anywhere;
+            white-space: pre-line;
+        }
+
+        /* 7.3 Experience & Education Entries */
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .entry {
+            position: relative;
+            padding-left: 14px;
+            border-left: 2px dashed var(--border-light);
+            page-break-inside: avoid;
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .entry:hover {
+            border-color: var(--s);
+        }
+
+        .entry::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--bg-card);
+            border: 2px solid var(--p);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--bg-card);
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .entry:hover::before {
+            background-color: var(--s);
+            border-color: var(--s);
+        }
+
+        .entry-sub-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 4px;
+        }
+
+        .entry-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+            line-height: 1.25;
+        }
+
+        .entry-badge {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--p);
+            margin-bottom: 2px;
+        }
+
+        .entry-date {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            background-color: var(--bg-page);
+            padding: 2px 6px;
+            border-radius: 4px;
+            align-self: flex-start;
+            margin-top: 2px;
+        }
+
+        .entry-desc {
+            font-size: 11px;
+            color: var(--text-main);
+            text-align: justify;
+            line-height: 1.5;
+            white-space: pre-line;
+            margin-top: 4px;
+        }
+
+        .entry-desc ul {
+            padding-left: 16px;
+            margin-top: 4px;
+            list-style-type: square;
+        }
+
+        .entry-desc li {
+            margin-bottom: 3px;
+            color: var(--text-main);
+        }
+        
+        .entry-desc li::marker {
+            color: var(--s);
+        }
+
+        /* 7.4 Skills & Languages (Pill Chips Format) */
+        .skills-container, .languages-container, .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .chip {
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            font-size: 10.5px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .chip:hover {
+            background-color: var(--p);
+            color: #FFFFFF;
+            border-color: var(--p);
+            transform: translateY(-1px);
+        }
+
+        /* Prevent double items from the renderer, force tags only */
+        .skills-container .skill-item, .languages-container .skill-item, .tag-row .skill-item, .tag-row .entry {
+            display: none !important;
+        }
+
+        /* 7.5 References Block */
+        .references-container .entry {
+            border-left: none;
+            padding-left: 0;
+            background-color: var(--bg-page);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-light);
+            transition: border-color var(--transition-speed) ease;
+        }
+        
+        .references-container .entry:hover {
+            border-color: var(--s);
+        }
+
+        .references-container .entry::before {
+            display: none;
+        }
+        
+        .ref-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        
+        .ref-icon {
+            color: var(--s);
+        }
+
+        /* ==========================================================================
+           8. AUTO-HIDE & EMPTY STATE LOGIC (CRITICAL FOR SMART CV BUILDER)
+           ========================================================================== */
+        
+        .photo-container:has(> .photo-wrapper:empty),
+        .photo-container:has(> .photo-wrapper > .photo[src=""]),
+        .photo-container:has(> .photo-wrapper > .photo:not([src])) { 
+            display: none !important; 
+            margin: 0 !important; 
+            padding: 0 !important;
+        }
+
+        .name:empty, 
+        .job-title:empty, 
+        .summary-text:empty, 
+        .about-text:empty { 
+            display: none !important; 
+            margin: 0 !important; 
+            padding: 0 !important;
+        }
+
+        .bento-card:has(> .section-content:empty),
+        .bento-card:has(> .skills-container:empty),
+        .bento-card:has(> .languages-container:empty),
+        .bento-card:has(> .tag-row:empty),
+        .bento-card:has(> .contact-list:empty),
+        .bento-card:has(> .summary-text:empty) {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .contact-zone:has(> .contact-list:empty) {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        /* ==========================================================================
+           9. PRINT STYLES FOR EXPORT
+           ========================================================================== */
+        @media print {
+            body { 
+                background: transparent; 
+                padding: 0; 
+                margin: 0;
+            }
+            .page { 
+                box-shadow: none; 
+                padding: 20px; 
+                margin: 0;
+                width: 100%;
+                min-height: var(--page-min-height) !important;
+                height: auto;
+                overflow: visible !important;
+                page-break-after: auto;
+            }
+            .bento-card { 
+                page-break-inside: avoid; 
+                border: 1px solid var(--border-light); 
+                box-shadow: none !important; 
+            }
+            .entry {
+                page-break-inside: avoid;
+            }
+            .contact-zone {
+                box-shadow: none !important;
+                border: 1px solid var(--border-light);
+            }
+            .header-bento {
+                box-shadow: none !important;
+                border: 1px solid var(--border-light);
+                border-top: 6px solid var(--p);
+            }
+            /* Eliminate hover state interference during print */
+            .bento-card:hover, .entry:hover {
+                transform: none !important;
+                box-shadow: none !important;
+                border-color: inherit !important;
+            }
+            /* Prevent widows and orphans */
+            h1, h2, h3, h4, h5, h6, .section-title {
+                page-break-after: avoid;
+            }
+            p, .summary-text, .entry-desc {
+                orphans: 3;
+                widows: 3;
+            }
+            * { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+                color-adjust: exact !important; 
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MAIN PAGE WRAPPER -->
+    <div class="page">
+      
+        <!-- HEADER BENTO CARD -->
+        <div class="header-bento">
+            <div class="header-text">
+                <div class="name">{{FULL_NAME}}</div>
+                <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+            </div>
+            
+            <!-- Floating Photo -->
+            <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+                <div class="photo-wrapper">
+                    <img class="photo" src="{{PHOTO}}" alt="Professional Portrait"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT BENTO CARD -->
+        <div class="contact-zone bento-card">
+            <div class="contact-list">
+                {{CONTACT_ITEMS}}
+            </div>
+        </div>
+
+        <!-- TWO COLUMN BENTO GRID -->
+        <div class="grid-body">
+            
+            <!-- LEFT COLUMN (62%) -->
+            <div class="col-left">
+              
+                <!-- Executive Summary -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_PROFILE|Profile Summary}}</div>
+                    <div class="summary-text">{{SUMMARY}}</div>
+                </div>
+
+                <!-- Professional Experience -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+                    <div class="section-content">
+                        {{EXPERIENCE}}
+                    </div>
+                </div>
+
+                <!-- Featured Projects -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_PROJECTS|Featured Projects}}</div>
+                    <div class="section-content">
+                        {{PROJECTS}}
+                    </div>
+                </div>
+
+                <!-- Extracurricular Activities -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+                    <div class="section-content">
+                        {{ACTIVITIES}}
+                    </div>
+                </div>
+
+            </div> <!-- END LEFT COLUMN -->
+
+            <!-- RIGHT COLUMN (38%) -->
+            <div class="col-right">
+
+                <!-- Education -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+                    <div class="section-content">
+                        {{EDUCATION}}
+                    </div>
+                </div>
+
+                <!-- Core Skills (Pill Chips) -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_SKILLS|Core Skills}}</div>
+                    <div class="skills-container">
+                        {{SKILLS}}
+                    </div>
+                </div>
+
+                <!-- Languages (Pill Chips) -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+                    <div class="languages-container">
+                        {{LANGUAGES}}
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+                    <div class="section-content">
+                        {{CERTIFICATES}}
+                    </div>
+                </div>
+                
+                <!-- Hobbies (Tags) -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+                    <div class="tag-row">
+                        {{HOBBIES}}
+                    </div>
+                </div>
+
+                <!-- Social/Network -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+                    <div class="contact-list">
+                        {{SOCIAL}}
+                    </div>
+                </div>
+
+                <!-- References -->
+                <div class="bento-card">
+                    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+                    <div class="section-content references-container">
+                        {{REFERENCES}}
+                    </div>
+                </div>
+
+            </div> <!-- END RIGHT COLUMN -->
+
+        </div> <!-- END GRID BODY -->
+
+    </div> <!-- END PAGE WRAPPER -->
+
+</body>
+</html>
