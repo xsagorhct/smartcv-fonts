@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Deep Maroon Timeline Ribbon - Timeline</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&amp;family=Nunito+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - DEEP MAROON TIMELINE RIBBON
+   Theme: Timeline (Template 191)
+   Style: Vertical ribbon spine, experience nodes, single column
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  --bg-page: #FDFBF7; /* Warm natural paper */
+  --bg-white: #FFFFFF;
+  
+  --maroon-main: #721C24; /* Deep ribbon maroon */
+  --maroon-light: #F8D7DA;
+  
+  --text-main: #212529;
+  --text-muted: #6C757D;
+  --border-color: #DEE2E6;
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Lora', serif; /* Elegant flowing serif */
+  --font-body: 'Nunito Sans', sans-serif; /* Clean structured body */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #E2E8F0;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background-color: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden; /* Contains the ribbon */
+  padding-left: 90px; /* Massive left padding for the ribbon */
+  padding-right: 50px;
+  padding-bottom: 50px;
+}
+
+/* The Continuous Timeline Ribbon */
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 45px;
+  width: 6px;
+  background-color: var(--maroon-main);
+  z-index: 0;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   HEADER ZONE (OFFSET & ELEGANT)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 50px 0 40px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Top ribbon knot effect */
+.header-zone::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -45px; /* Aligned with ribbon at left:45px (90-45) */
+  width: 36px; height: 12px;
+  background-color: var(--maroon-main);
+  border-radius: 0 0 6px 6px;
+  transform: translateX(-15px); /* Center on the 6px ribbon */
+}
+
+/* Photo Treatment */
+.photo-container {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 3px solid var(--maroon-main);
+  padding: 4px;
+  background-color: var(--bg-page);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 46px;
+  font-weight: 700;
+  color: var(--maroon-main);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  font-size: 11px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-main) !important;
+  font-weight: 700;
+}
+
+.contact-item svg {
+  fill: var(--maroon-main) !important;
+  width: 16px;
+  height: 16px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   CONTENT LAYOUT (SINGLE COLUMN TIMELINE)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--maroon-main);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Section Ribbon Node */
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: -52px; /* 90px padding - 45px ribbon center = 45. 45 + 3 (half ribbon) = 48? The ribbon is left:45, width:6 (center 48). A 20px node should be at 38px left from page edge. We are inside a container with 90px left padding. So we need left: -52px (90-52 = 38). Center of node is 38+10=48. Matches ribbon center! */
+  width: 20px;
+  height: 20px;
+  background-color: var(--maroon-main);
+  border-radius: 50%;
+  border: 4px solid var(--bg-page);
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  background: var(--bg-white);
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+/* Entry Ribbon Node (Smaller) */
+.entry::before {
+  content: '';
+  position: absolute;
+  left: -48px; /* Inside section content, same math roughly but taking padding into account if there was any. Container has no padding. Node size is 12px. Center needs to be at absolute 48. Container is at absolute 90. Left offset: 90 - 48 - (12/2) = 36? If left is -42px, center is 90-42+6 = 54. We need center at 48. So left: -48px (90-48=42. 42+6=48). Perfect. */
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-page);
+  border: 3px solid var(--maroon-main);
+  border-radius: 50%;
+}
+/* Horizontal connector line */
+.entry::after {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 29px;
+  width: 36px;
+  height: 2px;
+  background-color: var(--maroon-light);
+  z-index: -1;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--maroon-main);
+  text-align: right;
+  min-width: 90px;
+  overflow-wrap: anywhere;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.entry-badge {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-top: 6px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.8;
+  font-weight: 400;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.summary-text::before {
+  content: '';
+  position: absolute;
+  left: -48px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-page);
+  border: 3px solid var(--maroon-main);
+  border-radius: 50%;
+}
+.summary-text::after {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 29px;
+  width: 36px;
+  height: 2px;
+  background-color: var(--maroon-light);
+  z-index: -1;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID (Aligned in the single column)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-wrap: wrap; /* Wrap for single column */
+  gap: 12px;
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.skills-container::before, .languages-container::before {
+  content: '';
+  position: absolute;
+  left: -48px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-page);
+  border: 3px solid var(--maroon-main);
+  border-radius: 50%;
+}
+.skills-container::after, .languages-container::after {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 29px;
+  width: 36px;
+  height: 2px;
+  background-color: var(--maroon-light);
+  z-index: -1;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 calc(33.333% - 12px); /* 3 columns inside the block */
+  min-width: 140px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  display: none;
+}
+
+/* Progress */
+.skill-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--bg-page);
+  border-radius: 3px;
+}
+
+.skill-fill {
+  height: 100%;
+  background-color: var(--maroon-main);
+  border-radius: 3px;
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.tag-row::before {
+  content: '';
+  position: absolute;
+  left: -48px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-page);
+  border: 3px solid var(--maroon-main);
+  border-radius: 50%;
+}
+.tag-row::after {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 29px;
+  width: 36px;
+  height: 2px;
+  background-color: var(--maroon-light);
+  z-index: -1;
+}
+
+.chip {
+  background-color: var(--maroon-light);
+  color: var(--maroon-main);
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+  border-radius: 16px;
+  border: none;
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-white);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.references-grid::before {
+  content: '';
+  position: absolute;
+  left: -48px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--bg-page);
+  border: 3px solid var(--maroon-main);
+  border-radius: 50%;
+}
+.references-grid::after {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 29px;
+  width: 36px;
+  height: 2px;
+  background-color: var(--maroon-light);
+  z-index: -1;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+.ref-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ref-icon {
+  display: none;
+}
+
+.ref-text {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--maroon-main);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="name">
+      {{FULL_NAME}}
+    </div>
+    
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+      {{JOB_TITLE}}
+    </div>
+    
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (SINGLE COLUMN TIMELINE)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- Profile / Summary -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </div>
+    
+    <!-- Experience -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+      <div class="section-content">{{EXPERIENCE}}</div>
+    </div>
+    
+    <!-- Education -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <div class="section-content">{{EDUCATION}}</div>
+    </div>
+    
+    <!-- Projects -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <div class="section-content">{{PROJECTS}}</div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </div>
+    
+    <!-- Languages -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </div>
+
+    <!-- Certificates -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content">{{CERTIFICATES}}</div>
+    </div>
+
+    <!-- Activities -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content">{{ACTIVITIES}}</div>
+    </div>
+
+    <!-- Hobbies / Interests -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+      <div class="tag-row">{{HOBBIES}}</div>
+    </div>
+    
+    <!-- Social Links -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+      <div class="section-content">{{SOCIAL}}</div>
+    </div>
+    
+    <!-- References -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="references-grid">{{REFERENCES}}</div>
+    </div>
+    
+  </main>
+</div>
+</body>
+</html>
