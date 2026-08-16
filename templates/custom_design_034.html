@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Geneva Corporate Platinum - Executive No Photo</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - GENEVA CORPORATE PLATINUM
+   Theme: Executive No Photo (Template 107)
+   Style: Swiss spacing, thin hairlines, neutral grey, left alignment
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette */
+  --p: #2E3338; /* Swiss Charcoal */
+  --bg-page: #FFFFFF; /* Pure White */
+  
+  --text-main: #333333; /* Soft dark grey */
+  --text-muted: #666666; /* Neutral grey */
+  --text-light: #999999; 
+  
+  --border-hairline: #E5E5E5; /* Thin hairline */
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F0F2F5;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+  padding: 55px; /* Extreme Swiss spacing */
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { 
+    background: none; 
+  }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    padding: 55px;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block {
+    page-break-inside: avoid;
+  }
+  .entry {
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   HEADER / PERSONAL INFO ZONE (SWISS MINIMAL)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border-hairline); /* Hairline separator */
+  margin-bottom: 40px;
+  gap: 30px;
+}
+
+/* Photo Treatment - Hidden for Minimal / Monolith */
+.photo-container {
+  width: 85px;
+  height: 85px;
+  border-radius: 2px;
+  background-color: var(--bg-page);
+  flex-shrink: 0;
+  overflow: hidden;
+  filter: grayscale(100%);
+  border: 1px solid var(--border-hairline);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--p);
+  text-transform: capitalize; /* Elegant Swiss casing */
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 14px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  font-size: 10.5px;
+  font-family: var(--font-sans);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-muted) !important;
+  font-weight: 400;
+}
+
+.contact-item svg {
+  fill: var(--text-light) !important; /* Extremely muted icons */
+  width: 11px;
+  height: 11px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   GENEVA ASYMMETRICAL GRID
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 40px; /* Extreme vertical breathing room */
+}
+
+/* Left-aligned title + Right-aligned content wrapper */
+.section-block {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  position: relative;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.section-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  width: 170px; /* Fixed left column for titles */
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light); /* Super subtle titles */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-top: 4px; /* Align with text */
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 22px; /* Breathing room between entries */
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--p);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--text-light);
+  text-align: right;
+  min-width: 140px;
+  overflow-wrap: anywhere;
+  padding-top: 2px;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.entry-badge {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-top: 8px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-serif); /* Serif for summary */
+  font-size: 12.5px;
+  color: var(--text-main);
+  line-height: 1.8;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+  flex: 1;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES (Swiss Textual Grid)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex: 1;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: calc(50% - 8px); /* 2 Column Split */
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.skill-name {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--p);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  color: var(--text-light);
+}
+
+/* Hidden visual tracks, relies purely on text hierarchy */
+.skill-track, .skill-fill {
+  display: none !important;
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+
+.chip {
+  background-color: #F8F9FA;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border: 1px solid var(--border-hairline);
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-family: var(--font-sans);
+  overflow-wrap: anywhere;
+  border-radius: 4px;
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  flex: 1;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: calc(50% - 12px);
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.ref-icon {
+  display: none !important; /* Swiss minimal hides icons here */
+}
+
+.ref-text {
+  font-weight: 500;
+  color: var(--p);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (SWISS MINIMAL)
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Minimal Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-text-container">
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+      
+      <div class="contact-zone">
+        {{CONTACT_ITEMS}}
+      </div>
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       ASYMMETRICAL CONTENT GRID
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- Profile / Summary -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_PROFILE|Executive Profile}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </section>
+    
+    <!-- Experience -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+      <div class="section-content">{{EXPERIENCE}}</div>
+    </section>
+    
+    <!-- Education -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Academic Background}}</div>
+      <div class="section-content">{{EDUCATION}}</div>
+    </section>
+    
+    <!-- Projects -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Key Projects}}</div>
+      <div class="section-content">{{PROJECTS}}</div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_SKILLS|Core Competencies}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </section>
+
+    <!-- Languages -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </section>
+
+    <!-- Certificates -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content">{{CERTIFICATES}}</div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content">{{ACTIVITIES}}</div>
+    </section>
+    
+    <!-- References -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="references-grid">{{REFERENCES}}</div>
+    </section>
+
+    <!-- Hobbies / Interests -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_HOBBIES|Interests & Hobbies}}</div>
+      <div class="tag-row">{{HOBBIES}}</div>
+    </section>
+    
+    <!-- Social Links -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+      <div class="section-content">{{SOCIAL}}</div>
+    </section>
+    
+  </main>
+</div>
+</body>
+</html>
