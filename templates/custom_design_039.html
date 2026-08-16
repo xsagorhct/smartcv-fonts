@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Harvard Oxford Grey Monolith - Executive No Photo</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - HARVARD OXFORD GREY MONOLITH
+   Theme: Executive No Photo
+   Style: Academic, Highly Professional, Typographic Hierarchy
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette */
+  --p: #2D3748; /* Stone Grey Primary */
+  --text-main: #1A202C; /* Near Black */
+  --text-muted: #4A5568; /* Grey text */
+  --text-light: #718096; /* Lighter grey */
+  --bg-page: #FFFFFF; /* Pure White */
+  --bg-body: #E2E8F0; /* Outer background */
+  
+  /* Borders and Rules */
+  --rule-color: #2D3748; /* Thick rule color */
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E0;
+  
+  /* Layout Spacing Variables */
+  --gap-section: 30px;
+  --gap-entry: 18px;
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-serif: 'Crimson Pro', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 11.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+  padding: 50px 60px; /* Deep academic margins */
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { 
+    background: none; 
+  }
+  .page {
+    margin: 0;
+    padding: 50px 60px;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block {
+    page-break-inside: avoid;
+  }
+  .entry {
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   HEADER / PERSONAL INFO ZONE
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 35px;
+  border-bottom: 5px solid var(--rule-color); /* Strict Thick Rule */
+  padding-bottom: 25px;
+  position: relative;
+}
+
+/* Photo Treatment - Minimal for "No Photo" seed */
+.photo-container {
+  width: 75px;
+  height: 75px;
+  border-radius: 4px; /* Sharp rectangle for formal look */
+  border: 1.5px solid var(--text-main);
+  overflow: hidden;
+  margin: 0 auto 16px auto;
+  filter: grayscale(100%) contrast(1.1); /* Academic dignity styling */
+  background-color: #F7FAFC;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 20px;
+  font-size: 11px;
+  font-family: var(--font-sans);
+}
+
+.contact-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--text-main) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-main) !important;
+  font-weight: 500;
+}
+
+.contact-item svg {
+  fill: var(--text-main) !important;
+  width: 12px;
+  height: 12px;
+  transform: translateY(2px);
+}
+
+/* 
+  Header Auto-hide Rules 
+  Critical for Android UI logic to hide empty placeholders
+*/
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   MAIN CONTENT GRID
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: var(--gap-section);
+}
+
+/* 
+  Single Column Academic Layout
+  No sidebars, full focus on typography
+*/
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid var(--text-main); /* Thick secondary rule */
+  padding-bottom: 5px;
+  margin-bottom: 4px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-entry);
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: nowrap;
+}
+
+.entry-title {
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: right;
+  min-width: 140px; /* Strong alignment for dates on the right */
+  overflow-wrap: anywhere;
+  padding-left: 12px;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.entry-badge {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.65;
+  margin-top: 6px;
+  text-align: justify; /* Academic justification */
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.7;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+  padding: 2px 0;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID
+   ========================================================================== */
+/* 
+  Academic CVs use structural grids rather than flashy bars 
+*/
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  width: calc(33.333% - 10px); /* Strict 3 column grid */
+  border-bottom: 1px dotted var(--border-medium); /* Subtle structural line */
+  padding-bottom: 4px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-style: italic; /* Academic styling for proficiency */
+}
+
+/* Hide visual progress bars completely for Monolith styling */
+.skill-track, .skill-fill {
+  display: none !important; 
+}
+
+/* Prevent double skill display generated by the app engine */
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  background-color: transparent;
+  color: var(--text-main);
+  padding: 4px 12px;
+  border-radius: 0; /* Strict Sharp corners */
+  border: 1px solid var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  overflow-wrap: anywhere;
+}
+
+/* Hide fallback lists inside tag rows */
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ref-entry {
+  width: calc(50% - 10px);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 0;
+  padding: 12px;
+  border: 1px solid var(--border-light);
+  background-color: #F8FAFC;
+}
+
+.ref-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-main);
+}
+
+.ref-icon {
+  display: none !important; /* Hide icons in reference section for academic look */
+}
+
+.ref-text {
+  font-weight: 600;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+/* Activities specifically wrapped in section-content */
+.section-block:has(> .section-content:empty) {
+  display: none !important;
+}
+
+/* ==========================================================================
+   HOVER STATES & INTERACTIVITY (For Web Preview enhancements)
+   ========================================================================== */
+@media (hover: hover) {
+  .entry:hover {
+    background-color: #F7FAFC;
+    border-radius: 4px;
+  }
+  .skill-item:hover {
+    border-bottom-color: var(--text-main);
+  }
+  .chip:hover {
+    background-color: var(--text-main);
+    color: var(--bg-page);
+  }
+  .ref-entry:hover {
+    border-color: var(--text-main);
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Academic small photo frame, strictly hidden if empty -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <!-- Core details -->
+    <div class="name">
+      {{FULL_NAME}}
+    </div>
+    
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+      {{JOB_TITLE}}
+    </div>
+    
+    <!-- Contact Info natively handles svg/spans -->
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       SINGLE COLUMN CONTENT AREA
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- Profile / Summary -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_PROFILE|Professional Summary}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </section>
+    
+    <!-- Experience -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+      <div class="section-content">{{EXPERIENCE}}</div>
+    </section>
+    
+    <!-- Education -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Academic Background}}</div>
+      <div class="section-content">{{EDUCATION}}</div>
+    </section>
+    
+    <!-- Projects -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Key Projects}}</div>
+      <div class="section-content">{{PROJECTS}}</div>
+    </section>
+    
+    <!-- Skills -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_SKILLS|Core Competencies}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </section>
+    
+    <!-- Languages -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </section>
+    
+    <!-- Certificates -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content">{{CERTIFICATES}}</div>
+    </section>
+
+    <!-- Activities -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content">{{ACTIVITIES}}</div>
+    </section>
+
+    <!-- Hobbies / Interests -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_HOBBIES|Interests & Hobbies}}</div>
+      <div class="tag-row">{{HOBBIES}}</div>
+    </section>
+    
+    <!-- Social Links -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+      <div class="section-content">{{SOCIAL}}</div>
+    </section>
+    
+    <!-- References -->
+    <section class="section-block">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="references-grid">{{REFERENCES}}</div>
+    </section>
+    
+  </main>
+</div>
+</body>
+</html>
