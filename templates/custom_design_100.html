@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Gold Grid Layout</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES
+           ========================================================================== */
+        :root {
+            /* Palette: Luxury Gold & Black Grid */
+            --primary-color: #000000; /* Strict Black */
+            --secondary-color: #D4AF37; /* Luxury Gold */
+            --bg-page: #FFFFFF; /* Pure White */
+            --bg-grid: #FAFAFA; /* Slight off-white for some cells */
+            
+            --text-main: #333333;
+            --text-dark: #000000;
+            --text-light: #666666;
+            
+            --border-heavy: #000000;
+            --border-light: #000000; /* Even light borders are black in this theme */
+            
+            /* Typography */
+            --font-head: 'Cinzel', serif; /* Classic Luxury Serif */
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* Dimensions */
+            --page-width: 794px;
+            --page-min-height: 1122px;
+        }
+
+        /* ==========================================================================
+           2. GLOBAL RESETS & BODY
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 100%;
+        }
+
+        body {
+            background-color: #E5E7EB;
+            font-family: var(--font-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 11px;
+            -webkit-font-smoothing: antialiased;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        ::selection {
+            background-color: var(--secondary-color);
+            color: #000000;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        ul {
+            padding-left: 1.4rem;
+        }
+
+        /* ==========================================================================
+           3. MAIN PAGE CONTAINER
+           ========================================================================== */
+        .page {
+            width: var(--page-width);
+            min-height: var(--page-min-height) !important;
+            background-color: var(--bg-page);
+            position: relative;
+            overflow: visible;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            /* Master Grid Container */
+            padding: 25px;
+        }
+
+        /* The Grid Framework */
+        .grid-framework {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto 1fr;
+            border: 4px solid var(--border-heavy);
+            width: 100%;
+            flex: 1; /* Stretch to fill page */
+        }
+
+        /* Grid Cells */
+        .grid-cell {
+            padding: 25px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ==========================================================================
+           4. GRID LAYOUT ASSIGNMENTS
+           ========================================================================== */
+        /* Top Header Area (Spans all 3 columns) */
+        .cell-header {
+            grid-column: 1 / -1;
+            background-color: var(--primary-color);
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 35px 40px;
+            border-bottom: 4px solid var(--secondary-color);
+        }
+
+        /* Summary Area (Spans 2 columns) */
+        .cell-summary {
+            grid-column: 1 / 3;
+            background-color: var(--bg-grid);
+        }
+
+        /* Contact & Social (1 column) */
+        .cell-meta {
+            grid-column: 3 / 4;
+            background-color: #FFFFFF;
+        }
+
+        /* Left Main Body (Spans 2 columns) */
+        .cell-main-left {
+            grid-column: 1 / 3;
+            border-right: 2px solid var(--border-heavy);
+            background-color: #FFFFFF;
+        }
+
+        /* Right Sidebar Body (1 column) */
+        .cell-main-right {
+            grid-column: 3 / 4;
+            background-color: var(--bg-grid);
+        }
+
+        /* ==========================================================================
+           5. HEADER STYLES (Inside cell-header)
+           ========================================================================== */
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+        }
+
+        .name {
+            font-family: var(--font-head);
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            line-height: 1;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .job-title {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFFFFF;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Photo */
+        .photo-container {
+            flex-shrink: 0;
+        }
+
+        .photo-wrapper {
+            width: 110px;
+            height: 110px;
+            border-radius: 0; /* Strict square for grid layout */
+            overflow: hidden;
+            border: 2px solid var(--secondary-color);
+            background-color: #FFFFFF;
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.2);
+        }
+
+        /* ==========================================================================
+           6. SECTION STYLES
+           ========================================================================== */
+        .section-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-family: var(--font-head);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .summary-text {
+            font-size: 12.5px;
+            line-height: 1.7;
+            text-align: justify;
+            color: var(--text-main);
+            white-space: pre-line;
+            font-style: italic;
+        }
+
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        /* ==========================================================================
+           7. COMPONENT: ENTRIES
+           ========================================================================== */
+        .entry {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            page-break-inside: avoid;
+        }
+
+        .entry-title {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .entry-sub-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .entry-badge {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .entry-date {
+            font-family: var(--font-body);
+            font-size: 10.5px;
+            font-weight: 600;
+            color: var(--text-dark);
+            background-color: var(--secondary-color);
+            padding: 2px 8px;
+        }
+
+        .entry-desc {
+            font-size: 11.5px;
+            line-height: 1.6;
+            text-align: justify;
+            color: var(--text-main);
+            white-space: pre-line;
+        }
+
+        .entry-desc ul {
+            padding-left: 18px;
+            margin-top: 6px;
+        }
+
+        .entry-desc li {
+            margin-bottom: 4px;
+        }
+
+        .entry-desc li::marker {
+            color: var(--secondary-color);
+            content: "◆ ";
+            font-size: 10px;
+        }
+
+        /* ==========================================================================
+           8. COMPONENT: CONTACT & LISTS
+           ========================================================================== */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark) !important;
+            word-break: break-word;
+        }
+
+        .contact-item span:first-child {
+            color: var(--secondary-color);
+        }
+
+        /* ==========================================================================
+           9. COMPONENT: SKILLS & PROGRESS BARS
+           ========================================================================== */
+        .skills-container, .languages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .skill-track {
+            width: 100%;
+            height: 2px;
+            background-color: #E5E7EB;
+            border-radius: 0;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--secondary-color);
+        }
+
+        /* ==========================================================================
+           10. COMPONENT: CHIPS & TAG ROWS
+           ========================================================================== */
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            background-color: transparent;
+            color: var(--text-dark);
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0;
+            border: 1px solid var(--border-heavy);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+        }
+
+        /* ==========================================================================
+           11. COMPONENT: REFERENCES
+           ========================================================================== */
+        .references-container .entry {
+            padding: 12px;
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-heavy);
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .ref-item {
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* ==========================================================================
+           12. AUTO-HIDE LOGIC & BUG FIXES
+           ========================================================================== */
+        /* Duplicate Hobbies / Tags Fix */
+        .skills-container .chip, 
+        .languages-container .chip { display: none !important; }
+
+        .tag-row .skill-item, 
+        .tag-row .entry { display: none !important; }
+
+        /* Auto-hide Logic */
+        .photo-container:has(> .photo-wrapper > .photo[src=""]),
+        .photo-container:has(> .photo-wrapper > .photo:not([src])),
+        .photo-container:empty { display: none !important; }
+
+        .name:empty, 
+        .job-title:empty, 
+        .summary-text:empty { display: none !important; }
+
+        .section-block:has(> .section-content:empty),
+        .section-block:has(> .summary-text:empty),
+        .section-block:has(> .skills-container:empty),
+        .section-block:has(> .languages-container:empty),
+        .section-block:has(> .tag-row:empty) {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* If specific grid cells are completely empty, hide them */
+        .grid-cell:has(> .section-block:empty):has(> .contact-list:empty) {
+            display: none !important;
+        }
+
+        .cell-header:has(> .header-info > .name:empty):has(> .header-info > .job-title:empty) {
+            display: none !important;
+        }
+
+        /* ==========================================================================
+           13. PRINT SCALING (1 PAGE FIT)
+           ========================================================================== */
+        @media print {
+            body { background: transparent; padding: 0; margin: 0; }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                min-height: var(--page-min-height) !important; 
+                height: auto; 
+                overflow: visible !important; 
+                page-break-after: auto; 
+            }
+            .grid-framework { page-break-inside: auto; border-width: 2px; }
+            .grid-cell { page-break-inside: auto; }
+            .entry, .section-block { page-break-inside: avoid; }
+            h1, h2, h3, h4, h5, h6, .section-title { page-break-after: avoid; }
+            @page { size: A4 portrait; margin: 0; }
+            
+            /* Print colors explicitly */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- MASTER GRID -->
+        <div class="grid-framework">
+            
+            <!-- ROW 1: HEADER (Spans all columns) -->
+            <div class="grid-cell cell-header">
+                <div class="header-info">
+                    <h1 class="name">{{FULL_NAME}}</h1>
+                    <h2 class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</h2>
+                </div>
+                
+                <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+                    <div class="photo-wrapper">
+                        <img class="photo" src="{{PHOTO}}" alt="Profile"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: SUMMARY & META -->
+            <div class="grid-cell cell-summary">
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROFILE|Executive Overview}}</div>
+                    <div class="summary-text">{{SUMMARY}}</div>
+                </div>
+            </div>
+            
+            <div class="grid-cell cell-meta">
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_CONTACT|Contact}}</div>
+                    <div class="contact-list">{{CONTACT_ITEMS}}</div>
+                    <div style="margin-top: 10px;"><div class="contact-list">{{SOCIAL}}</div></div>
+                </div>
+            </div>
+
+            <!-- ROW 3: MAIN CONTENT (Left 2 cols, Right 1 col) -->
+            <div class="grid-cell cell-main-left">
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+                    <div class="section-content">{{EXPERIENCE}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROJECTS|Key Initiatives}}</div>
+                    <div class="section-content">{{PROJECTS}}</div>
+                </div>
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+                    <div class="section-content references-container">{{REFERENCES}}</div>
+                </div>
+            </div>
+
+            <div class="grid-cell cell-main-right">
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+                    <div class="section-content">{{EDUCATION}}</div>
+                </div>
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+                    <div class="section-content">{{CERTIFICATES}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_SKILLS|Core Competencies}}</div>
+                    <div class="skills-container">{{SKILLS}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+                    <div class="languages-container">{{LANGUAGES}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+                    <div class="section-content">{{ACTIVITIES}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+                    <div class="tag-row">{{HOBBIES}}</div>
+                </div>
+            </div>
+
+        </div> <!-- END MASTER GRID -->
+    </div> <!-- END PAGE -->
+</body>
+</html>
