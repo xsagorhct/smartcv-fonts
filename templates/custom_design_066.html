@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Diagonal Slash - Geometric CV</title>
+    <!-- Preconnect for performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Premium Google Fonts: Montserrat for bold shapes, Source Code Pro for technical data -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;0,900;1,400&amp;family=Source+Code+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & DESIGN TOKENS (CREATIVE DIAGONAL)
+           ========================================================================== */
+        :root {
+            --p: #BE123C; /* Crimson Rose Primary */
+            --s: #1F2937; /* Graphite Slate Secondary */
+            --bg-page: #FFFFFF;
+            --bg-canvas: #E2E8F0;
+            --text-main: #374151; /* Gray 700 */
+            --text-dark: #111827; /* Gray 900 */
+            --text-light: #F9FAFB; /* Gray 50 */
+            --border-light: #E5E7EB;
+            --shadow-hard: 10px 10px 0 rgba(190, 18, 60, 0.2);
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
+            --font-display: 'Montserrat', sans-serif;
+            --font-mono: 'Source Code Pro', monospace;
+        }
+
+        /* ==========================================================================
+           2. GLOBAL RESETS & BASE TYPOGRAPHY
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            font-family: var(--font-display);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-dark);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        /* ==========================================================================
+           3. MAIN PAGE CONTAINER & DIAGONAL BACKGROUND
+           ========================================================================== */
+        .page {
+            width: 794px; /* A4 Width */
+            min-height: 1122px; /* A4 Height */
+            background-color: var(--bg-page);
+            position: relative;
+            overflow: hidden; /* Needed ONLY for the background shape at top, print query fixes it */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            margin: 0 auto;
+        }
+
+        /* 3.1 The Creative Diagonal Cut Background */
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 320px;
+            background: linear-gradient(135deg, #111827 0%, var(--s) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 55%, 0 100%);
+            z-index: 0;
+        }
+
+        /* A secondary colored slash beneath the dark one */
+        .header-bg::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background-color: var(--p);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            z-index: -1;
+        }
+
+        /* Repeating geometric pattern overlay */
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.02) 0px,
+                rgba(255, 255, 255, 0.02) 2px,
+                transparent 2px,
+                transparent 8px
+            );
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           4. HEADER CONTENT (Foreground)
+           ========================================================================== */
+        .header-content {
+            position: relative;
+            z-index: 10;
+            padding: 50px 50px 20px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 4.1 Geometric Sharp Photo */
+        .photo-container {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo-wrapper {
+            width: 145px;
+            height: 145px;
+            background-color: var(--bg-page);
+            padding: 8px;
+            border: 3px solid var(--p);
+            border-radius: 8px; /* Sharp geometric square */
+            box-shadow: var(--shadow-hard);
+            transform: rotate(-3deg);
+            transition: transform 0.4s ease;
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* 4.2 Name & Title */
+        .name {
+            font-size: 46px;
+            font-weight: 900;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .job-title {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-light);
+            background-color: var(--p);
+            padding: 6px 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+            display: inline-block;
+            overflow-wrap: anywhere;
+        }
+
+        /* ==========================================================================
+           5. CONTACT ZONE BAR
+           ========================================================================== */
+        .contact-zone {
+            position: relative;
+            z-index: 5;
+            background-color: var(--bg-page);
+            margin: 20px 50px 10px 50px;
+            padding: 18px 25px;
+            border-top: 3px dashed var(--border-light);
+            border-bottom: 3px dashed var(--border-light);
+        }
+
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 15px 25px;
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            font-weight: 500;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--s) !important;
+        }
+
+        .contact-item span:first-child {
+            color: var(--p);
+            font-size: 16px;
+            background-color: rgba(190, 18, 60, 0.1);
+            padding: 4px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-item span:not(:first-child) {
+            color: var(--s) !important;
+            text-decoration: none !important;
+        }
+
+        /* ==========================================================================
+           6. MAIN BODY GRID SYSTEM
+           ========================================================================== */
+        .body-grid {
+            display: flex;
+            flex: 1;
+            padding: 30px 50px 50px 50px;
+            gap: 45px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .col-main {
+            width: 63%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .col-side {
+            width: 37%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* ==========================================================================
+           7. SECTION TITLES & STRUCTURAL ELEMENTS
+           ========================================================================== */
+        .section-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--s);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        /* Creative highlighter effect behind titles */
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            bottom: 2px;
+            width: calc(100% + 10px);
+            height: 12px;
+            background-color: rgba(190, 18, 60, 0.15); /* Crimson faint highlight */
+            z-index: -1;
+            transform: skewX(-15deg);
+        }
+
+        /* Paragraphs */
+        .summary-text, .about-text {
+            font-size: 14.5px;
+            line-height: 1.8;
+            text-align: justify;
+            color: var(--text-main);
+            font-weight: 400;
+            overflow-wrap: anywhere;
+        }
+
+        /* ==========================================================================
+           8. ENTRIES (EXPERIENCE, EDUCATION, PROJECTS)
+           ========================================================================== */
+        .section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .entry {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            page-break-inside: avoid;
+        }
+
+        /* Hard geometric line next to entries */
+        .entry::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--border-light);
+        }
+        
+        .entry:hover::before {
+            background-color: var(--p);
+        }
+
+        .entry-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .entry-sub-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .entry-badge {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--p);
+            text-transform: uppercase;
+        }
+
+        .entry-date {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            font-weight: 600;
+            background-color: var(--s);
+            color: var(--text-light);
+            padding: 4px 10px;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .entry-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-main);
+            text-align: justify;
+            margin-top: 4px;
+        }
+
+        .entry-desc ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .entry-desc li {
+            margin-bottom: 5px;
+        }
+        
+        .entry-desc li::marker {
+            color: var(--p);
+            content: "■ "; /* Square geometric bullet */
+        }
+
+        /* ==========================================================================
+           9. SKILLS & METADATA
+           ========================================================================== */
+        
+        /* Using Progress Bars for this creative layout */
+        .skills-container, .languages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .skill-level {
+            font-size: 11px;
+            color: var(--p);
+        }
+
+        .skill-track {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border-light);
+            border-radius: 0; /* Brutalist sharp */
+            position: relative;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background-color: var(--s);
+            /* Striped pattern inside progress bar */
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+        }
+
+        /* Hide overlapping skill chips to prevent doubling */
+        .skills-container .chip, .languages-container .chip {
+            display: none !important;
+        }
+
+        /* Reference block styling */
+        .references-container .entry {
+            background-color: #F8FAFC;
+            padding: 15px 20px;
+            border-left: 4px solid var(--p);
+        }
+
+        .ref-item {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            margin-top: 5px;
+            color: var(--text-main);
+        }
+
+        /* ==========================================================================
+           10. EMPTY STATE AUTO-HIDE LOGIC
+           ========================================================================== */
+        .photo-container:has(> .photo-wrapper:empty),
+        .photo-container:has(> .photo-wrapper > .photo[src=""]),
+        .photo-container:has(> .photo-wrapper > .photo:not([src])) { 
+            display: none !important; 
+            margin: 0 !important; 
+            padding: 0 !important; 
+        }
+
+        .name:empty, 
+        .job-title:empty, 
+        .summary-text:empty { 
+            display: none !important; 
+            margin: 0 !important; 
+            padding: 0 !important; 
+        }
+
+        .section-block:has(> .section-content:empty),
+        .section-block:has(> .skills-container:empty),
+        .section-block:has(> .languages-container:empty),
+        .section-block:has(> .summary-text:empty) {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .contact-zone:has(> .contact-list:empty) {
+            display: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        /* ==========================================================================
+           11. PRINT / PDF EXPORT QUERIES
+           ========================================================================== */
+        @media print {
+            body { 
+                background: transparent; 
+                margin: 0; 
+                padding: 0; 
+            }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                overflow: visible !important; /* Extremely critical for 2nd page generation */
+                height: auto;
+                min-height: 1122px;
+                page-break-inside: auto;
+            }
+            .header-bg { 
+                position: absolute; /* Keep it behind text */
+                top: 0;
+            }
+            .entry { 
+                page-break-inside: avoid; 
+            }
+            * { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+                color-adjust: exact !important; 
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <!-- Decorative Header Background -->
+        <div class="header-bg"></div>
+
+        <!-- Header Content -->
+        <div class="header-content">
+            
+            <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+                <div class="photo-wrapper">
+                    <img class="photo" src="{{PHOTO}}" alt="Creative Profile Photograph"/>
+                </div>
+            </div>
+            
+            <div class="name">{{FULL_NAME}}</div>
+            <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
+        </div>
+
+        <!-- Contact Strip -->
+        <div class="contact-zone">
+            <div class="contact-list">
+                {{CONTACT_ITEMS}}
+            </div>
+        </div>
+
+        <!-- Main Body Grid -->
+        <div class="body-grid">
+            
+            <!-- Main Column (Left) -->
+            <div class="col-main">
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+                    <div class="summary-text">{{SUMMARY}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+                    <div class="section-content">
+                        {{EXPERIENCE}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EDUCATION|Educational Background}}</div>
+                    <div class="section-content">
+                        {{EDUCATION}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROJECTS|Key Projects}}</div>
+                    <div class="section-content">
+                        {{PROJECTS}}
+                    </div>
+                </div>
+
+            </div> <!-- End Main Column -->
+
+            <!-- Side Column (Right) -->
+            <div class="col-side">
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_SKILLS|Core Expertise}}</div>
+                    <div class="skills-container">
+                        {{SKILLS}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+                    <div class="skills-container">
+                        {{LANGUAGES}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+                    <div class="section-content">
+                        {{CERTIFICATES}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+                    <div class="section-content">
+                        {{ACTIVITIES}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
+                    <div class="section-content">
+                        {{INTERESTS}}
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+                    <div class="section-content references-container">
+                        {{REFERENCES}}
+                    </div>
+                </div>
+
+            </div> <!-- End Side Column -->
+
+        </div> <!-- End Body Grid -->
+
+    </div> <!-- End Page Container -->
+
+</body>
+</html>
