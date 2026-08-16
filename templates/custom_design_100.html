@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plumber Copper Pipe</title>
+    <title>Symphony Conductor Grand Score</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
            1. CSS VARIABLES
            ========================================================================== */
         :root {
-            /* Palette: Copper & Water */
-            --bg-page: #F4F7F6; /* Clean Industrial White */
-            --bg-sidebar: #1E3F66; /* Blueprint Blue */
+            /* Palette: Classical Symphony */
+            --bg-page: #FDFDFD; /* Sheet Music White */
+            --bg-sidebar: #F5F5F0; /* Slightly Antiqued */
             --bg-panel: #FFFFFF;
             
-            --primary-color: #B87333; /* Copper Pipe */
-            --secondary-color: #00BFFF; /* Pure Water Blue */
-            --accent-color: #708090; /* Steel Grey */
+            --primary-color: #111111; /* Staff Black / Tuxedo */
+            --secondary-color: #D4AF37; /* Orchestral Gold */
+            --accent-color: #8B0000; /* Velvet Red Curtain */
             
-            --text-main: #333333; /* Dark Grey */
-            --text-dark: #111111; /* Almost Black */
-            --text-light: #F4F7F6; /* Light text for blueprint */
+            --text-main: #333333; /* Dark Grey for legibility */
+            --text-dark: #000000; /* Pitch Black */
+            --text-light: #FDFDFD; /* White */
             
             /* Typography */
-            --font-head: 'Oswald', sans-serif; /* Strong, industrial */
-            --font-body: 'Roboto', sans-serif; /* Clean, modern */
+            --font-head: 'Cinzel Decorative', serif; /* Majestic, formal */
+            --font-body: 'EB Garamond', serif; /* Classic serif */
             
             /* Dimensions */
             --page-width: 794px;
@@ -51,11 +51,11 @@
         }
 
         body {
-            background-color: #D3D3D3;
+            background-color: #E8E8E8;
             font-family: var(--font-body);
             color: var(--text-main);
             line-height: 1.6;
-            font-size: 13px;
+            font-size: 14.5px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             -webkit-print-color-adjust: exact;
@@ -65,7 +65,7 @@
 
         ::selection {
             background-color: var(--secondary-color);
-            color: #FFF;
+            color: #000;
         }
 
         a {
@@ -85,159 +85,196 @@
             min-height: var(--page-min-height) !important;
             background-color: var(--bg-page);
             position: relative;
-            overflow: visible;
+            overflow: hidden;
             margin: 0 auto;
             display: flex;
-            flex-direction: row;
-            box-shadow: 0 10px 40px rgba(30, 63, 102, 0.2);
-            /* Blueprint Grid Pattern */
-            background-image: 
-                linear-gradient(rgba(30, 63, 102, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 63, 102, 0.05) 1px, transparent 1px),
-                linear-gradient(rgba(30, 63, 102, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 63, 102, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid #E0E0E0;
         }
 
-        /* Copper pipe border wrap */
+        /* Grand Gold/Red Header Banner */
         .page::before {
             content: '';
             position: absolute;
-            top: 5px; left: 5px; right: 5px; bottom: 5px;
-            border: 4px solid var(--primary-color);
-            border-radius: 8px; /* Curved pipe corners */
-            pointer-events: none;
+            top: 0; left: 0; right: 0;
+            height: 18px;
+            background: linear-gradient(180deg, var(--accent-color) 0%, var(--accent-color) 12px, var(--secondary-color) 12px, var(--secondary-color) 18px);
             z-index: 10;
-            /* Copper gradient effect for border */
-            border-image: linear-gradient(45deg, #A0522D, #CD7F32, #E6C280, #CD7F32, #A0522D) 1;
-            border-radius: 0; /* Reset for border-image compatibility */
         }
-        
-        /* Inner shadow for depth */
+
+        /* 5-Line Staff Background Watermark */
+        .page::after {
+            content: '';
+            position: absolute;
+            top: 150px; left: 0; right: 0; bottom: 0;
+            background-image: repeating-linear-gradient(
+                180deg,
+                transparent 0,
+                transparent 150px,
+                rgba(0,0,0,0.03) 150px,
+                rgba(0,0,0,0.03) 151px,
+                transparent 151px,
+                transparent 160px,
+                rgba(0,0,0,0.03) 160px,
+                rgba(0,0,0,0.03) 161px,
+                transparent 161px,
+                transparent 170px,
+                rgba(0,0,0,0.03) 170px,
+                rgba(0,0,0,0.03) 171px,
+                transparent 171px,
+                transparent 180px,
+                rgba(0,0,0,0.03) 180px,
+                rgba(0,0,0,0.03) 181px,
+                transparent 181px,
+                transparent 190px,
+                rgba(0,0,0,0.03) 190px,
+                rgba(0,0,0,0.03) 191px,
+                transparent 191px,
+                transparent 250px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .page-inner {
             width: 100%;
             height: 100%;
             display: flex;
-            flex-direction: row;
-            position: relative;
-            z-index: 1;
-            padding: 9px; /* Space for copper border */
-        }
-
-        /* ==========================================================================
-           4. COLUMN LAYOUT
-           ========================================================================== */
-        /* Left Sidebar (33%) */
-        .col-side {
-            width: 33%;
-            background-color: var(--bg-sidebar);
-            padding: 35px 25px;
-            display: flex;
             flex-direction: column;
-            gap: 25px;
             position: relative;
-            z-index: 2;
-            /* Water drip effect background */
-            background-image: linear-gradient(180deg, transparent 0%, rgba(0, 191, 255, 0.1) 100%);
-            border-right: 4px solid var(--primary-color);
-            /* Make border look like copper pipe */
-            border-image: linear-gradient(to bottom, #A0522D, #E6C280, #CD7F32) 1 100%;
-        }
-
-        /* Right Main Content (67%) */
-        .col-main {
-            width: 67%;
-            padding: 35px 35px;
-            display: flex;
-            flex-direction: column;
-            gap: 22px;
             z-index: 1;
         }
 
         /* ==========================================================================
-           5. HEADER AREA (INSIDE LEFT SIDEBAR)
+           4. LAYOUT
            ========================================================================== */
-        .header-area {
+        /* Center-Aligned Header */
+        .header-top {
+            width: 100%;
+            padding: 50px 50px 30px 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-bottom: 5px;
-        }
-
-        /* Photo */
-        .photo-container {
-            margin-bottom: 20px;
             position: relative;
-        }
-
-        /* Pipe Joint/Valve Frame */
-        .photo-wrapper {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #CD7F32, #E6C280, #8B4513); /* Copper pipe */
-            padding: 6px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            z-index: 2;
+            background-color: var(--bg-page);
         }
         
-        /* Valve wheel accents */
-        .photo-wrapper::before, .photo-wrapper::after {
+        /* Ornate dividing line */
+        .header-top::after {
             content: '';
             position: absolute;
-            background: #8B4513;
-            z-index: 0;
+            bottom: 0; left: 10%; right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
         }
-        .photo-wrapper::before { top: -10px; left: 50%; transform: translateX(-50%); width: 20px; height: 10px; }
-        .photo-wrapper::after { bottom: -10px; left: 50%; transform: translateX(-50%); width: 20px; height: 10px; }
+
+        /* Split layout below header */
+        .content-area {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            position: relative;
+        }
+
+        /* Left Main Content (65%) */
+        .col-main {
+            width: 65%;
+            padding: 35px 35px 40px 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Right Sidebar (35%) */
+        .col-side {
+            width: 35%;
+            background-color: var(--bg-sidebar);
+            padding: 35px 40px 40px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            border-left: 1px double #CCC;
+        }
+
+        /* ==========================================================================
+           5. HEADER AREA
+           ========================================================================== */
+        /* Photo */
+        .photo-container {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        /* Cameo / Oval Frame */
+        .photo-wrapper {
+            width: 150px;
+            height: 180px;
+            background-color: var(--bg-sidebar);
+            padding: 5px;
+            position: relative;
+            border-radius: 50% / 40%;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Laurel Wreath Effect (Simplified via dual border) */
+        .photo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: -6px; right: -6px; bottom: -6px;
+            border-radius: 50% / 40%;
+            border: 1px solid var(--secondary-color);
+            opacity: 0.5;
+        }
 
         .photo-inner {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: 50% / 40%;
             overflow: hidden;
-            background-color: var(--bg-sidebar);
-            border: 3px solid var(--text-dark);
-            position: relative;
-            z-index: 2;
+            background-color: var(--bg-page);
         }
 
         .photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: contrast(1.1) grayscale(10%);
+            /* Classic portrait style */
+            filter: contrast(1.1) grayscale(20%);
         }
 
         /* Identity Info */
         .name {
             font-family: var(--font-head);
-            font-size: 32px;
+            font-size: 48px;
             font-weight: 700;
-            color: var(--text-light);
-            line-height: 1.1;
-            margin-bottom: 5px;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .job-title {
-            font-family: var(--font-head);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--secondary-color);
+            font-family: var(--font-body);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent-color);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            background-color: rgba(0, 191, 255, 0.1);
-            padding: 2px 10px;
-            border: 1px solid var(--secondary-color);
-            border-radius: 2px;
+            letter-spacing: 4px;
+            font-style: italic;
+        }
+        
+        .job-title::before, .job-title::after {
+            content: ' ~ ';
+            color: var(--secondary-color);
         }
 
         /* ==========================================================================
-           6. SIDEBAR SECTIONS
+           6. RIGHT SIDEBAR SECTIONS
            ========================================================================== */
         .sidebar-section {
             display: flex;
@@ -248,35 +285,34 @@
 
         .sidebar-title {
             font-family: var(--font-head);
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
             width: 100%;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
             padding-bottom: 5px;
-            display: flex;
-            align-items: center;
         }
         
-        /* Wrench icon placeholder */
+        /* Treble Clef hint */
         .sidebar-title::before {
-            content: '🔧'; /* Simple wrench */
+            content: '𝄞';
+            font-size: 22px;
+            color: var(--accent-color);
             margin-right: 8px;
-            color: var(--secondary-color);
-            font-size: 14px;
+            font-family: 'Times New Roman', serif; /* fallback for clef */
         }
 
         .contact-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 400;
             width: 100%;
-            color: var(--text-light);
+            color: var(--text-main);
         }
 
         .contact-item {
@@ -288,33 +324,38 @@
         }
 
         .contact-item span:first-child {
-            color: var(--secondary-color);
+            color: var(--accent-color);
             font-size: 11px;
             font-family: var(--font-head);
             text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
         /* Sidebar Tags */
         .col-side .tag-row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
             gap: 6px;
         }
 
         .col-side .chip {
-            background-color: rgba(184, 115, 51, 0.2);
-            color: var(--text-light);
-            padding: 3px 10px;
-            font-size: 11px;
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 2px 0;
+            font-size: 13.5px;
             font-weight: 500;
             font-family: var(--font-body);
-            border-left: 2px solid var(--primary-color);
+            border-bottom: 1px dotted var(--secondary-color);
+        }
+        
+        .col-side .chip:not(:last-child)::after {
+            content: ' • ';
+            color: var(--accent-color);
+            margin-left: 6px;
         }
 
-        /* Sidebar Skills Bars - Water Level Style */
+        /* Sidebar Skills Bars - Tempo indicator style */
         .skills-container, .languages-container {
             display: flex;
             flex-direction: column;
@@ -332,29 +373,33 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            font-family: var(--font-head);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-transform: capitalize;
         }
 
         .skill-track {
             width: 100%;
-            height: 10px;
-            background-color: rgba(0,0,0,0.3);
-            border: 1px solid var(--accent-color);
+            height: 2px;
+            background-color: #CCC;
             position: relative;
-            /* PVC pipe look */
-            border-radius: 5px;
         }
 
         .skill-fill {
             height: 100%;
-            background: linear-gradient(to right, #0077B6, var(--secondary-color)); /* Water flowing */
-            border-radius: 4px;
+            background-color: var(--primary-color);
             position: relative;
+        }
+        
+        /* Baton node */
+        .skill-fill::after {
+            content: '𝅘𝅥𝅮';
+            position: absolute;
+            right: -5px; top: -12px;
+            font-size: 16px;
+            color: var(--accent-color);
         }
 
         /* ==========================================================================
@@ -363,58 +408,54 @@
         .section-block {
             display: flex;
             flex-direction: column;
-            background-color: var(--bg-panel);
-            padding: 20px;
-            border: 2px solid var(--primary-color);
-            box-shadow: 4px 4px 0px rgba(184, 115, 51, 0.2); /* Solid industrial shadow */
+            background-color: transparent;
             position: relative;
         }
-        
-        /* Corner pipe fittings */
-        .section-block::before, .section-block::after {
-            content: '';
-            position: absolute;
-            width: 12px; height: 12px;
-            background: var(--primary-color);
-            border: 1px solid #8B4513;
-            border-radius: 50%;
-        }
-        .section-block::before { top: -6px; left: -6px; }
-        .section-block::after { bottom: -6px; right: -6px; }
 
         .section-title {
             font-family: var(--font-head);
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
-            color: var(--bg-sidebar);
+            color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
         .section-title::after {
             content: '';
             flex: 1;
-            height: 4px;
-            background-color: var(--secondary-color); /* Water line */
+            height: 3px;
+            border-top: 1px solid var(--secondary-color);
+            border-bottom: 1px solid var(--secondary-color);
         }
 
         .summary-text {
-            font-size: 13.5px;
-            line-height: 1.7;
+            font-size: 15px;
+            line-height: 1.8;
             text-align: justify;
             color: var(--text-main);
             white-space: pre-line;
             font-weight: 400;
+            /* Drop cap for summary */
+        }
+        
+        .summary-text::first-letter {
+            font-family: var(--font-head);
+            font-size: 40px;
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+            color: var(--accent-color);
         }
 
         .section-content {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         /* ==========================================================================
@@ -432,10 +473,8 @@
         .entry-title {
             font-family: var(--font-head);
             font-size: 18px;
-            font-weight: 600;
-            color: var(--bg-sidebar);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         .entry-sub-row {
@@ -449,46 +488,47 @@
 
         .entry-badge {
             font-family: var(--font-body);
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent-color);
+            font-style: italic;
         }
 
         .entry-date {
-            font-family: var(--font-head);
-            font-size: 12px;
+            font-family: var(--font-body);
+            font-size: 13.5px;
             font-weight: 500;
-            color: var(--text-light);
-            background-color: var(--accent-color); /* Steel grey */
-            padding: 2px 8px;
-            border-radius: 2px;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
         }
 
         .entry-desc {
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: 14.5px;
+            line-height: 1.7;
             text-align: justify;
             color: var(--text-main);
             white-space: pre-line;
         }
 
         .entry-desc ul {
-            padding-left: 20px;
+            padding-left: 15px;
             margin-top: 6px;
         }
 
         .entry-desc li {
             margin-bottom: 4px;
             position: relative;
+            list-style-type: none;
         }
 
-        /* Drop bullet */
+        /* Musical Note bullet */
         .entry-desc li::before {
             color: var(--secondary-color);
-            content: "💧";
+            content: "♪";
             position: absolute;
-            left: -20px;
-            font-size: 12px;
+            left: -15px;
+            font-size: 14px;
+            top: 0px;
         }
 
         /* ==========================================================================
@@ -501,35 +541,37 @@
         }
 
         .col-main .chip {
-            background-color: rgba(0, 191, 255, 0.1);
-            color: var(--bg-sidebar);
+            background-color: var(--bg-page);
+            color: var(--primary-color);
             padding: 4px 12px;
-            font-size: 12px;
-            font-weight: 700;
-            font-family: var(--font-head);
+            font-size: 13.5px;
+            font-weight: 500;
+            font-family: var(--font-body);
             border: 1px solid var(--secondary-color);
-            text-transform: uppercase;
+            border-radius: 20px;
         }
 
         /* ==========================================================================
            10. COMPONENT: REFERENCES
            ========================================================================== */
         .references-container .entry {
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 15px;
-            background-color: rgba(30, 63, 102, 0.05);
-            padding: 10px 15px;
+            text-align: center;
+            border-top: 1px solid #CCC;
+            padding-top: 15px;
+            margin-top: 5px;
         }
 
         .ref-item {
-            font-size: 13px;
+            font-size: 14.5px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             margin-top: 5px;
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--accent-color);
             font-family: var(--font-body);
+            font-style: italic;
         }
 
         /* ==========================================================================
@@ -561,9 +603,17 @@
             display: none !important;
             margin: 0 !important;
             padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            background-color: transparent !important;
         }
 
-        .header-area:has(> .name:empty):has(> .job-title:empty):has(> .photo-container:empty) {
+        .header-top:has(> .name:empty):has(> .job-title:empty):has(> .photo-container:empty) {
+            display: none !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+        .header-top:has(> .name:empty):has(> .job-title:empty):has(> .photo-container:empty)::after {
             display: none !important;
         }
 
@@ -579,11 +629,11 @@
                 height: auto; 
                 overflow: visible !important; 
                 page-break-after: auto; 
-                background-image: none; /* Hide grid on print */
+                background: #FDFDFD;
+                border: none;
             }
-            .page::before { display: none; } /* Hide outer pipe border to save ink */
-            .page-inner { padding: 0; }
-            .col-main, .col-side { page-break-inside: auto; }
+            .page::after { opacity: 0.5; } /* lighten staff for print */
+            .col-main, .col-side, .content-area { page-break-inside: auto; }
             .entry, .section-block, .sidebar-section { page-break-inside: avoid; }
             h1, h2, h3, h4, h5, h6, .section-title, .sidebar-title { page-break-after: avoid; }
             @page { size: A4 portrait; margin: 0; }
@@ -597,35 +647,76 @@
 </head>
 <body>
     <div class="page">
-        <div class="page-inner">
+        
+        <!-- TOP HEADER AREA -->
+        <div class="header-top">
             
-            <!-- LEFT SIDEBAR (33%) -->
-            <div class="col-side">
-                <div class="header-area">
-                    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
-                        <div class="photo-wrapper">
-                            <div class="photo-inner">
-                                <img class="photo" src="{{PHOTO}}" alt="Profile"/>
-                            </div>
-                        </div>
+            <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+                <div class="photo-wrapper">
+                    <div class="photo-inner">
+                        <img class="photo" src="{{PHOTO}}" alt="Profile"/>
                     </div>
-                    
-                    <h1 class="name">{{FULL_NAME}}</h1>
-                    <h2 class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</h2>
+                </div>
+            </div>
+            
+            <h1 class="name">{{FULL_NAME}}</h1>
+            <h2 class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</h2>
+            
+        </div>
+
+        <!-- SPLIT CONTENT AREA -->
+        <div class="content-area">
+            
+            <!-- LEFT MAIN CONTENT (65%) -->
+            <div class="col-main">
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROFILE|Overture}}</div>
+                    <div class="summary-text">{{SUMMARY}}</div>
                 </div>
 
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EXPERIENCE|Repertoire}}</div>
+                    <div class="section-content">{{EXPERIENCE}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROJECTS|Performances}}</div>
+                    <div class="section-content">{{PROJECTS}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EDUCATION|Conservatory}}</div>
+                    <div class="section-content">{{EDUCATION}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_CERTIFICATES|Masterclasses}}</div>
+                    <div class="section-content">{{CERTIFICATES}}</div>
+                </div>
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_REFERENCES|Maestros}}</div>
+                    <div class="section-content references-container">{{REFERENCES}}</div>
+                </div>
+
+            </div> <!-- END MAIN COL -->
+
+            <!-- RIGHT SIDEBAR (35%) -->
+            <div class="col-side">
+                
                 <div class="sidebar-section">
-                    <div class="sidebar-title">{{HEADING_CONTACT|Dispatch}}</div>
+                    <div class="sidebar-title">{{HEADING_CONTACT|Booking}}</div>
                     <div class="contact-list">{{CONTACT_ITEMS}}</div>
                 </div>
 
                 <div class="sidebar-section">
-                    <div class="sidebar-title">{{HEADING_SOCIAL|Network}}</div>
+                    <div class="sidebar-title">{{HEADING_SOCIAL|Press}}</div>
                     <div class="contact-list">{{SOCIAL}}</div>
                 </div>
-
+                
                 <div class="sidebar-section">
-                    <div class="sidebar-title">{{HEADING_SKILLS|Techniques}}</div>
+                    <div class="sidebar-title">{{HEADING_SKILLS|Technique}}</div>
                     <div class="skills-container">{{SKILLS}}</div>
                 </div>
 
@@ -640,47 +731,13 @@
                 </div>
                 
                 <div class="sidebar-section">
-                    <div class="sidebar-title">{{HEADING_ACTIVITIES|Guilds}}</div>
+                    <div class="sidebar-title">{{HEADING_ACTIVITIES|Ensembles}}</div>
                     <div class="section-content">{{ACTIVITIES}}</div>
                 </div>
-            </div>
 
-            <!-- RIGHT MAIN CONTENT (67%) -->
-            <div class="col-main">
-                
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
-                    <div class="summary-text">{{SUMMARY}}</div>
-                </div>
+            </div> <!-- END SIDEBAR -->
 
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_EXPERIENCE|Field Work}}</div>
-                    <div class="section-content">{{EXPERIENCE}}</div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_PROJECTS|Installations}}</div>
-                    <div class="section-content">{{PROJECTS}}</div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_EDUCATION|Training}}</div>
-                    <div class="section-content">{{EDUCATION}}</div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_CERTIFICATES|Licenses}}</div>
-                    <div class="section-content">{{CERTIFICATES}}</div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_REFERENCES|Contractors}}</div>
-                    <div class="section-content references-container">{{REFERENCES}}</div>
-                </div>
-
-            </div> <!-- END MAIN COL -->
-            
-        </div> <!-- END PAGE INNER -->
+        </div> <!-- END CONTENT AREA -->
     </div> <!-- END PAGE -->
 </body>
 </html>
