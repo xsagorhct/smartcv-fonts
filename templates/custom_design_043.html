@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Infographic Skill Bars Sidebar - Sidebar Modern</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - INFOGRAPHIC SKILL BARS SIDEBAR
+   Theme: Sidebar Modern (Template 189)
+   Style: Heavy skill progress bars, segmented language bars, icon contact
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  --bg-page: #FFFFFF;
+  --bg-sidebar: #1E293B; /* Deep Slate */
+  
+  --accent-cyan: #06B6D4; /* Primary Infographic Color */
+  --accent-amber: #F59E0B; /* Secondary Infographic Color */
+  
+  --text-main: #334155;
+  --text-muted: #64748B;
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-base: 'Rubik', sans-serif; /* Friendly geometric */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: #E2E8F0;
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background-color: var(--bg-page);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   COLUMNS (SIDEBAR + MAIN)
+   ========================================================================== */
+.col-side {
+  width: 36%;
+  background-color: var(--bg-sidebar);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 30px;
+}
+
+.col-main {
+  width: 64%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+/* ==========================================================================
+   HEADER ZONE (INSIDE SIDEBAR)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.photo-container {
+  width: 130px;
+  height: 130px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-cyan);
+  padding: 4px;
+  background-color: var(--bg-sidebar);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  overflow-wrap: anywhere;
+}
+
+/* Infographic Contact Panel */
+.contact-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 14px;
+  font-size: 11px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-cyan);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.8) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: #FFFFFF !important;
+  font-weight: 500;
+}
+
+/* Large Icon Style */
+.contact-item svg {
+  fill: var(--accent-cyan) !important;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.col-side .section-block { margin-bottom: 35px; }
+
+/* MAIN COLUMN TITLES */
+.col-main .section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.col-main .section-title::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 4px;
+  background-color: var(--accent-cyan);
+  border-radius: 2px;
+}
+
+/* SIDE COLUMN TITLES */
+.col-side .section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.col-side .section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: rgba(255,255,255,0.15);
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+/* Infographic Date Badge */
+.entry-date {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--bg-sidebar);
+  text-align: right;
+  min-width: 90px;
+  background-color: #F1F5F9;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border-left: 3px solid var(--accent-cyan);
+  overflow-wrap: anywhere;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.entry-badge {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 4px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.7;
+  font-weight: 400;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   INFOGRAPHIC SKILLS & LANGUAGES GRID (Inside Sidebar)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  display: none;
+}
+
+/* Heavy Skill Progress Bar */
+.skill-track {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skills-container .skill-fill {
+  height: 100%;
+  background-color: var(--accent-cyan);
+  border-radius: 10px;
+}
+
+/* Differentiated Language Bar - Segmented Pattern */
+.languages-container .skill-fill {
+  height: 100%;
+  background-color: var(--accent-amber);
+  border-radius: 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests - Inside Sidebar)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  font-size: 10.5px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.col-side .ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-amber);
+}
+
+.col-side .ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.7);
+}
+
+.col-side .ref-text {
+  font-weight: 700;
+  font-size: 13px;
+  color: #FFFFFF;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       SIDE COLUMN (INFOGRAPHIC BARS & ICONS)
+       ========================================== -->
+  <aside class="col-side">
+    <header class="header-zone">
+      <!-- Photo -->
+      <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+        <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+      </div>
+      
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+      
+      <div class="contact-zone">
+        {{CONTACT_ITEMS}}
+      </div>
+    </header>
+    
+    <!-- Skills -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </div>
+    
+    <!-- Languages -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </div>
+
+    <!-- Hobbies / Interests -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+      <div class="tag-row">{{HOBBIES}}</div>
+    </div>
+    
+    <!-- Social Links -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+      <div class="section-content">{{SOCIAL}}</div>
+    </div>
+    
+    <!-- References -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="references-grid">{{REFERENCES}}</div>
+    </div>
+  </aside>
+  
+  <!-- ==========================================
+       MAIN COLUMN
+       ========================================== -->
+  <main class="col-main">
+    <!-- Profile / Summary -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </div>
+    
+    <!-- Experience -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+      <div class="section-content">{{EXPERIENCE}}</div>
+    </div>
+    
+    <!-- Education -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+      <div class="section-content">{{EDUCATION}}</div>
+    </div>
+    
+    <!-- Projects -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+      <div class="section-content">{{PROJECTS}}</div>
+    </div>
+
+    <!-- Certificates -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content">{{CERTIFICATES}}</div>
+    </div>
+
+    <!-- Activities -->
+    <div class="section-block">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content">{{ACTIVITIES}}</div>
+    </div>
+  </main>
+
+</div>
+</body>
+</html>
