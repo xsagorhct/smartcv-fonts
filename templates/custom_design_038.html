@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gradient Mesh Aurora Header - Modern</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - GRADIENT MESH AURORA HEADER
+   Theme: Modern (Template 137)
+   Style: Aurora gradient top, white body, subtle mesh noise background
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette - Aurora */
+  --aurora-1: #4facfe; /* Blue */
+  --aurora-2: #00f2fe; /* Cyan */
+  --aurora-3: #ff0844; /* Pink/Red */
+  --aurora-4: #ffb199; /* Peach */
+  
+  --bg-page: #FFFFFF; /* Pure White Body */
+  
+  --text-main: #334155; /* Slate text for body */
+  --text-muted: #64748B; 
+  --text-header: #FFFFFF;
+  
+  --border-light: #E2E8F0;
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #E2E8F0; /* Outer background */
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 11.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+}
+
+/* Subtle mesh noise background on the white body */
+.page::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 100; /* overlay noise */
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .page::after { display: none; } /* Remove noise on print to save ink/render time */
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   HEADER ZONE (AURORA MESH)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 50px 60px 40px 60px;
+  color: var(--text-header);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+  /* Base fallback gradient */
+  background: linear-gradient(135deg, var(--aurora-1) 0%, var(--aurora-3) 100%);
+}
+
+/* Creating the Aurora Mesh effect with overlapping blurry blobs */
+.header-zone::before, .header-zone::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+  opacity: 0.8;
+}
+.header-zone::before {
+  top: -50px; left: -50px;
+  width: 300px; height: 300px;
+  background: var(--aurora-2);
+}
+.header-zone::after {
+  bottom: -100px; right: -50px;
+  width: 400px; height: 200px;
+  background: var(--aurora-4);
+}
+
+.header-content {
+  position: relative;
+  z-index: 2; /* Above the aurora blobs */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Photo Treatment - Minimal Float */
+.photo-container {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-header);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 24px;
+  font-size: 11.5px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 12px 25px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.85) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-header) !important;
+  font-weight: 500;
+}
+
+.contact-item svg {
+  fill: var(--text-header) !important;
+  width: 13px;
+  height: 13px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   CONTENT LAYOUT (2 COLUMNS)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 0;
+  padding: 0 45px 40px 45px;
+  gap: 40px;
+  position: relative;
+  z-index: 2; /* Below noise overlay but above background */
+}
+
+.col-main {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.col-side {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--aurora-1); /* Use one of the aurora colors for accents */
+  background: linear-gradient(90deg, var(--aurora-1), var(--aurora-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin-bottom: 2px;
+  border-bottom: 2px solid var(--border-light);
+  padding-bottom: 6px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: right;
+  min-width: 120px;
+  overflow-wrap: anywhere;
+  padding-left: 10px;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 1px;
+}
+
+.entry-badge {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--aurora-1);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 4px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID (Right Column)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Gradient Track */
+.skill-track {
+  width: 100%;
+  height: 6px;
+  background-color: var(--border-light);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--aurora-1), var(--aurora-2));
+  border-radius: 3px;
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  overflow-wrap: anywhere;
+  border-radius: 15px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ref-icon {
+  fill: var(--aurora-1) !important;
+  width: 12px;
+  height: 12px;
+}
+
+.ref-text {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (AURORA MESH)
+       ========================================== -->
+  <header class="header-zone">
+    <div class="header-content">
+      <!-- Photo -->
+      <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+        <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+      </div>
+      
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+      
+      <div class="contact-zone">
+        {{CONTACT_ITEMS}}
+      </div>
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (2 COLUMNS)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- MAIN COLUMN -->
+    <div class="col-main">
+      <!-- Profile / Summary -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <!-- Experience -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+    </div>
+    
+    <!-- SIDE COLUMN -->
+    <aside class="col-side">
+      <!-- Skills -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+
+      <!-- Activities -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
+
+      <!-- Hobbies / Interests -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+      
+      <!-- References -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="references-grid">{{REFERENCES}}</div>
+      </div>
+    </aside>
+    
+  </main>
+</div>
+</body>
+</html>
