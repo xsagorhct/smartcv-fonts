@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automotive Steel Gradient Central</title>
+    <title>Cyberpunk Hacker Glitch Theme</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
            1. CSS VARIABLES
            ========================================================================== */
         :root {
-            /* Palette: Automotive Steel & Red Accent */
-            --primary-color: #1A1F24; /* Carbon Black */
-            --secondary-color: #E63946; /* Racing Red */
-            --bg-page: #F5F6F8; /* Light Steel */
-            --bg-metal: linear-gradient(135deg, #2B323A 0%, #1A1F24 100%);
-            --bg-silver: linear-gradient(to bottom, #EAEAEA, #D5D5D5);
+            /* Palette: Cyberpunk Neon */
+            --primary-color: #0A0A0A; /* Void Black */
+            --secondary-color: #FCEE09; /* Cyber Yellow */
+            --accent-cyan: #00F0FF; /* Neon Cyan */
+            --accent-pink: #FF003C; /* Neon Magenta/Red */
             
-            --text-main: #333333;
-            --text-dark: #111111;
-            --text-light: #F5F6F8;
+            --bg-page: #0D0D11; /* Dark Grey/Blue */
+            --bg-panel: #141419; /* Slightly lighter panel */
             
-            --border-light: #B0B5B9;
-            --border-dark: #1A1F24;
+            --text-main: #D1D1D1;
+            --text-dark: #000000;
+            --text-bright: #FFFFFF;
+            
+            --border-neon: #00F0FF;
             
             /* Typography */
-            --font-head: 'Oswald', sans-serif; /* Tall, aggressive */
-            --font-body: 'Chakra Petch', sans-serif; /* Tech/Industrial */
+            --font-head: 'Rajdhani', sans-serif; /* High tech, squared */
+            --font-body: 'Rajdhani', sans-serif;
+            --font-mono: 'VT323', monospace; /* Glitchy terminal text */
             
             /* Dimensions */
             --page-width: 794px;
@@ -52,11 +54,11 @@
         }
 
         body {
-            background-color: #A0AAB2;
+            background-color: #2D2D36;
             font-family: var(--font-body);
             color: var(--text-main);
             line-height: 1.5;
-            font-size: 11px;
+            font-size: 12px; /* Rajdhani runs a bit small */
             -webkit-font-smoothing: antialiased;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
@@ -64,7 +66,7 @@
         }
 
         ::selection {
-            background-color: var(--secondary-color);
+            background-color: var(--accent-pink);
             color: #FFFFFF;
         }
 
@@ -74,11 +76,11 @@
         }
         
         ul {
-            padding-left: 1.2rem;
+            padding-left: 1.4rem;
         }
 
         /* ==========================================================================
-           3. MAIN PAGE CONTAINER
+           3. MAIN PAGE CONTAINER (CYBER GRID BACKGROUND)
            ========================================================================== */
         .page {
             width: var(--page-width);
@@ -89,205 +91,127 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-left: 15px solid var(--primary-color);
-            border-right: 15px solid var(--primary-color);
+            box-shadow: 0 10px 40px rgba(0,240,255,0.2);
+            border: 4px solid var(--accent-cyan);
+            border-right: 8px solid var(--accent-pink);
+            border-bottom: 8px solid var(--secondary-color);
+            
+            /* Subtle Hex/Grid Background */
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Decorative Glitch Block Top Right */
+        .page::before {
+            content: 'SYS_ERROR 0x00F0FF';
+            position: absolute;
+            top: -4px;
+            right: 40px;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            font-family: var(--font-mono);
+            padding: 2px 10px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 10;
         }
 
         /* ==========================================================================
-           4. TOP HEADER (METAL GRADIENT)
+           4. TOP HEADER BLOCK
            ========================================================================== */
-        .top-header {
+        .header-block {
             width: 100%;
-            background: var(--bg-metal);
-            padding: 40px;
+            background-color: var(--secondary-color);
+            padding: 30px 40px 30px 40px;
             display: flex;
+            flex-direction: row;
             align-items: center;
-            gap: 40px;
-            border-bottom: 5px solid var(--secondary-color);
+            gap: 30px;
             position: relative;
-        }
-
-        /* Diagonal lines overlay effect */
-        .top-header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.02) 10px,
-                rgba(255, 255, 255, 0.02) 20px
-            );
-            pointer-events: none;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+            margin-bottom: 20px;
+            border-bottom: 4px solid var(--accent-cyan);
         }
 
         /* Photo */
         .photo-container {
             flex-shrink: 0;
-            z-index: 2;
+            position: relative;
+        }
+
+        .photo-container::after {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px;
+            width: 100%; height: 100%;
+            border: 2px solid var(--accent-pink);
+            z-index: 1;
+            clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
         }
 
         .photo-wrapper {
             width: 130px;
             height: 130px;
-            border-radius: 8px; /* Blocky */
             overflow: hidden;
-            border: 4px solid var(--secondary-color);
-            background-color: #FFFFFF;
-            transform: skewX(-5deg); /* Slight aggressive tilt */
+            background-color: var(--primary-color);
+            position: relative;
+            z-index: 2;
+            border: 2px solid var(--text-dark);
+            clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
         }
 
         .photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: skewX(5deg) scale(1.1); /* Untilt the image inside */
-            filter: contrast(1.1) grayscale(20%);
+            filter: contrast(1.4) saturate(1.5) hue-rotate(15deg);
         }
 
-        /* Identity Info */
+        /* Identity */
         .identity-info {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 2px;
             flex: 1;
-            z-index: 2;
         }
 
         .name {
             font-family: var(--font-head);
-            font-size: 52px;
+            font-size: 56px;
             font-weight: 700;
-            color: #FFFFFF;
+            color: var(--text-dark);
             line-height: 0.9;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+            text-shadow: 3px 3px 0px var(--accent-cyan);
         }
 
         .job-title {
-            font-family: var(--font-body);
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--secondary-color);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            background-color: rgba(255,255,255,0.1);
-            padding: 4px 10px;
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-bright);
+            background-color: var(--accent-pink);
+            padding: 2px 12px;
             display: inline-block;
             align-self: flex-start;
-        }
-
-        /* ==========================================================================
-           5. THREE-COLUMN META BAND (SILVER)
-           ========================================================================== */
-        .meta-band {
-            display: flex;
-            flex-direction: row;
-            background: var(--bg-silver);
-            border-bottom: 2px solid var(--border-light);
-        }
-
-        .meta-col {
-            flex: 1;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .meta-col:not(:last-child) {
-            border-right: 2px solid var(--border-light);
-        }
-
-        .meta-title {
-            font-family: var(--font-head);
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        /* Contact List */
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            word-break: break-word;
-        }
-
-        .contact-item span:first-child {
-            color: var(--secondary-color);
-            font-size: 13px;
+            letter-spacing: 2px;
+            margin-top: 10px;
         }
 
         /* ==========================================================================
-           6. SKILLS & LANGUAGES (INSIDE META BAND)
+           5. COLUMN LAYOUT (DUAL 50/50 WITH GAPS)
            ========================================================================== */
-        .skills-container, .languages-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-        }
-
-        .skill-track {
-            width: 100%;
-            height: 6px;
-            background-color: rgba(0,0,0,0.1);
-            border: 1px solid var(--primary-color);
-            border-radius: 0;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background-color: var(--secondary-color);
-            border-right: 2px solid var(--primary-color);
-        }
-
-        /* ==========================================================================
-           7. MAIN DUAL COLUMNS (50 / 50)
-           ========================================================================== */
-        .main-columns {
+        .columns-wrapper {
             display: flex;
             flex-direction: row;
             flex: 1;
-            padding: 30px;
-            gap: 30px;
-            background-color: var(--bg-page);
+            padding: 10px 40px 40px 40px;
+            gap: 35px;
         }
 
         .col-left, .col-right {
@@ -298,46 +222,63 @@
         }
 
         /* ==========================================================================
-           8. SECTION STYLES
+           6. SECTION STYLES
            ========================================================================== */
         .section-block {
             display: flex;
             flex-direction: column;
+            background-color: var(--bg-panel);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Glitch Corner Accents */
+        .section-block::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px;
+            width: 15px; height: 15px;
+            border-top: 2px solid var(--accent-pink);
+            border-left: 2px solid var(--accent-pink);
+        }
+        .section-block::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; right: -2px;
+            width: 15px; height: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            border-right: 2px solid var(--secondary-color);
         }
 
         .section-title {
             font-family: var(--font-head);
             font-size: 22px;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--accent-cyan);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            background-color: var(--border-light);
-            padding: 5px 15px;
-            clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%); /* Angled cut */
+            gap: 12px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+            padding-bottom: 5px;
         }
 
         .section-title::before {
-            content: '';
-            width: 10px;
-            height: 20px;
-            background-color: var(--secondary-color);
-            margin-right: 5px;
-            transform: skewX(-15deg);
+            content: '>>';
+            color: var(--accent-pink);
+            font-family: var(--font-mono);
+            font-size: 20px;
         }
 
         .summary-text {
-            font-size: 12px;
+            font-size: 13px;
             line-height: 1.6;
             text-align: justify;
-            color: var(--text-main);
+            color: var(--text-bright);
             white-space: pre-line;
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 15px;
             font-weight: 500;
         }
 
@@ -348,26 +289,22 @@
         }
 
         /* ==========================================================================
-           9. COMPONENT: ENTRIES
+           7. COMPONENT: ENTRIES
            ========================================================================== */
         .entry {
             display: flex;
             flex-direction: column;
             gap: 4px;
             page-break-inside: avoid;
-            background-color: #FFFFFF;
-            padding: 15px;
-            border: 1px solid var(--border-light);
-            border-bottom: 3px solid var(--primary-color);
         }
 
         .entry-title {
             font-family: var(--font-head);
             font-size: 16px;
-            font-weight: 600;
-            color: var(--primary-color);
+            font-weight: 700;
+            color: var(--secondary-color);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .entry-sub-row {
@@ -376,28 +313,28 @@
             align-items: baseline;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .entry-badge {
-            font-size: 12.5px;
+            font-family: var(--font-body);
+            font-size: 14px;
             font-weight: 700;
-            color: var(--secondary-color);
-            text-transform: uppercase;
+            color: var(--accent-cyan);
         }
 
         .entry-date {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-light);
-            background-color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-dark);
+            background-color: var(--accent-cyan);
             padding: 2px 8px;
-            transform: skewX(-10deg);
         }
 
         .entry-desc {
-            font-size: 11.5px;
-            line-height: 1.6;
+            font-size: 12.5px;
+            line-height: 1.5;
             text-align: justify;
             color: var(--text-main);
             white-space: pre-line;
@@ -413,7 +350,74 @@
         }
 
         .entry-desc li::marker {
-            color: var(--secondary-color);
+            color: var(--accent-pink);
+            content: "► ";
+            font-size: 10px;
+        }
+
+        /* ==========================================================================
+           8. COMPONENT: CONTACT
+           ========================================================================== */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 13px;
+            font-family: var(--font-mono);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-bright) !important;
+            word-break: break-word;
+        }
+
+        .contact-item span:first-child {
+            color: var(--accent-pink);
+            font-size: 16px;
+        }
+
+        /* ==========================================================================
+           9. COMPONENT: SKILLS & BARS
+           ========================================================================== */
+        .skills-container, .languages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-bright);
+            text-transform: uppercase;
+        }
+
+        .skill-track {
+            width: 100%;
+            height: 8px;
+            background-color: var(--primary-color);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background-color: var(--secondary-color);
+            background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(0,0,0,0.3) 4px, rgba(0,0,0,0.3) 8px);
         }
 
         /* ==========================================================================
@@ -426,33 +430,35 @@
         }
 
         .chip {
-            background-color: var(--primary-color);
-            color: #FFFFFF;
-            padding: 5px 12px;
+            background-color: rgba(255, 0, 60, 0.1);
+            color: var(--accent-cyan);
+            padding: 4px 12px;
             font-size: 11px;
-            font-weight: 600;
-            border-radius: 0;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            border: 1px solid var(--accent-pink);
             text-transform: uppercase;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); /* Angular tech shape */
+            letter-spacing: 1px;
         }
 
         /* ==========================================================================
            11. COMPONENT: REFERENCES
            ========================================================================== */
         .references-container .entry {
+            padding: 12px;
+            background-color: var(--primary-color);
             border-left: 4px solid var(--secondary-color);
-            border-bottom: 1px solid var(--border-light);
         }
 
         .ref-item {
-            font-size: 11.5px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
             margin-top: 5px;
-            font-family: var(--font-head);
-            font-weight: 600;
-            color: var(--primary-color);
+            font-weight: 700;
+            color: var(--accent-pink);
+            font-family: var(--font-mono);
         }
 
         /* ==========================================================================
@@ -465,7 +471,7 @@
         .tag-row .skill-item, 
         .tag-row .entry { display: none !important; }
 
-        /* Auto-hide Logic */
+        /* Auto-hide logic */
         .photo-container:has(> .photo-wrapper > .photo[src=""]),
         .photo-container:has(> .photo-wrapper > .photo:not([src])),
         .photo-container:empty { display: none !important; }
@@ -476,26 +482,16 @@
 
         .section-block:has(> .section-content:empty),
         .section-block:has(> .summary-text:empty),
+        .section-block:has(> .contact-list:empty),
+        .section-block:has(> .skills-container:empty),
+        .section-block:has(> .languages-container:empty),
         .section-block:has(> .tag-row:empty) {
             display: none !important;
             margin: 0 !important;
             padding: 0 !important;
         }
 
-        /* Hide meta columns if empty */
-        .meta-col:has(> .contact-list:empty):has(> .skills-container:empty):has(> .languages-container:empty) {
-            display: none !important;
-        }
-
-        .meta-col:has(> .contact-list:empty) .contact-list { display: none !important; }
-        .meta-col:has(> .skills-container:empty) .skills-container { display: none !important; }
-        .meta-col:has(> .languages-container:empty) .languages-container { display: none !important; }
-        
-        .meta-band:has(> .meta-col:empty) {
-            display: none !important;
-        }
-
-        .top-header:has(> .identity-info > .name:empty):has(> .identity-info > .job-title:empty) {
+        .header-block:has(> .identity-info > .name:empty):has(> .identity-info > .job-title:empty) {
             display: none !important;
         }
 
@@ -512,22 +508,23 @@
                 overflow: visible !important; 
                 page-break-after: auto; 
             }
-            .top-header, .meta-band {
+            .col-left, .col-right { page-break-inside: auto; }
+            .entry, .section-block, .header-block { page-break-inside: avoid; }
+            h1, h2, h3, h4, h5, h6, .section-title { page-break-after: avoid; }
+            @page { size: A4 portrait; margin: 0; }
+            
+            * {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            .col-left, .col-right { page-break-inside: auto; }
-            .entry, .section-block, .meta-col { page-break-inside: avoid; }
-            h1, h2, h3, h4, h5, h6, .section-title { page-break-after: avoid; }
-            @page { size: A4 portrait; margin: 0; }
         }
     </style>
 </head>
 <body>
     <div class="page">
         
-        <!-- TOP HEADER -->
-        <div class="top-header">
+        <!-- TOP HEADER BLOCK -->
+        <div class="header-block">
             <div class="photo-container" style="{{PHOTO_DISPLAY}}">
                 <div class="photo-wrapper">
                     <img class="photo" src="{{PHOTO}}" alt="Profile"/>
@@ -540,50 +537,34 @@
             </div>
         </div>
 
-        <!-- THREE-COLUMN META BAND -->
-        <div class="meta-band">
-            <!-- Contact Col -->
-            <div class="meta-col">
-                <div class="meta-title">{{HEADING_CONTACT|Comms}}</div>
-                <div class="contact-list">{{CONTACT_ITEMS}}</div>
-                <div style="margin-top: 5px;"><div class="contact-list">{{SOCIAL}}</div></div>
-            </div>
-            
-            <!-- Skills Col -->
-            <div class="meta-col">
-                <div class="meta-title">{{HEADING_SKILLS|Diagnostics}}</div>
-                <div class="skills-container">{{SKILLS}}</div>
-            </div>
-            
-            <!-- Languages Col -->
-            <div class="meta-col">
-                <div class="meta-title">{{HEADING_LANGUAGES|Languages}}</div>
-                <div class="languages-container">{{LANGUAGES}}</div>
-            </div>
-        </div>
-
-        <!-- MAIN DUAL COLUMNS -->
-        <div class="main-columns">
+        <!-- TWO COLUMNS -->
+        <div class="columns-wrapper">
             
             <!-- LEFT COLUMN -->
             <div class="col-left">
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_PROFILE|System Overview}}</div>
+                    <div class="section-title">{{HEADING_CONTACT|Commlink}}</div>
+                    <div class="contact-list">{{CONTACT_ITEMS}}</div>
+                    <div style="margin-top: 10px;"><div class="contact-list">{{SOCIAL}}</div></div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_PROFILE|Sys_Profile}}</div>
                     <div class="summary-text">{{SUMMARY}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_EXPERIENCE|Operational History}}</div>
+                    <div class="section-title">{{HEADING_EXPERIENCE|Runtime_Exp}}</div>
                     <div class="section-content">{{EXPERIENCE}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_PROJECTS|Special Projects}}</div>
+                    <div class="section-title">{{HEADING_PROJECTS|Executed_Ops}}</div>
                     <div class="section-content">{{PROJECTS}}</div>
                 </div>
-
+                
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_ACTIVITIES|Logistics}}</div>
+                    <div class="section-title">{{HEADING_ACTIVITIES|Side_Processes}}</div>
                     <div class="section-content">{{ACTIVITIES}}</div>
                 </div>
             </div>
@@ -591,17 +572,27 @@
             <!-- RIGHT COLUMN -->
             <div class="col-right">
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_EDUCATION|Training Data}}</div>
+                    <div class="section-title">{{HEADING_SKILLS|Hardware/Soft}}</div>
+                    <div class="skills-container">{{SKILLS}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_EDUCATION|Knowledge_Base}}</div>
                     <div class="section-content">{{EDUCATION}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+                    <div class="section-title">{{HEADING_CERTIFICATES|Decryptions}}</div>
                     <div class="section-content">{{CERTIFICATES}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_HOBBIES|Parameters}}</div>
+                    <div class="section-title">{{HEADING_LANGUAGES|Langs}}</div>
+                    <div class="languages-container">{{LANGUAGES}}</div>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_HOBBIES|Variables}}</div>
                     <div class="tag-row">{{HOBBIES}}</div>
                 </div>
 
@@ -611,7 +602,7 @@
                 </div>
             </div>
 
-        </div> <!-- END MAIN COLUMNS -->
+        </div> <!-- END COLUMNS WRAPPER -->
 
     </div> <!-- END PAGE -->
 </body>
