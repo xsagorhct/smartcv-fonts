@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wall Street Platinum Monolith - Executive Minimal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Roboto+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - WALL STREET PLATINUM MONOLITH
+   Theme: Executive Minimal (Template 106)
+   Style: Cool grey panels, monospace dates, tight corporate grid
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette */
+  --p: #0F172A; /* Corporate Slate Primary */
+  --p-light: #334155; 
+  
+  --bg-page: #FFFFFF; /* Pure White Body */
+  --bg-panel: #F8FAFC; /* Cool Platinum Grey for panels */
+  
+  --text-main: #1E293B; /* Dark slate text for body */
+  --text-muted: #64748B; /* Muted corporate text */
+  --text-light: #94A3B8; 
+  
+  --border-light: #E2E8F0;
+  --border-dark: #CBD5E1;
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #CBD5E1;
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+  padding: 30px;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { 
+    background: none; 
+  }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    padding: 30px;
+    page-break-after: auto;
+  }
+  .panel, .section-block, .entry {
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   HEADER / PERSONAL INFO ZONE (CORPORATE GRID)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  margin-bottom: 25px;
+  gap: 25px;
+}
+
+/* Photo Treatment - Hidden for Minimal / Monolith */
+.photo-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 4px;
+  border: 1px solid var(--border-dark);
+  background-color: var(--bg-page);
+  flex-shrink: 0;
+  overflow: hidden;
+  filter: contrast(1.1) saturate(0.5); /* Corporate muted colors */
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--p);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--p-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-main) !important;
+  font-weight: 500;
+}
+
+.contact-item svg {
+  fill: var(--p) !important;
+  width: 11px;
+  height: 11px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   BENTO GRID LAYOUT (MASONRY-LIKE)
+   ========================================================================== */
+.content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Panels acting as sections */
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Full width panels */
+.panel.full {
+  width: 100%;
+}
+
+/* Half width panels */
+.panel.half {
+  width: calc(50% - 10px);
+}
+
+/* 2/3 and 1/3 panels */
+.panel.two-thirds {
+  width: calc(65% - 10px);
+}
+
+.panel.one-third {
+  width: calc(35% - 10px);
+}
+
+/* ==========================================================================
+   SECTION TITLES
+   ========================================================================== */
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--p);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid var(--p);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+/* Add a corporate vertical rule for entries inside full/two-thirds panels */
+.panel.full .entry, .panel.two-thirds .entry {
+  padding-left: 12px;
+  border-left: 2px solid var(--border-dark);
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--p);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1 1 auto;
+}
+
+.entry-date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--p-light);
+  background-color: var(--border-light);
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.entry-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-top: 4px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.7;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES (Tight Grid)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Corporate Progress Bar */
+.skill-track {
+  width: 100%;
+  height: 4px;
+  background-color: var(--border-light);
+  border-radius: 0; /* Sharp for corporate */
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background-color: var(--p-light);
+  border-radius: 0;
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  padding: 4px 8px;
+  border: 1px solid var(--border-dark);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  overflow-wrap: anywhere;
+  border-radius: 2px;
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--bg-page);
+  padding: 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 2px;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.ref-icon {
+  fill: var(--p-light) !important;
+  width: 10px;
+  height: 10px;
+}
+
+.ref-text {
+  font-weight: 600;
+  color: var(--p);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.panel:has(.section-content:empty),
+.panel:has(.skills-container:empty),
+.panel:has(.languages-container:empty),
+.panel:has(.tag-row:empty),
+.panel:has(> .references-grid:empty),
+.panel:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+/* Fix flex widths when specific panels are missing to maintain grid */
+/* If one half panel is missing, make the other full */
+.panel.half:not([style*="display: none"]):last-child {
+  width: 100%;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (CORPORATE GRID)
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Minimal Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-text-container">
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+      
+      <div class="contact-zone">
+        {{CONTACT_ITEMS}}
+      </div>
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       BENTO CONTENT GRID
+       ========================================== -->
+  <main class="content-grid">
+    
+    <!-- Profile / Summary -->
+    <section class="panel full">
+      <div class="section-title">{{HEADING_PROFILE|Executive Profile}}</div>
+      <div class="summary-text">{{SUMMARY}}</div>
+    </section>
+    
+    <!-- Experience -->
+    <section class="panel two-thirds">
+      <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+      <div class="section-content">{{EXPERIENCE}}</div>
+    </section>
+
+    <!-- Skills -->
+    <section class="panel one-third">
+      <div class="section-title">{{HEADING_SKILLS|Core Competencies}}</div>
+      <div class="skills-container">{{SKILLS}}</div>
+    </section>
+    
+    <!-- Education -->
+    <section class="panel full">
+      <div class="section-title">{{HEADING_EDUCATION|Academic Background}}</div>
+      <div class="section-content">{{EDUCATION}}</div>
+    </section>
+    
+    <!-- Projects -->
+    <section class="panel half">
+      <div class="section-title">{{HEADING_PROJECTS|Key Projects}}</div>
+      <div class="section-content">{{PROJECTS}}</div>
+    </section>
+
+    <!-- Certificates -->
+    <section class="panel half">
+      <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+      <div class="section-content">{{CERTIFICATES}}</div>
+    </section>
+
+    <!-- Languages -->
+    <section class="panel one-third">
+      <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+      <div class="languages-container">{{LANGUAGES}}</div>
+    </section>
+
+    <!-- Activities -->
+    <section class="panel two-thirds">
+      <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+      <div class="section-content">{{ACTIVITIES}}</div>
+    </section>
+    
+    <!-- References -->
+    <section class="panel half">
+      <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+      <div class="references-grid">{{REFERENCES}}</div>
+    </section>
+
+    <!-- Hobbies / Interests -->
+    <section class="panel half">
+      <div class="section-title">{{HEADING_HOBBIES|Interests & Hobbies}}</div>
+      <div class="tag-row">{{HOBBIES}}</div>
+    </section>
+    
+    <!-- Social Links -->
+    <section class="panel full">
+      <div class="section-title">{{HEADING_SOCIAL|Social Links}}</div>
+      <div class="section-content">{{SOCIAL}}</div>
+    </section>
+    
+  </main>
+</div>
+</body>
+</html>
