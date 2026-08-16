@@ -1,645 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Diagonal Slash - Geometric CV</title>
-    <!-- Preconnect for performance optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Premium Google Fonts: Montserrat for bold shapes, Source Code Pro for technical data -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;0,900;1,400&amp;family=Source+Code+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    <style>
-        /* ==========================================================================
-           1. CSS VARIABLES & DESIGN TOKENS (CREATIVE DIAGONAL)
-           ========================================================================== */
-        :root {
-            --p: #BE123C; /* Crimson Rose Primary */
-            --s: #1F2937; /* Graphite Slate Secondary */
-            --bg-page: #FFFFFF;
-            --bg-canvas: #E2E8F0;
-            --text-main: #374151; /* Gray 700 */
-            --text-dark: #111827; /* Gray 900 */
-            --text-light: #F9FAFB; /* Gray 50 */
-            --border-light: #E5E7EB;
-            --shadow-hard: 10px 10px 0 rgba(190, 18, 60, 0.2);
-            --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
-            --font-display: 'Montserrat', sans-serif;
-            --font-mono: 'Source Code Pro', monospace;
-        }
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Olivia Rose Gold Sepia Watermark - Minimal Creative</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Raleway:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - OLIVIA ROSE GOLD SEPIA WATERMARK
+   Theme: Minimal Creative (Template 165)
+   Style: Large faint watermark, rose gold rules, sepia warmth
+   ========================================================================== */
 
-        /* ==========================================================================
-           2. GLOBAL RESETS & BASE TYPOGRAPHY
-           ========================================================================== */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette - Rose Sepia */
+  --bg-page: #FAF5F0; /* Sepia warmth */
+  
+  --rose-gold: #B76E79; 
+  --rose-gold-light: #E4C8CC;
+  
+  --text-main: #4A3C3E; /* Dark sepia brown */
+  --text-muted: #827275; 
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Playfair Display', serif; /* Elegant serif */
+  --font-body: 'Raleway', sans-serif; /* Clean sans */
+}
 
-        html {
-            font-size: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        body {
-            background-color: var(--bg-canvas);
-            font-family: var(--font-display);
-            color: var(--text-main);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-        }
+body {
+  font-family: var(--font-body);
+  background-color: #E2E8F0;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
 
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--text-dark);
-            font-weight: 800;
-            line-height: 1.2;
-        }
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden; /* Hide watermark overflow */
+  padding: 60px;
+}
 
-        /* ==========================================================================
-           3. MAIN PAGE CONTAINER & DIAGONAL BACKGROUND
-           ========================================================================== */
-        .page {
-            width: 794px; /* A4 Width */
-            min-height: 1122px; /* A4 Height */
-            background-color: var(--bg-page);
-            position: relative;
-            overflow: hidden; /* Needed ONLY for the background shape at top, print query fixes it */
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            margin: 0 auto;
-        }
+/* Enormous Watermark Initial / Name */
+.watermark {
+  position: absolute;
+  top: 15%;
+  left: -10%;
+  font-family: var(--font-heading);
+  font-size: 300px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--rose-gold);
+  opacity: 0.04;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  transform: rotate(-10deg);
+  line-height: 1;
+}
 
-        /* 3.1 The Creative Diagonal Cut Background */
-        .header-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 320px;
-            background: linear-gradient(135deg, #111827 0%, var(--s) 100%);
-            clip-path: polygon(0 0, 100% 0, 100% 55%, 0 100%);
-            z-index: 0;
-        }
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
 
-        /* A secondary colored slash beneath the dark one */
-        .header-bg::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background-color: var(--p);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            z-index: -1;
-        }
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
 
-        /* Repeating geometric pattern overlay */
-        .header-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: repeating-linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.02) 0px,
-                rgba(255, 255, 255, 0.02) 2px,
-                transparent 2px,
-                transparent 8px
-            );
-            pointer-events: none;
-        }
+/* ==========================================================================
+   HEADER ZONE (CREATIVE & WARM)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 45px;
+  position: relative;
+  z-index: 1;
+}
 
-        /* ==========================================================================
-           4. HEADER CONTENT (Foreground)
-           ========================================================================== */
-        .header-content {
-            position: relative;
-            z-index: 10;
-            padding: 50px 50px 20px 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+/* Photo Treatment - Soft circle with rose gold accent */
+.photo-container {
+  width: 125px;
+  height: 125px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 1px solid var(--rose-gold-light);
+  background: rgba(250, 245, 240, 0.8);
+}
 
-        /* 4.1 Geometric Sharp Photo */
-        .photo-container {
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: center;
-        }
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  filter: sepia(0.3);
+}
 
-        .photo-wrapper {
-            width: 145px;
-            height: 145px;
-            background-color: var(--bg-page);
-            padding: 8px;
-            border: 3px solid var(--p);
-            border-radius: 8px; /* Sharp geometric square */
-            box-shadow: var(--shadow-hard);
-            transform: rotate(-3deg);
-            transition: transform 0.4s ease;
-        }
+.name {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
 
-        .photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 4px;
-        }
+.job-title {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--rose-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
 
-        /* 4.2 Name & Title */
-        .name {
-            font-size: 46px;
-            font-weight: 900;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 10px;
-            overflow-wrap: anywhere;
-        }
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 24px;
+  font-size: 11px;
+}
 
-        .job-title {
-            font-family: var(--font-mono);
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-light);
-            background-color: var(--p);
-            padding: 6px 18px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 4px;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
-            display: inline-block;
-            overflow-wrap: anywhere;
-        }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 
-        /* ==========================================================================
-           5. CONTACT ZONE BAR
-           ========================================================================== */
-        .contact-zone {
-            position: relative;
-            z-index: 5;
-            background-color: var(--bg-page);
-            margin: 20px 50px 10px 50px;
-            padding: 18px 25px;
-            border-top: 3px dashed var(--border-light);
-            border-bottom: 3px dashed var(--border-light);
-        }
+.contact-item span {
+  color: var(--text-main) !important;
+  font-weight: 500;
+}
 
-        .contact-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 15px 25px;
-            font-family: var(--font-mono);
-            font-size: 12.5px;
-            font-weight: 500;
-        }
+.contact-item svg {
+  fill: var(--rose-gold) !important;
+  width: 13px;
+  height: 13px;
+}
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--s) !important;
-        }
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
 
-        .contact-item span:first-child {
-            color: var(--p);
-            font-size: 16px;
-            background-color: rgba(190, 18, 60, 0.1);
-            padding: 4px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+/* ==========================================================================
+   CONTENT LAYOUT (2 COLUMNS, ASYMMETRICAL)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 0;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
 
-        .contact-item span:not(:first-child) {
-            color: var(--s) !important;
-            text-decoration: none !important;
-        }
+.col-main {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
 
-        /* ==========================================================================
-           6. MAIN BODY GRID SYSTEM
-           ========================================================================== */
-        .body-grid {
-            display: flex;
-            flex: 1;
-            padding: 30px 50px 50px 50px;
-            gap: 45px;
-            position: relative;
-            z-index: 5;
-        }
+.col-side {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
 
-        .col-main {
-            width: 63%;
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
 
-        .col-side {
-            width: 37%;
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--rose-gold);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-        /* ==========================================================================
-           7. SECTION TITLES & STRUCTURAL ELEMENTS
-           ========================================================================== */
-        .section-block {
-            display: flex;
-            flex-direction: column;
-        }
+/* Rose Gold Rules */
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--rose-gold-light);
+}
 
-        .section-title {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--s);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-            align-self: flex-start;
-        }
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
 
-        /* Creative highlighter effect behind titles */
-        .section-title::before {
-            content: "";
-            position: absolute;
-            left: -5px;
-            bottom: 2px;
-            width: calc(100% + 10px);
-            height: 12px;
-            background-color: rgba(190, 18, 60, 0.15); /* Crimson faint highlight */
-            z-index: -1;
-            transform: skewX(-15deg);
-        }
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
 
-        /* Paragraphs */
-        .summary-text, .about-text {
-            font-size: 14.5px;
-            line-height: 1.8;
-            text-align: justify;
-            color: var(--text-main);
-            font-weight: 400;
-            overflow-wrap: anywhere;
-        }
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-        /* ==========================================================================
-           8. ENTRIES (EXPERIENCE, EDUCATION, PROJECTS)
-           ========================================================================== */
-        .section-content {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+.entry-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
 
-        .entry {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            position: relative;
-            page-break-inside: avoid;
-        }
+.entry-date {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--rose-gold);
+  text-align: right;
+  min-width: 90px;
+  overflow-wrap: anywhere;
+}
 
-        /* Hard geometric line next to entries */
-        .entry::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--border-light);
-        }
-        
-        .entry:hover::before {
-            background-color: var(--p);
-        }
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 1px;
+}
 
-        .entry-title {
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
+.entry-badge {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
 
-        .entry-sub-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 4px;
-        }
+.entry-desc {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.7;
+  font-weight: 400;
+  margin-top: 6px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
 
-        .entry-badge {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--p);
-            text-transform: uppercase;
-        }
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-main);
+  line-height: 1.8;
+  font-weight: 400;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
 
-        .entry-date {
-            font-family: var(--font-mono);
-            font-size: 12.5px;
-            font-weight: 600;
-            background-color: var(--s);
-            color: var(--text-light);
-            padding: 4px 10px;
-            border-radius: 2px;
-            letter-spacing: 0.5px;
-        }
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID (Right Column)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
-        .entry-desc {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-main);
-            text-align: justify;
-            margin-top: 4px;
-        }
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-        .entry-desc ul {
-            padding-left: 20px;
-            margin-top: 8px;
-        }
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
 
-        .entry-desc li {
-            margin-bottom: 5px;
-        }
-        
-        .entry-desc li::marker {
-            color: var(--p);
-            content: "■ "; /* Square geometric bullet */
-        }
+.skill-name {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
 
-        /* ==========================================================================
-           9. SKILLS & METADATA
-           ========================================================================== */
-        
-        /* Using Progress Bars for this creative layout */
-        .skills-container, .languages-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+.skill-level {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--rose-gold);
+}
 
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+/* Delicate Track */
+.skill-track {
+  width: 100%;
+  height: 2px;
+  background-color: var(--rose-gold-light);
+  border-radius: 2px;
+  overflow: hidden;
+}
 
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-mono);
-            font-size: 13.5px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
+.skill-fill {
+  height: 100%;
+  background-color: var(--rose-gold);
+  border-radius: 2px;
+}
 
-        .skill-level {
-            font-size: 11px;
-            color: var(--p);
-        }
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
 
-        .skill-track {
-            width: 100%;
-            height: 8px;
-            background-color: var(--border-light);
-            border-radius: 0; /* Brutalist sharp */
-            position: relative;
-        }
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
-        .skill-fill {
-            height: 100%;
-            background-color: var(--s);
-            /* Striped pattern inside progress bar */
-            background-image: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.1) 10px,
-                rgba(255,255,255,0.1) 20px
-            );
-        }
+.chip {
+  background-color: transparent;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  overflow-wrap: anywhere;
+  border-radius: 4px;
+  border: 1px solid var(--rose-gold-light);
+}
 
-        /* Hide overlapping skill chips to prevent doubling */
-        .skills-container .chip, .languages-container .chip {
-            display: none !important;
-        }
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
 
-        /* Reference block styling */
-        .references-container .entry {
-            background-color: #F8FAFC;
-            padding: 15px 20px;
-            border-left: 4px solid var(--p);
-        }
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-        .ref-item {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            margin-top: 5px;
-            color: var(--text-main);
-        }
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 2px solid var(--rose-gold-light);
+  padding-left: 10px;
+}
 
-        /* ==========================================================================
-           10. EMPTY STATE AUTO-HIDE LOGIC
-           ========================================================================== */
-        .photo-container:has(> .photo-wrapper:empty),
-        .photo-container:has(> .photo-wrapper > .photo[src=""]),
-        .photo-container:has(> .photo-wrapper > .photo:not([src])) { 
-            display: none !important; 
-            margin: 0 !important; 
-            padding: 0 !important; 
-        }
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
 
-        .name:empty, 
-        .job-title:empty, 
-        .summary-text:empty { 
-            display: none !important; 
-            margin: 0 !important; 
-            padding: 0 !important; 
-        }
+.ref-icon {
+  display: none;
+}
 
-        .section-block:has(> .section-content:empty),
-        .section-block:has(> .skills-container:empty),
-        .section-block:has(> .languages-container:empty),
-        .section-block:has(> .summary-text:empty) {
-            display: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
+.ref-text {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
 
-        .contact-zone:has(> .contact-list:empty) {
-            display: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            border: none !important;
-        }
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
 
-        /* ==========================================================================
-           11. PRINT / PDF EXPORT QUERIES
-           ========================================================================== */
-        @media print {
-            body { 
-                background: transparent; 
-                margin: 0; 
-                padding: 0; 
-            }
-            .page { 
-                box-shadow: none; 
-                margin: 0; 
-                overflow: visible !important; /* Extremely critical for 2nd page generation */
-                height: auto;
-                min-height: 1122px;
-                page-break-inside: auto;
-            }
-            .header-bg { 
-                position: absolute; /* Keep it behind text */
-                top: 0;
-            }
-            .entry { 
-                page-break-inside: avoid; 
-            }
-            * { 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important;
-                color-adjust: exact !important; 
-            }
-            @page {
-                size: A4 portrait;
-                margin: 0;
-            }
-        }
-    </style>
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+}
+</style>
 </head>
 <body>
+<div class="page">
+  
+  <!-- Watermark Element -->
+  <div class="watermark">{{FULL_NAME}}</div>
 
-    <div class="page">
-        <!-- Decorative Header Background -->
-        <div class="header-bg"></div>
+  <!-- ==========================================
+       HEADER ZONE (CREATIVE & WARM)
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="name">
+      {{FULL_NAME}}
+    </div>
+    
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+      {{JOB_TITLE}}
+    </div>
+    
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (2 COLUMNS)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- MAIN COLUMN -->
+    <div class="col-main">
+      <!-- Profile / Summary -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <!-- Experience -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+    </div>
+    
+    <!-- SIDE COLUMN -->
+    <aside class="col-side">
+      <!-- Skills -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
 
-        <!-- Header Content -->
-        <div class="header-content">
-            
-            <div class="photo-container" style="{{PHOTO_DISPLAY}}">
-                <div class="photo-wrapper">
-                    <img class="photo" src="{{PHOTO}}" alt="Creative Profile Photograph"/>
-                </div>
-            </div>
-            
-            <div class="name">{{FULL_NAME}}</div>
-            <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</div>
-        </div>
+      <!-- Certificates -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
 
-        <!-- Contact Strip -->
-        <div class="contact-zone">
-            <div class="contact-list">
-                {{CONTACT_ITEMS}}
-            </div>
-        </div>
+      <!-- Activities -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
 
-        <!-- Main Body Grid -->
-        <div class="body-grid">
-            
-            <!-- Main Column (Left) -->
-            <div class="col-main">
-                
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
-                    <div class="summary-text">{{SUMMARY}}</div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
-                    <div class="section-content">
-                        {{EXPERIENCE}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_EDUCATION|Educational Background}}</div>
-                    <div class="section-content">
-                        {{EDUCATION}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_PROJECTS|Key Projects}}</div>
-                    <div class="section-content">
-                        {{PROJECTS}}
-                    </div>
-                </div>
-
-            </div> <!-- End Main Column -->
-
-            <!-- Side Column (Right) -->
-            <div class="col-side">
-                
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_SKILLS|Core Expertise}}</div>
-                    <div class="skills-container">
-                        {{SKILLS}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
-                    <div class="skills-container">
-                        {{LANGUAGES}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
-                    <div class="section-content">
-                        {{CERTIFICATES}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
-                    <div class="section-content">
-                        {{ACTIVITIES}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_INTERESTS|Interests}}</div>
-                    <div class="section-content">
-                        {{INTERESTS}}
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_REFERENCES|References}}</div>
-                    <div class="section-content references-container">
-                        {{REFERENCES}}
-                    </div>
-                </div>
-
-            </div> <!-- End Side Column -->
-
-        </div> <!-- End Body Grid -->
-
-    </div> <!-- End Page Container -->
-
+      <!-- Hobbies / Interests -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+      
+      <!-- References -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="references-grid">{{REFERENCES}}</div>
+      </div>
+    </aside>
+    
+  </main>
+</div>
 </body>
 </html>
