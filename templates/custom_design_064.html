@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nordic Slate Ash Architectural - Modern Minimal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - NORDIC SLATE ASH ARCHITECTURAL
+   Theme: Modern Minimal (Template 132)
+   Style: Ash grey, architectural CSS borders, minimal photo
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette */
+  --ash: #B2BEB5; /* Ash Grey */
+  --ash-dark: #8E9A91;
+  --slate: #4A5568; /* Slate Text */
+  
+  --bg-page: #FBFBFA; /* Very light warm grey/white */
+  
+  --text-main: #4A5568; 
+  --text-muted: #8E9A91; 
+  --text-dark: #2D3748;
+  
+  --line-arch: #8E9A91; /* Architectural line color */
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Jost', sans-serif; /* Clean architectural sans */
+  --font-body: 'Work Sans', sans-serif; /* Readable technical sans */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #E6E6E6; /* Outer background */
+  color: var(--text-main);
+  line-height: 1.5;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+  padding: 40px; /* Base padding */
+  border: 1px solid var(--line-arch); /* Blueprint edge */
+}
+
+/* Architectural crosshairs in corners */
+.page::before, .page::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+.page::before {
+  top: 15px; left: 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  border: 1px solid rgba(142, 154, 145, 0.3);
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+    border: none;
+  }
+  .page::before { display: none; }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   HEADER ZONE (ARCHITECTURAL MINIMAL)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--line-arch);
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* Architectural extension lines */
+.header-zone::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 1px;
+  height: 8px;
+  background-color: var(--line-arch);
+}
+.header-zone::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 1px;
+  height: 8px;
+  background-color: var(--line-arch);
+}
+
+/* Photo Treatment - Minimal Square */
+.photo-container {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  position: relative;
+  padding: 5px;
+}
+/* Blueprint framing corners */
+.photo-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 15px; height: 15px;
+  border-top: 1px solid var(--line-arch);
+  border-left: 1px solid var(--line-arch);
+}
+.photo-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 15px; height: 15px;
+  border-bottom: 1px solid var(--line-arch);
+  border-right: 1px solid var(--line-arch);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1); /* Architectural grayscale */
+}
+
+.header-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ash-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-family: var(--font-body);
+  padding-left: 20px;
+  border-left: 1px solid var(--line-arch);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--text-dark) !important;
+  font-weight: 500;
+}
+
+.contact-item svg {
+  fill: var(--ash-dark) !important;
+  width: 12px;
+  height: 12px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   CONTENT LAYOUT (2 COLUMNS)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 0;
+  gap: 30px;
+}
+
+.col-main {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-right: 30px;
+  border-right: 1px solid var(--line-arch); /* Center grid line */
+}
+
+.col-side {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Architectural blueprint label style */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+/* Cross mark for section title */
+.section-title::before {
+  content: '+';
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ash-dark);
+  margin-right: 8px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+/* Small tick mark left of entry */
+.col-main .entry::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 8px;
+  width: 10px;
+  height: 1px;
+  background-color: var(--line-arch);
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: right;
+  min-width: 120px;
+  overflow-wrap: anywhere;
+  padding-left: 10px;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 1px;
+}
+
+.entry-badge {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ash-dark);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-top: 4px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: var(--text-main);
+  line-height: 1.7;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID (Right Column)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-dark);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Wireframe Track */
+.skill-track {
+  width: 100%;
+  height: 4px;
+  background-color: transparent;
+  border: 1px solid var(--line-arch);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background-color: var(--ash-dark);
+  border-radius: 0;
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  background-color: transparent;
+  color: var(--text-dark);
+  padding: 3px 8px;
+  border: 1px solid var(--line-arch);
+  font-size: 10px;
+  font-weight: 400;
+  font-family: var(--font-body);
+  overflow-wrap: anywhere;
+  border-radius: 0;
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+}
+
+.ref-icon {
+  fill: var(--ash-dark) !important;
+  width: 10px;
+  height: 10px;
+}
+
+.ref-text {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--text-dark);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+  border-right: none !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (ARCHITECTURAL MINIMAL)
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="header-text-container">
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+    </div>
+    
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (2 COLUMNS)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- MAIN COLUMN -->
+    <div class="col-main">
+      <!-- Profile / Summary -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Profile Overview}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <!-- Experience -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Key Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+    </div>
+    
+    <!-- SIDE COLUMN -->
+    <aside class="col-side">
+      <!-- Skills -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+
+      <!-- Activities -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
+
+      <!-- Hobbies / Interests -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+      
+      <!-- References -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="references-grid">{{REFERENCES}}</div>
+      </div>
+    </aside>
+    
+  </main>
+</div>
+</body>
+</html>
