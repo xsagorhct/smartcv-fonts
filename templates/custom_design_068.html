@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paper Texture Off White Subtle - Minimal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - PAPER TEXTURE OFF WHITE SUBTLE
+   Theme: Minimal (Template 176)
+   Style: Off-white page, subtle paper grain CSS, ink black text
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  /* Core Color Palette - Ink on Paper */
+  --bg-page: #FAFAF8; /* Natural off-white paper */
+  
+  --ink-black: #111111; /* Pure ink */
+  --ink-faded: #4A4A4A; /* Faded ink */
+  --ink-light: #767676;
+  
+  --rule-color: #D4D4D2; /* Faint paper rule */
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Spectral', serif; /* Classic print serif */
+  --font-body: 'Inter', sans-serif; /* Clean modern sans */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #E2E8F0;
+  color: var(--ink-black);
+  line-height: 1.6;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background-color: var(--bg-page);
+  /* CSS SVg Paper Grain Texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible; /* CRITICAL: Prevent cut-offs in WebView */
+  padding: 60px 70px;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   HEADER ZONE (CLASSIC PRINT FEEL)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--ink-black);
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.header-zone::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--ink-black);
+}
+
+/* Photo Treatment - Classic square with thin border */
+.photo-container {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 24px;
+  border: 1px solid var(--ink-black);
+  padding: 4px;
+  background-color: var(--bg-page);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(1.1); /* B&W photo to match ink style */
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--ink-black);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-faded);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 20px;
+  font-size: 11px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  color: var(--ink-faded) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--ink-black) !important;
+}
+
+.contact-item svg {
+  display: none; /* No icons, purely typographic */
+}
+
+.contact-item:not(:last-child)::after {
+  content: '•';
+  color: var(--ink-light);
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+/* Header Auto-hide Rules */
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+
+/* ==========================================================================
+   CONTENT LAYOUT (2 COLUMNS)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 0;
+  gap: 45px;
+}
+
+.col-main {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.col-side {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* CRITICAL: Using DIV for title as per Android requirements */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-black);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--rule-color);
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-black);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--ink-faded);
+  text-align: right;
+  min-width: 90px;
+  overflow-wrap: anywhere;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 1px;
+}
+
+.entry-badge {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--ink-faded);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--ink-black);
+  line-height: 1.7;
+  margin-top: 6px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-black);
+  line-height: 1.8;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID (Right Column)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-black);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-faded);
+}
+
+/* Classic ink track */
+.skill-track {
+  width: 100%;
+  height: 1px;
+  background-color: var(--rule-color);
+  position: relative;
+}
+
+.skill-fill {
+  height: 3px; /* Slightly thicker than track */
+  background-color: var(--ink-black);
+  position: absolute;
+  top: -1px;
+  left: 0;
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background-color: transparent;
+  color: var(--ink-black);
+  padding: 4px 0;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  overflow-wrap: anywhere;
+  border-radius: 0;
+  border: none;
+}
+.chip::after {
+  content: ',';
+  color: var(--ink-faded);
+}
+.chip:last-child::after {
+  content: '';
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ref-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ref-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--ink-faded);
+  font-family: var(--font-body);
+}
+
+.ref-icon {
+  display: none;
+}
+
+.ref-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink-black);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (CLASSIC PRINT)
+       ========================================== -->
+  <header class="header-zone">
+    <!-- Photo -->
+    <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+      <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+    </div>
+    
+    <div class="name">
+      {{FULL_NAME}}
+    </div>
+    
+    <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+      {{JOB_TITLE}}
+    </div>
+    
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (2 COLUMNS)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- MAIN COLUMN -->
+    <div class="col-main">
+      <!-- Profile / Summary -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <!-- Experience -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+    </div>
+    
+    <!-- SIDE COLUMN -->
+    <aside class="col-side">
+      <!-- Skills -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+
+      <!-- Activities -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
+
+      <!-- Hobbies / Interests -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+      
+      <!-- References -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="references-grid">{{REFERENCES}}</div>
+      </div>
+    </aside>
+    
+  </main>
+</div>
+</body>
+</html>
