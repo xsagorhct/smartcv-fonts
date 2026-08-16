@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Hacker Glitch Theme</title>
+    <title>Environmental Scientist Organic Leaf</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
            1. CSS VARIABLES
            ========================================================================== */
         :root {
-            /* Palette: Cyberpunk Neon */
-            --primary-color: #0A0A0A; /* Void Black */
-            --secondary-color: #FCEE09; /* Cyber Yellow */
-            --accent-cyan: #00F0FF; /* Neon Cyan */
-            --accent-pink: #FF003C; /* Neon Magenta/Red */
+            /* Palette: Organic Earth & Nature */
+            --primary-color: #2E8B57; /* Sea Green / Forest */
+            --secondary-color: #8FBC8F; /* Dark Sea Green / Sage */
+            --accent-color: #D2B48C; /* Tan / Earth */
             
-            --bg-page: #0D0D11; /* Dark Grey/Blue */
-            --bg-panel: #141419; /* Slightly lighter panel */
+            --bg-page: #FDFBF7; /* Very warm off-white */
+            --bg-header: #EAF0E8; /* Extremely pale green */
             
-            --text-main: #D1D1D1;
-            --text-dark: #000000;
-            --text-bright: #FFFFFF;
-            
-            --border-neon: #00F0FF;
+            --text-main: #4A4A4A;
+            --text-dark: #1F3622; /* Very dark green-black */
+            --text-light: #6A8A6F;
             
             /* Typography */
-            --font-head: 'Rajdhani', sans-serif; /* High tech, squared */
-            --font-body: 'Rajdhani', sans-serif;
-            --font-mono: 'VT323', monospace; /* Glitchy terminal text */
+            --font-head: 'Lora', serif; /* Organic, flowing serif */
+            --font-body: 'Open Sans', sans-serif; /* Clean readable sans */
             
             /* Dimensions */
             --page-width: 794px;
@@ -54,11 +50,11 @@
         }
 
         body {
-            background-color: #2D2D36;
+            background-color: #E2E8F0;
             font-family: var(--font-body);
             color: var(--text-main);
-            line-height: 1.5;
-            font-size: 12px; /* Rajdhani runs a bit small */
+            line-height: 1.6;
+            font-size: 11.5px;
             -webkit-font-smoothing: antialiased;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
@@ -66,7 +62,7 @@
         }
 
         ::selection {
-            background-color: var(--accent-pink);
+            background-color: var(--secondary-color);
             color: #FFFFFF;
         }
 
@@ -80,7 +76,7 @@
         }
 
         /* ==========================================================================
-           3. MAIN PAGE CONTAINER (CYBER GRID BACKGROUND)
+           3. MAIN PAGE CONTAINER
            ========================================================================== */
         .page {
             width: var(--page-width);
@@ -91,131 +87,145 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 40px rgba(0,240,255,0.2);
-            border: 4px solid var(--accent-cyan);
-            border-right: 8px solid var(--accent-pink);
-            border-bottom: 8px solid var(--secondary-color);
-            
-            /* Subtle Hex/Grid Background */
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        /* Decorative Glitch Block Top Right */
-        .page::before {
-            content: 'SYS_ERROR 0x00F0FF';
-            position: absolute;
-            top: -4px;
-            right: 40px;
-            background-color: var(--secondary-color);
-            color: var(--text-dark);
-            font-family: var(--font-mono);
-            padding: 2px 10px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            z-index: 10;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
         /* ==========================================================================
-           4. TOP HEADER BLOCK
+           4. CURVED HEADER (ORGANIC TOP SHAPE)
            ========================================================================== */
-        .header-block {
+        .top-header {
             width: 100%;
-            background-color: var(--secondary-color);
-            padding: 30px 40px 30px 40px;
+            background-color: var(--bg-header);
+            padding: 40px 50px 60px 50px;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
-            gap: 30px;
+            text-align: center;
             position: relative;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
-            margin-bottom: 20px;
-            border-bottom: 4px solid var(--accent-cyan);
+            /* Create an organic curve at the bottom of the header */
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Leaf motif in header background */
+        .top-header::before {
+            content: '';
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 150px; height: 150px;
+            background-color: var(--secondary-color);
+            border-radius: 0 100px 0 100px; /* Leaf shape */
+            opacity: 0.1;
+            z-index: 0;
+            transform: rotate(-15deg);
+        }
+        .top-header::after {
+            content: '';
+            position: absolute;
+            bottom: 20px; right: -30px;
+            width: 100px; height: 100px;
+            background-color: var(--primary-color);
+            border-radius: 0 100px 0 100px;
+            opacity: 0.1;
+            z-index: 0;
+            transform: rotate(45deg);
         }
 
         /* Photo */
         .photo-container {
-            flex-shrink: 0;
             position: relative;
-        }
-
-        .photo-container::after {
-            content: '';
-            position: absolute;
-            top: 5px; left: 5px;
-            width: 100%; height: 100%;
-            border: 2px solid var(--accent-pink);
             z-index: 1;
-            clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+            margin-bottom: 20px;
         }
 
         .photo-wrapper {
-            width: 130px;
-            height: 130px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #FFFFFF;
+            box-shadow: 0 8px 20px rgba(46, 139, 87, 0.2);
             overflow: hidden;
-            background-color: var(--primary-color);
-            position: relative;
-            z-index: 2;
-            border: 2px solid var(--text-dark);
-            clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+            background-color: #FFFFFF;
         }
 
         .photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: contrast(1.4) saturate(1.5) hue-rotate(15deg);
+            border-radius: 50%;
         }
 
-        /* Identity */
+        /* Identity Info */
         .identity-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            flex: 1;
+            z-index: 1;
         }
 
         .name {
             font-family: var(--font-head);
-            font-size: 56px;
+            font-size: 42px;
             font-weight: 700;
             color: var(--text-dark);
-            line-height: 0.9;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            text-shadow: 3px 3px 0px var(--accent-cyan);
+            line-height: 1.1;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
         }
 
         .job-title {
-            font-family: var(--font-mono);
-            font-size: 20px;
-            font-weight: 400;
-            color: var(--text-bright);
-            background-color: var(--accent-pink);
-            padding: 2px 12px;
-            display: inline-block;
-            align-self: flex-start;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 10px;
+        }
+
+        /* Top Contact Horizontal */
+        .top-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 11.5px;
+            font-weight: 600;
+            margin-top: 15px;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dark) !important;
+            word-break: break-word;
+        }
+
+        .contact-item span:first-child {
+            color: var(--primary-color);
         }
 
         /* ==========================================================================
-           5. COLUMN LAYOUT (DUAL 50/50 WITH GAPS)
+           5. COLUMN LAYOUT (2 COLUMNS)
            ========================================================================== */
         .columns-wrapper {
             display: flex;
             flex-direction: row;
+            gap: 40px;
+            padding: 0 50px 40px 50px;
             flex: 1;
-            padding: 10px 40px 40px 40px;
-            gap: 35px;
         }
 
-        .col-left, .col-right {
-            width: 50%;
+        /* Left Column (60%) */
+        .col-left {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Right Column (40%) */
+        .col-right {
+            width: 40%;
             display: flex;
             flex-direction: column;
             gap: 30px;
@@ -227,65 +237,45 @@
         .section-block {
             display: flex;
             flex-direction: column;
-            background-color: var(--bg-panel);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 20px;
-            position: relative;
-        }
-
-        /* Glitch Corner Accents */
-        .section-block::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px;
-            width: 15px; height: 15px;
-            border-top: 2px solid var(--accent-pink);
-            border-left: 2px solid var(--accent-pink);
-        }
-        .section-block::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; right: -2px;
-            width: 15px; height: 15px;
-            border-bottom: 2px solid var(--secondary-color);
-            border-right: 2px solid var(--secondary-color);
         }
 
         .section-title {
             font-family: var(--font-head);
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 12px;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-            padding-bottom: 5px;
+            font-style: italic;
         }
 
+        /* Organic leaf icon before titles */
         .section-title::before {
-            content: '>>';
-            color: var(--accent-pink);
-            font-family: var(--font-mono);
-            font-size: 20px;
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-color: var(--secondary-color);
+            border-radius: 0 10px 0 10px; /* Small leaf */
         }
 
         .summary-text {
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.7;
             text-align: justify;
-            color: var(--text-bright);
+            color: var(--text-main);
             white-space: pre-line;
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 15px;
             font-weight: 500;
         }
 
         .section-content {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
         }
 
         /* ==========================================================================
@@ -294,17 +284,20 @@
         .entry {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
             page-break-inside: avoid;
+            background-color: #FFFFFF;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid rgba(46, 139, 87, 0.1);
         }
 
         .entry-title {
             font-family: var(--font-head);
             font-size: 16px;
             font-weight: 700;
-            color: var(--secondary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--text-dark);
         }
 
         .entry-sub-row {
@@ -313,28 +306,29 @@
             align-items: baseline;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .entry-badge {
             font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--accent-cyan);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-color);
         }
 
         .entry-date {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            font-weight: 400;
-            color: var(--text-dark);
-            background-color: var(--accent-cyan);
-            padding: 2px 8px;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 700;
+            color: #FFFFFF;
+            background-color: var(--secondary-color);
+            padding: 2px 10px;
+            border-radius: 20px;
         }
 
         .entry-desc {
-            font-size: 12.5px;
-            line-height: 1.5;
+            font-size: 11.5px;
+            line-height: 1.6;
             text-align: justify;
             color: var(--text-main);
             white-space: pre-line;
@@ -346,82 +340,55 @@
         }
 
         .entry-desc li {
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .entry-desc li::marker {
-            color: var(--accent-pink);
-            content: "► ";
+            color: var(--primary-color);
+            content: "🌿 ";
             font-size: 10px;
         }
 
         /* ==========================================================================
-           8. COMPONENT: CONTACT
-           ========================================================================== */
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 13px;
-            font-family: var(--font-mono);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-bright) !important;
-            word-break: break-word;
-        }
-
-        .contact-item span:first-child {
-            color: var(--accent-pink);
-            font-size: 16px;
-        }
-
-        /* ==========================================================================
-           9. COMPONENT: SKILLS & BARS
+           8. COMPONENT: SKILLS & LISTS
            ========================================================================== */
         .skills-container, .languages-container {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .skill-item {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .skill-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            font-family: var(--font-head);
-            font-size: 13px;
+            font-family: var(--font-body);
+            font-size: 12px;
             font-weight: 600;
-            color: var(--text-bright);
-            text-transform: uppercase;
+            color: var(--text-dark);
         }
 
         .skill-track {
             width: 100%;
-            height: 8px;
-            background-color: var(--primary-color);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 0;
-            overflow: hidden;
+            height: 6px;
+            background-color: var(--bg-header);
+            border-radius: 6px;
         }
 
         .skill-fill {
             height: 100%;
-            background-color: var(--secondary-color);
-            background-image: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(0,0,0,0.3) 4px, rgba(0,0,0,0.3) 8px);
+            background-color: var(--primary-color);
+            border-radius: 6px;
         }
 
         /* ==========================================================================
-           10. COMPONENT: TAGS & CHIPS
+           9. COMPONENT: TAGS & CHIPS
            ========================================================================== */
         .tag-row {
             display: flex;
@@ -430,24 +397,22 @@
         }
 
         .chip {
-            background-color: rgba(255, 0, 60, 0.1);
-            color: var(--accent-cyan);
-            padding: 4px 12px;
+            background-color: var(--bg-header);
+            color: var(--primary-color);
+            padding: 6px 14px;
             font-size: 11px;
-            font-weight: 700;
-            font-family: var(--font-mono);
-            border: 1px solid var(--accent-pink);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 600;
+            border-radius: 20px;
+            font-family: var(--font-body);
+            border: 1px solid var(--secondary-color);
         }
 
         /* ==========================================================================
-           11. COMPONENT: REFERENCES
+           10. COMPONENT: REFERENCES
            ========================================================================== */
         .references-container .entry {
-            padding: 12px;
-            background-color: var(--primary-color);
-            border-left: 4px solid var(--secondary-color);
+            background-color: var(--bg-header);
+            border-color: var(--secondary-color);
         }
 
         .ref-item {
@@ -456,13 +421,14 @@
             align-items: center;
             gap: 8px;
             margin-top: 5px;
-            font-weight: 700;
-            color: var(--accent-pink);
-            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: var(--font-head);
+            font-style: italic;
         }
 
         /* ==========================================================================
-           12. AUTO-HIDE LOGIC & BUG FIXES
+           11. AUTO-HIDE LOGIC & BUG FIXES
            ========================================================================== */
         /* Duplicate Hobbies / Tags Fix */
         .skills-container .chip, 
@@ -482,7 +448,6 @@
 
         .section-block:has(> .section-content:empty),
         .section-block:has(> .summary-text:empty),
-        .section-block:has(> .contact-list:empty),
         .section-block:has(> .skills-container:empty),
         .section-block:has(> .languages-container:empty),
         .section-block:has(> .tag-row:empty) {
@@ -491,12 +456,14 @@
             padding: 0 !important;
         }
 
-        .header-block:has(> .identity-info > .name:empty):has(> .identity-info > .job-title:empty) {
+        .top-header:has(> .identity-info > .name:empty):has(> .identity-info > .job-title:empty):has(> .photo-container:empty) {
             display: none !important;
         }
+        
+        .top-contact:empty { display: none !important; }
 
         /* ==========================================================================
-           13. PRINT SCALING (1 PAGE FIT)
+           12. PRINT SCALING (1 PAGE FIT)
            ========================================================================== */
         @media print {
             body { background: transparent; padding: 0; margin: 0; }
@@ -508,8 +475,8 @@
                 overflow: visible !important; 
                 page-break-after: auto; 
             }
-            .col-left, .col-right { page-break-inside: auto; }
-            .entry, .section-block, .header-block { page-break-inside: avoid; }
+            .columns-wrapper, .col-left, .col-right { page-break-inside: auto; }
+            .entry, .section-block, .top-header { page-break-inside: avoid; }
             h1, h2, h3, h4, h5, h6, .section-title { page-break-after: avoid; }
             @page { size: A4 portrait; margin: 0; }
             
@@ -523,8 +490,8 @@
 <body>
     <div class="page">
         
-        <!-- TOP HEADER BLOCK -->
-        <div class="header-block">
+        <!-- TOP HEADER -->
+        <div class="top-header">
             <div class="photo-container" style="{{PHOTO_DISPLAY}}">
                 <div class="photo-wrapper">
                     <img class="photo" src="{{PHOTO}}" alt="Profile"/>
@@ -535,69 +502,68 @@
                 <h1 class="name">{{FULL_NAME}}</h1>
                 <h2 class="job-title" style="{{JOB_TITLE_DISPLAY}}">{{JOB_TITLE}}</h2>
             </div>
+            
+            <div class="top-contact">
+                {{CONTACT_ITEMS}}
+                {{SOCIAL}}
+            </div>
         </div>
 
-        <!-- TWO COLUMNS -->
+        <!-- 2 COLUMNS -->
         <div class="columns-wrapper">
             
-            <!-- LEFT COLUMN -->
+            <!-- LEFT COLUMN (60%) -->
             <div class="col-left">
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_CONTACT|Commlink}}</div>
-                    <div class="contact-list">{{CONTACT_ITEMS}}</div>
-                    <div style="margin-top: 10px;"><div class="contact-list">{{SOCIAL}}</div></div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_PROFILE|Sys_Profile}}</div>
+                    <div class="section-title">{{HEADING_PROFILE|Research Focus}}</div>
                     <div class="summary-text">{{SUMMARY}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_EXPERIENCE|Runtime_Exp}}</div>
+                    <div class="section-title">{{HEADING_EXPERIENCE|Field Experience}}</div>
                     <div class="section-content">{{EXPERIENCE}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_PROJECTS|Executed_Ops}}</div>
+                    <div class="section-title">{{HEADING_PROJECTS|Environmental Projects}}</div>
                     <div class="section-content">{{PROJECTS}}</div>
                 </div>
-                
+
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_ACTIVITIES|Side_Processes}}</div>
-                    <div class="section-content">{{ACTIVITIES}}</div>
+                    <div class="section-title">{{HEADING_EDUCATION|Academic Background}}</div>
+                    <div class="section-content">{{EDUCATION}}</div>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN -->
+            <!-- RIGHT COLUMN (40%) -->
             <div class="col-right">
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_SKILLS|Hardware/Soft}}</div>
+                    <div class="section-title">{{HEADING_SKILLS|Lab & Field Skills}}</div>
                     <div class="skills-container">{{SKILLS}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_EDUCATION|Knowledge_Base}}</div>
-                    <div class="section-content">{{EDUCATION}}</div>
-                </div>
-
-                <div class="section-block">
-                    <div class="section-title">{{HEADING_CERTIFICATES|Decryptions}}</div>
+                    <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
                     <div class="section-content">{{CERTIFICATES}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_LANGUAGES|Langs}}</div>
+                    <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
                     <div class="languages-container">{{LANGUAGES}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_HOBBIES|Variables}}</div>
+                    <div class="section-title">{{HEADING_HOBBIES|Conservation Interests}}</div>
                     <div class="tag-row">{{HOBBIES}}</div>
+                </div>
+                
+                <div class="section-block">
+                    <div class="section-title">{{HEADING_ACTIVITIES|Eco Volunteering}}</div>
+                    <div class="section-content">{{ACTIVITIES}}</div>
                 </div>
 
                 <div class="section-block">
-                    <div class="section-title">{{HEADING_REFERENCES|Verifications}}</div>
+                    <div class="section-title">{{HEADING_REFERENCES|Supervisors}}</div>
                     <div class="section-content references-container">{{REFERENCES}}</div>
                 </div>
             </div>
