@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Victoria Arch Pillar Ribbon - Executive Creative</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ==========================================================================
+   SMART CV BUILDER - VICTORIA ARCH PILLAR RIBBON
+   Theme: Executive Creative (Template 194)
+   Style: Roman arch main column, pillar sidebar, ribbon banner header
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & CORE VARIABLES
+   ========================================================================== */
+:root {
+  --bg-page: #F4F1EA; /* Warm parchment */
+  --bg-pillar: #EAE6DB; /* Slightly darker stone */
+  --bg-arch: #FFFFFF;
+  
+  --indigo-dark: #1A237E; /* Classical deep blue */
+  --indigo-light: #5C6BC0;
+  
+  --gold-accent: #B8860B; /* Roman gold */
+  
+  --text-main: #212121;
+  --text-muted: #5D4037; /* Warm dark brown */
+  
+  /* Layout Spacing Variables */
+  --page-width: 794px;
+  --page-min-height: 1122px;
+  
+  /* Typography Variables */
+  --font-heading: 'Cormorant Garamond', serif; /* Classical roman */
+  --font-body: 'Inter', sans-serif; /* Clean modern */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #E2E8F0;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 11px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+/* ==========================================================================
+   PAGE LAYOUT & PRINT OPTIMIZATION
+   ========================================================================== */
+.page {
+  width: var(--page-width);
+  min-height: var(--page-min-height) !important;
+  margin: 0 auto;
+  background-color: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body { background: none; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    min-height: var(--page-min-height) !important;
+    page-break-after: auto;
+  }
+  .section-block { page-break-inside: avoid; }
+  .entry { page-break-inside: avoid; }
+}
+
+/* ==========================================================================
+   HEADER ZONE (RIBBON BANNER)
+   ========================================================================== */
+.header-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  z-index: 20;
+}
+
+/* The Ribbon Plate */
+.ribbon {
+  background-color: var(--indigo-dark);
+  color: #FFFFFF;
+  padding: 25px 60px;
+  position: relative;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.15);
+}
+
+/* Ribbon folded ends effect using CSS triangles */
+.ribbon::before, .ribbon::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  z-index: -1;
+  border: 15px solid var(--indigo-dark);
+  border-bottom-color: transparent;
+}
+.ribbon::before {
+  left: -20px;
+  border-left-color: transparent;
+  filter: brightness(0.6); /* Shadow for fold */
+}
+.ribbon::after {
+  right: -20px;
+  border-right-color: transparent;
+  filter: brightness(0.6);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.job-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold-accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.contact-zone {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 20px;
+  font-size: 10.5px;
+  margin-top: 20px;
+  padding: 0 40px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted) !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-item span {
+  color: var(--indigo-dark) !important;
+  font-weight: 600;
+}
+
+.contact-item svg {
+  fill: var(--gold-accent) !important;
+  width: 14px;
+  height: 14px;
+}
+
+/* Header Auto-hide Rules */
+.name:empty { display: none !important; }
+.job-title:empty { display: none !important; }
+.contact-zone:empty { display: none !important; }
+.ribbon:has(.name:empty):has(.job-title:empty) { display: none !important; }
+
+/* ==========================================================================
+   CONTENT LAYOUT (PILLAR & ARCH)
+   ========================================================================== */
+.content-area {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 10;
+  padding: 0 30px 40px 30px;
+}
+
+/* The Pillar Sidebar */
+.col-side {
+  width: 32%;
+  background-color: var(--bg-pillar);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 25px;
+  position: relative;
+  /* Pillar fluting lines */
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 10px,
+    rgba(0,0,0,0.02) 10px,
+    rgba(0,0,0,0.02) 12px
+  );
+  border-left: 2px solid rgba(0,0,0,0.05);
+  border-right: 2px solid rgba(0,0,0,0.05);
+  box-shadow: inset 5px 0 10px -5px rgba(0,0,0,0.05), inset -5px 0 10px -5px rgba(0,0,0,0.05);
+}
+
+/* Pillar Base and Cap */
+.col-side::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -4px; right: -4px;
+  height: 8px;
+  background: var(--bg-pillar);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.col-side::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: -6px; right: -6px;
+  height: 12px;
+  background: var(--bg-pillar);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* The Roman Arch Main Column */
+.col-main {
+  width: 68%;
+  background-color: var(--bg-arch);
+  display: flex;
+  flex-direction: column;
+  padding: 60px 45px;
+  border-radius: 180px 180px 0 0; /* Massive top arch */
+  margin-left: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.03);
+  position: relative;
+}
+
+/* Arch inner line decorative */
+.col-main::before {
+  content: '';
+  position: absolute;
+  top: 15px; left: 15px; right: 15px; bottom: 0;
+  border: 1px solid var(--gold-accent);
+  border-bottom: none;
+  border-radius: 165px 165px 0 0;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* ==========================================================================
+   PHOTO IN SIDEBAR (Optional if needed)
+   ========================================================================== */
+.photo-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px auto;
+  border-radius: 50%;
+  border: 3px solid var(--indigo-dark);
+  padding: 4px;
+  background-color: var(--bg-arch);
+  position: relative;
+  z-index: 10;
+}
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+.photo[src=""], .photo:not([src]) { display: none !important; }
+.photo-container:has(> .photo[src=""]), .photo-container:has(> .photo:not([src])) { display: none !important; }
+.photo-container:empty { display: none !important; }
+
+/* ==========================================================================
+   SECTION BLOCKS & TITLES
+   ========================================================================== */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 5;
+}
+
+/* MAIN COLUMN TITLES */
+.col-main .section-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--indigo-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 8px;
+}
+.col-main .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: var(--gold-accent);
+}
+
+/* SIDE COLUMN TITLES */
+.col-side .section-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--indigo-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 6px;
+  text-align: center;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ==========================================================================
+   ENTRY COMPONENTS (Experience, Education, Projects)
+   ========================================================================== */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.entry-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--indigo-dark);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.entry-date {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--gold-accent);
+  text-align: right;
+  min-width: 90px;
+  font-style: italic;
+  overflow-wrap: anywhere;
+}
+
+.entry-sub-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.entry-badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+.entry-desc {
+  font-size: 11px;
+  color: var(--text-main);
+  line-height: 1.7;
+  margin-top: 4px;
+  text-align: justify;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* Summary Profile Text */
+.summary-text {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: var(--text-main);
+  line-height: 1.6;
+  font-weight: 400;
+  text-align: center;
+  font-style: italic;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* ==========================================================================
+   SKILLS & LANGUAGES GRID (Inside Sidebar Pillar)
+   ========================================================================== */
+.skills-container, .languages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.skill-name {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.skill-level {
+  display: none;
+}
+
+/* Classical thin track */
+.skill-track {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.skill-fill {
+  height: 100%;
+  background-color: var(--indigo-dark);
+}
+
+.skills-container:has(.skill-item) .chip { display: none !important; }
+.languages-container:has(.skill-item) .chip { display: none !important; }
+
+/* ==========================================================================
+   TAGS (Hobbies / Interests)
+   ========================================================================== */
+.tag-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.chip {
+  background-color: transparent;
+  color: var(--text-main);
+  padding: 2px 0;
+  font-size: 11.5px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  overflow-wrap: anywhere;
+  border: none;
+}
+.chip::before {
+  content: '✦ ';
+  color: var(--gold-accent);
+  font-size: 10px;
+}
+
+.tag-row .skill-item, .tag-row .entry { display: none !important; }
+
+/* ==========================================================================
+   REFERENCES SECTION
+   ========================================================================== */
+.references-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.col-side .ref-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.col-side .ref-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.col-side .ref-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--indigo-dark);
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================================================
+   AUTO-HIDE EMPTY STATES (Critical Android UI Logic)
+   ========================================================================== */
+.entry-desc:empty,
+.summary-text:empty,
+.skills-container:empty,
+.languages-container:empty,
+.tag-row:empty,
+.section-content:empty {
+  display: none !important;
+}
+
+.section-block:has(.section-content:empty),
+.section-block:has(.skills-container:empty),
+.section-block:has(.languages-container:empty),
+.section-block:has(.tag-row:empty),
+.section-block:has(> .references-grid:empty),
+.section-block:has(> .summary-text:empty) {
+  display: none !important;
+}
+
+.col-side:not(:has(.section-block:not([style*="display: none"]))) {
+  display: none !important;
+}
+
+.col-main:not(:has(.section-block:not([style*="display: none"]))) {
+  width: 100% !important;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  
+  <!-- ==========================================
+       HEADER ZONE (RIBBON BANNER)
+       ========================================== -->
+  <header class="header-zone">
+    <div class="ribbon">
+      <div class="name">
+        {{FULL_NAME}}
+      </div>
+      <div class="job-title" style="{{JOB_TITLE_DISPLAY}}">
+        {{JOB_TITLE}}
+      </div>
+    </div>
+    
+    <div class="contact-zone">
+      {{CONTACT_ITEMS}}
+    </div>
+  </header>
+  
+  <!-- ==========================================
+       CONTENT AREA (PILLAR + ARCH)
+       ========================================== -->
+  <main class="content-area">
+    
+    <!-- PILLAR SIDEBAR -->
+    <aside class="col-side">
+      <!-- Photo (If provided, sits elegantly in the pillar) -->
+      <div class="photo-container" style="{{PHOTO_DISPLAY}}">
+        <img alt="Profile Photo" class="photo" src="{{PHOTO}}"/>
+      </div>
+      
+      <!-- Skills -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SKILLS|Expertise}}</div>
+        <div class="skills-container">{{SKILLS}}</div>
+      </div>
+      
+      <!-- Languages -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_LANGUAGES|Languages}}</div>
+        <div class="languages-container">{{LANGUAGES}}</div>
+      </div>
+
+      <!-- Hobbies / Interests -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_HOBBIES|Interests}}</div>
+        <div class="tag-row">{{HOBBIES}}</div>
+      </div>
+      
+      <!-- References (If placed in sidebar) -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_REFERENCES|References}}</div>
+        <div class="references-grid">{{REFERENCES}}</div>
+      </div>
+    </aside>
+
+    <!-- ARCH MAIN COLUMN -->
+    <div class="col-main">
+      <!-- Profile / Summary -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
+        <div class="summary-text">{{SUMMARY}}</div>
+      </div>
+      
+      <!-- Experience -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
+        <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
+      </div>
+      
+      <!-- Projects -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_PROJECTS|Projects}}</div>
+        <div class="section-content">{{PROJECTS}}</div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_CERTIFICATES|Certifications}}</div>
+        <div class="section-content">{{CERTIFICATES}}</div>
+      </div>
+
+      <!-- Activities -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_ACTIVITIES|Activities}}</div>
+        <div class="section-content">{{ACTIVITIES}}</div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="section-block">
+        <div class="section-title">{{HEADING_SOCIAL|Network}}</div>
+        <div class="section-content">{{SOCIAL}}</div>
+      </div>
+    </div>
+    
+  </main>
+</div>
+</body>
+</html>
