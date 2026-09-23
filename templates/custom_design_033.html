@@ -280,7 +280,7 @@ body {
 }
 
 /* ==========================================================================
-   ENTRY COMPONENTS (Education-First Layout)
+   ENTRY COMPONENTS
    ========================================================================== */
 .entry {
   display: flex;
@@ -346,7 +346,7 @@ body {
   white-space: pre-line;
 }
 
-/* Highlight Education Section (Fresher Layout) */
+/* Highlight Education Section */
 #education-section .entry {
   background-color: var(--academic-light);
   padding: 16px;
@@ -543,17 +543,17 @@ body {
         <div class="section-title">{{HEADING_PROFILE|Profile}}</div>
         <div class="summary-text">{{SUMMARY}}</div>
       </div>
-      
-      <!-- CRITICAL INVERSION FOR FRESHERS: EDUCATION FIRST -->
-      <div class="section-block" id="education-section">
-        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
-        <div class="section-content">{{EDUCATION}}</div>
-      </div>
 
-      <!-- Experience (Below Education) -->
+      <!-- Experience (Above Education) -->
       <div class="section-block">
         <div class="section-title">{{HEADING_EXPERIENCE|Professional Experience}}</div>
         <div class="section-content">{{EXPERIENCE}}</div>
+      </div>
+      
+      <!-- Education (Below Experience) -->
+      <div class="section-block" id="education-section">
+        <div class="section-title">{{HEADING_EDUCATION|Education}}</div>
+        <div class="section-content">{{EDUCATION}}</div>
       </div>
       
       <!-- Projects -->
